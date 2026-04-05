@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trending Gifts – INCANTO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">✦</span>
+        INCANTO
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#finder">Finder</a></li>
+        <li><a href="trending.html">Trending</a></li>
+        <li><a href="guides.html">Guides</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+          <span class="toggle-icon">🌙</span>
+        </button>
+        <a href="index.html#finder" class="nav-cta">Find a Gift</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#hero" class="mobile-link">Home</a>
+    <a href="index.html#finder" class="mobile-link">Finder</a>
+    <a href="trending.html" class="mobile-link">Trending</a>
+    <a href="guides.html" class="mobile-link">Guides</a>
+    <a href="index.html#about" class="mobile-link">About</a>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <section class="page-section" style="padding: 150px 0 100px; min-height: 80vh;">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Discover</p>
+        <h1 class="section-title">Trending Gifts</h1>
+        <p class="section-sub">See what everyone is loving right now.</p>
+      </div>
+      
+      <div class="gifts-grid" id="giftsGrid">
+        <div class="gift-card" style="animation-delay: 0s;">
+          <div class="gift-img-wrap">
+            <span style="position:relative;z-index:1">🎧</span>
+            <div class="gift-badge">#1 Trending</div>
+            <button class="fav-btn">🤍</button>
+          </div>
+          <div class="gift-body">
+            <h3 class="gift-name">Aura Noise Cancelling Headphones</h3>
+            <p class="gift-desc">Premium wireless headphones with spatial audio tracking.</p>
+            <div class="gift-ai-reason"><strong>✦ Why it's trending</strong><br>The ultimate remote work essential. Highly gifted for birthdays.</div>
+            <div class="gift-footer">
+              <div class="gift-price">Rs. 8,500<span>onwards</span></div>
+              <a href="#" class="btn-buy">Buy Now →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="gift-card" style="animation-delay: 0.1s;">
+          <div class="gift-img-wrap">
+            <span style="position:relative;z-index:1">☕</span>
+            <div class="gift-badge">Hot Pick</div>
+            <button class="fav-btn">🤍</button>
+          </div>
+          <div class="gift-body">
+            <h3 class="gift-name">Artisan Coffee Brewing Kit</h3>
+            <p class="gift-desc">Complete pour-over setup with freshly roasted Himalayan beans.</p>
+            <div class="gift-ai-reason"><strong>✦ Why it's trending</strong><br>Winter is here, and this kit is dominating the 'For Him' category.</div>
+            <div class="gift-footer">
+              <div class="gift-price">Rs. 3,200<span>onwards</span></div>
+              <a href="#" class="btn-buy">Buy Now →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="gift-card" style="animation-delay: 0.2s;">
+          <div class="gift-img-wrap">
+            <span style="position:relative;z-index:1">🪴</span>
+            <div class="gift-badge">Fast Seller</div>
+            <button class="fav-btn">🤍</button>
+          </div>
+          <div class="gift-body">
+            <h3 class="gift-name">Smart Desktop Planter</h3>
+            <p class="gift-desc">Self-watering indoor planter with LED grow lights.</p>
+            <div class="gift-ai-reason"><strong>✦ Why it's trending</strong><br>Makes a fantastic low-maintenance desk buddy for colleagues.</div>
+            <div class="gift-footer">
+              <div class="gift-price">Rs. 4,500<span>onwards</span></div>
+              <a href="#" class="btn-buy">Buy Now →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-icon">✦</span>
+            INCANTO
+          </div>
+          <p>AI-powered gifting intelligence, crafted with care.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Facebook">👥</a>
+            <a href="#" aria-label="TikTok">🎵</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="index.html#finder">Gift Finder</a>
+            <a href="index.html#roulette">Gift Roulette</a>
+            <a href="trending.html">Trending Gifts</a>
+            <a href="guides.html">Gift Guides</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="index.html#about">About Us</a>
+            <a href="blog.html">Blog</a>
+            <a href="press.html">Press</a>
+            <a href="careers.html">Careers</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="mailto:hello@incanto.ai">hello@incanto.ai</a>
+            <a href="support.html">Support</a>
+            <a href="affiliate.html">Affiliate Program</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 INCANTO. All rights reserved. Made with ❤️ in Nepal.</p>
+        <p class="footer-disclaimer">Affiliate links may earn us a small commission at no cost to you.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

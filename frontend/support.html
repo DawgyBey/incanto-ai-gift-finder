@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support – INCANTO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">✦</span>
+        INCANTO
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#finder">Finder</a></li>
+        <li><a href="trending.html">Trending</a></li>
+        <li><a href="guides.html">Guides</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+          <span class="toggle-icon">🌙</span>
+        </button>
+        <a href="index.html#finder" class="nav-cta">Find a Gift</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#hero" class="mobile-link">Home</a>
+    <a href="index.html#finder" class="mobile-link">Finder</a>
+    <a href="trending.html" class="mobile-link">Trending</a>
+    <a href="guides.html" class="mobile-link">Guides</a>
+    <a href="index.html#about" class="mobile-link">About</a>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <section class="page-section" style="padding: 150px 0 100px; min-height: 80vh;">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Here to help</p>
+        <h1 class="section-title">Support Center</h1>
+        <p class="section-sub">Have a question? We've got answers.</p>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+        
+        <div>
+          <h2 style="font-size: 2rem; margin-bottom: 20px;">Frequently Asked Questions</h2>
+          <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div style="padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+              <h4 style="font-size: 1.1rem; margin-bottom: 8px;">How does the AI choose gifts?</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">Our engine maps the personality traits and interests you provide directly to our curated database of 12,000+ items using semantic matching.</p>
+            </div>
+            <div style="padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+              <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Are the gifts physically held by INCANTO?</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">No, we are a discovery engine. When you click "Buy Now," you are securely redirected to trusted affiliate partners like Daraz to complete the purchase.</p>
+            </div>
+            <div style="padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+              <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Is my data saved?</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">Your quiz inputs are processed transiently and are not stored against a personal profile. Your favorites are saved strictly on your local browser storage.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px;">
+          <h2 style="font-size: 2rem; margin-bottom: 15px;">Send a Message</h2>
+          <p style="color: var(--text-muted); margin-bottom: 30px;">Have a specific query? Drop us a note below or at <a href="mailto:support@incanto.ai">support@incanto.ai</a>.</p>
+          <form onsubmit="event.preventDefault(); alert('Message sent!');">
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Your Name</label>
+              <input type="text" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email Address</label>
+              <input type="email" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Message</label>
+              <textarea required rows="4" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); resize: vertical;"></textarea>
+            </div>
+            <button class="btn-primary" type="submit" style="width: 100%;">Submit Inquiry</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-icon">✦</span>
+            INCANTO
+          </div>
+          <p>AI-powered gifting intelligence, crafted with care.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Facebook">👥</a>
+            <a href="#" aria-label="TikTok">🎵</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="index.html#finder">Gift Finder</a>
+            <a href="index.html#roulette">Gift Roulette</a>
+            <a href="trending.html">Trending Gifts</a>
+            <a href="guides.html">Gift Guides</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="index.html#about">About Us</a>
+            <a href="blog.html">Blog</a>
+            <a href="press.html">Press</a>
+            <a href="careers.html">Careers</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="mailto:hello@incanto.ai">hello@incanto.ai</a>
+            <a href="support.html">Support</a>
+            <a href="affiliate.html">Affiliate Program</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 INCANTO. All rights reserved. Made with ❤️ in Nepal.</p>
+        <p class="footer-disclaimer">Affiliate links may earn us a small commission at no cost to you.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
