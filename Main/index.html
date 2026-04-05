@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INCANTO – AI Gift Finder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">✦</span>
+        INCANTO
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#finder">Finder</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+          <span class="toggle-icon">🌙</span>
+        </button>
+        <a href="#finder" class="nav-cta">Find a Gift</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero" class="mobile-link">Home</a>
+    <a href="#finder" class="mobile-link">Finder</a>
+    <a href="#about" class="mobile-link">About</a>
+  </div>
+
+  <!-- ══════════════════════════════════════════ HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-lines"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        AI-Powered Gift Intelligence
+      </div>
+      <h1 class="hero-title reveal reveal-delay-1">
+        Find the Perfect Gift<br />
+        <em>with AI</em> <span class="gift-emoji">🎁</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        Stop guessing. Let INCANTO's intelligent recommendation engine discover<br class="br-desktop" />
+        gifts that genuinely move people — curated for every personality and moment.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#finder" class="btn-primary">Start Finding →</a>
+        <button class="btn-surprise" id="surpriseBtn">🎲 Surprise Me</button>
+      </div>
+      <div class="hero-stats reveal reveal-delay-4">
+        <div class="stat"><strong>12,000+</strong><span>Gifts Curated</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>98%</strong><span>Satisfaction Rate</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>50+</strong><span>Occasions Covered</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal reveal-delay-2">
+      <div class="floating-cards">
+        <div class="float-card fc-1">
+          <div class="fc-emoji">🌸</div>
+          <div class="fc-label">For Mom</div>
+          <div class="fc-price">Rs. 2,500</div>
+        </div>
+        <div class="float-card fc-2">
+          <div class="fc-emoji">💍</div>
+          <div class="fc-label">Anniversary</div>
+          <div class="fc-price">Rs. 8,000</div>
+        </div>
+        <div class="float-card fc-3">
+          <div class="fc-emoji">🎮</div>
+          <div class="fc-label">For Him</div>
+          <div class="fc-price">Rs. 4,500</div>
+        </div>
+        <div class="float-card fc-4">
+          <div class="fc-emoji">✨</div>
+          <div class="fc-label">Best Friend</div>
+          <div class="fc-price">Rs. 1,800</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ HOW IT WORKS -->
+  <section class="how-it-works" id="how">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">The Process</p>
+        <h2 class="section-title">Three steps to the perfect gift</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-num">01</div>
+          <div class="step-icon">💬</div>
+          <h3>Tell Us About Them</h3>
+          <p>Answer a few quick questions about the recipient — their personality, interests, and your budget.</p>
+        </div>
+        <div class="step-card reveal reveal-delay-1">
+          <div class="step-num">02</div>
+          <div class="step-icon">🧠</div>
+          <h3>AI Does the Magic</h3>
+          <p>Our intelligent engine analyzes thousands of options to find gifts that match perfectly.</p>
+        </div>
+        <div class="step-card reveal reveal-delay-2">
+          <div class="step-num">03</div>
+          <div class="step-icon">🎁</div>
+          <h3>Gift With Confidence</h3>
+          <p>Choose your favorite from curated results and buy directly via trusted affiliate partners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ FINDER -->
+  <section class="finder-section" id="finder">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">AI Gift Finder</p>
+        <h2 class="section-title">Let's find the perfect gift</h2>
+        <p class="section-sub">Answer a few questions and our AI will curate personalized recommendations just for you.</p>
+      </div>
+
+      <!-- Finder Card -->
+      <div class="finder-card reveal">
+        <!-- Progress Bar -->
+        <div class="progress-bar-wrap">
+          <div class="progress-steps">
+            <div class="pstep active" data-step="1">
+              <div class="pstep-dot"></div>
+              <span>Occasion</span>
+            </div>
+            <div class="pstep" data-step="2">
+              <div class="pstep-dot"></div>
+              <span>Recipient</span>
+            </div>
+            <div class="pstep" data-step="3">
+              <div class="pstep-dot"></div>
+              <span>Budget</span>
+            </div>
+            <div class="pstep" data-step="4">
+              <div class="pstep-dot"></div>
+              <span>Interests</span>
+            </div>
+            <div class="pstep" data-step="5">
+              <div class="pstep-dot"></div>
+              <span>Personality</span>
+            </div>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+
+        <!-- Step 1: Occasion -->
+        <div class="finder-step active" id="step-1">
+          <h3 class="step-q">What's the occasion? 🎉</h3>
+          <p class="step-hint">Select the event you're gifting for</p>
+          <div class="choice-grid">
+            <button class="choice-btn" data-value="birthday">🎂 Birthday</button>
+            <button class="choice-btn" data-value="anniversary">💍 Anniversary</button>
+            <button class="choice-btn" data-value="wedding">💒 Wedding</button>
+            <button class="choice-btn" data-value="festival">🪔 Festival</button>
+            <button class="choice-btn" data-value="graduation">🎓 Graduation</button>
+            <button class="choice-btn" data-value="babyshower">👶 Baby Shower</button>
+            <button class="choice-btn" data-value="valentine">❤️ Valentine's</button>
+            <button class="choice-btn" data-value="justbecause">✨ Just Because</button>
+          </div>
+          <div class="step-nav">
+            <span></span>
+            <button class="btn-next" id="next1" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Recipient -->
+        <div class="finder-step" id="step-2">
+          <h3 class="step-q">Who are you gifting? 💝</h3>
+          <p class="step-hint">Tell us about your recipient</p>
+          <div class="choice-grid">
+            <button class="choice-btn" data-value="partner">💑 Partner</button>
+            <button class="choice-btn" data-value="friend">👫 Friend</button>
+            <button class="choice-btn" data-value="mom">👩 Mom</button>
+            <button class="choice-btn" data-value="dad">👨 Dad</button>
+            <button class="choice-btn" data-value="sibling">🧑 Sibling</button>
+            <button class="choice-btn" data-value="colleague">💼 Colleague</button>
+            <button class="choice-btn" data-value="child">🧒 Child</button>
+            <button class="choice-btn" data-value="grandparent">👴 Grandparent</button>
+          </div>
+          <div class="step-nav">
+            <button class="btn-back">← Back</button>
+            <button class="btn-next" id="next2" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Budget -->
+        <div class="finder-step" id="step-3">
+          <h3 class="step-q">What's your budget? 💰</h3>
+          <p class="step-hint">We'll find amazing options within your range</p>
+          <div class="budget-wrap">
+            <div class="budget-display">
+              <span class="currency">Rs.</span>
+              <span class="budget-val" id="budgetVal">2,500</span>
+            </div>
+            <input type="range" class="budget-slider" id="budgetSlider" min="500" max="20000" step="100" value="2500" />
+            <div class="budget-labels">
+              <span>Rs. 500</span>
+              <span>Rs. 20,000</span>
+            </div>
+            <div class="budget-presets">
+              <button class="preset-btn" data-val="1000">Under Rs. 1K</button>
+              <button class="preset-btn" data-val="3000">Rs. 1–3K</button>
+              <button class="preset-btn" data-val="7000">Rs. 3–7K</button>
+              <button class="preset-btn" data-val="15000">Rs. 7K+</button>
+            </div>
+          </div>
+          <div class="step-nav">
+            <button class="btn-back">← Back</button>
+            <button class="btn-next" id="next3">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Interests -->
+        <div class="finder-step" id="step-4">
+          <h3 class="step-q">What are they into? 🎯</h3>
+          <p class="step-hint">Select all that apply</p>
+          <div class="tags-wrap">
+            <button class="tag-btn" data-value="music">🎵 Music</button>
+            <button class="tag-btn" data-value="travel">✈️ Travel</button>
+            <button class="tag-btn" data-value="fitness">💪 Fitness</button>
+            <button class="tag-btn" data-value="cooking">🍳 Cooking</button>
+            <button class="tag-btn" data-value="art">🎨 Art</button>
+            <button class="tag-btn" data-value="books">📚 Books</button>
+            <button class="tag-btn" data-value="gaming">🎮 Gaming</button>
+            <button class="tag-btn" data-value="fashion">👗 Fashion</button>
+            <button class="tag-btn" data-value="tech">💻 Tech</button>
+            <button class="tag-btn" data-value="nature">🌿 Nature</button>
+            <button class="tag-btn" data-value="skincare">✨ Skincare</button>
+            <button class="tag-btn" data-value="photography">📷 Photography</button>
+          </div>
+          <div class="step-nav">
+            <button class="btn-back">← Back</button>
+            <button class="btn-next" id="next4">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 5: Personality -->
+        <div class="finder-step" id="step-5">
+          <h3 class="step-q">How would you describe them? 🌟</h3>
+          <p class="step-hint">Pick the vibe that fits best</p>
+          <div class="personality-grid">
+            <button class="pers-btn" data-value="funny">
+              <span class="pers-emoji">😂</span>
+              <strong>Funny & Playful</strong>
+              <span>Loves to laugh, quirky taste</span>
+            </button>
+            <button class="pers-btn" data-value="romantic">
+              <span class="pers-emoji">🌹</span>
+              <strong>Romantic & Emotional</strong>
+              <span>Sentimental, loves meaning</span>
+            </button>
+            <button class="pers-btn" data-value="practical">
+              <span class="pers-emoji">⚡</span>
+              <strong>Practical & Efficient</strong>
+              <span>Values usefulness over aesthetics</span>
+            </button>
+            <button class="pers-btn" data-value="adventurous">
+              <span class="pers-emoji">🗺️</span>
+              <strong>Adventurous & Bold</strong>
+              <span>Always up for something new</span>
+            </button>
+            <button class="pers-btn" data-value="artistic">
+              <span class="pers-emoji">🎭</span>
+              <strong>Artistic & Creative</strong>
+              <span>Has an eye for beauty</span>
+            </button>
+            <button class="pers-btn" data-value="intellectual">
+              <span class="pers-emoji">🧠</span>
+              <strong>Intellectual & Curious</strong>
+              <span>Always learning, loves depth</span>
+            </button>
+          </div>
+          <div class="step-nav">
+            <button class="btn-back">← Back</button>
+            <button class="btn-find" id="findGifts">✨ Find Perfect Gifts</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ LOADING -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+      <div class="loader-ring"></div>
+      <p class="loader-text" id="loaderText">Analyzing your preferences...</p>
+      <div class="loader-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ RESULTS -->
+  <section class="results-section" id="results" style="display:none;">
+    <div class="container">
+      <div class="results-header">
+        <div class="results-title-wrap">
+          <p class="section-eyebrow">AI Recommendations</p>
+          <h2 class="section-title" id="resultsTitle">Perfect gifts, just for them ✨</h2>
+        </div>
+        <div class="results-actions">
+          <button class="btn-filter active" data-filter="all">All</button>
+          <button class="btn-filter" data-filter="under2k">Under Rs. 2K</button>
+          <button class="btn-filter" data-filter="2kto5k">Rs. 2–5K</button>
+          <button class="btn-filter" data-filter="above5k">Rs. 5K+</button>
+        </div>
+      </div>
+
+      <!-- Favorites bar -->
+      <div class="favorites-bar" id="favoritesBar" style="display:none;">
+        <div class="fav-label">❤️ Saved Gifts (<span id="favCount">0</span>)</div>
+        <button class="view-fav-btn" id="viewFavsBtn">View Saved</button>
+      </div>
+
+      <div class="gifts-grid" id="giftsGrid">
+        <!-- Cards injected by JS -->
+      </div>
+
+      <div class="results-footer">
+        <button class="btn-more" id="loadMoreBtn">Show More Like These</button>
+        <button class="btn-restart" id="restartBtn">↩ Start Over</button>
+      </div>
+
+      <!-- Recently Viewed -->
+      <div class="recent-section" id="recentSection" style="display:none;">
+        <h3 class="recent-title">Recently Viewed</h3>
+        <div class="recent-grid" id="recentGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ GIFT ROULETTE -->
+  <section class="roulette-section" id="roulette">
+    <div class="container">
+      <div class="roulette-card reveal">
+        <div class="roulette-left">
+          <div class="roulette-emoji">🎲</div>
+          <h2>Gift Roulette</h2>
+          <p>Can't decide? Let fate choose! Spin the wheel and discover a surprise gift idea.</p>
+          <button class="btn-spin" id="spinBtn">Spin the Wheel</button>
+        </div>
+        <div class="roulette-right">
+          <div class="wheel-wrap">
+            <div class="wheel" id="rouletteWheel">
+              <div class="wheel-segment" style="--i:0">🎧</div>
+              <div class="wheel-segment" style="--i:1">📚</div>
+              <div class="wheel-segment" style="--i:2">🍫</div>
+              <div class="wheel-segment" style="--i:3">🧴</div>
+              <div class="wheel-segment" style="--i:4">🌸</div>
+              <div class="wheel-segment" style="--i:5">🎮</div>
+              <div class="wheel-segment" style="--i:6">✈️</div>
+              <div class="wheel-segment" style="--i:7">💌</div>
+            </div>
+            <div class="wheel-pointer">▼</div>
+          </div>
+          <div class="roulette-result" id="rouletteResult"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ ABOUT -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p class="section-eyebrow">Our Story</p>
+          <h2 class="section-title">Gifting, reimagined<br /><em>by intelligence</em></h2>
+          <p>INCANTO was built on a simple belief: every gift should feel like it was chosen with genuine care. We combined AI with a deep understanding of human emotion to create a platform that doesn't just suggest gifts — it finds meaning.</p>
+          <p>Whether it's a birthday for your best friend or a holiday surprise for someone far away, INCANTO helps you show up beautifully — every single time.</p>
+          <div class="about-values">
+            <div class="value-item">
+              <span class="value-icon">🎯</span>
+              <div>
+                <strong>Precision</strong>
+                <p>Smart matching based on real personality traits</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-icon">💛</span>
+              <div>
+                <strong>Emotion</strong>
+                <p>Every recommendation carries meaning</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-icon">🔒</span>
+              <div>
+                <strong>Trust</strong>
+                <p>Curated from trusted sellers only</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual reveal reveal-delay-1">
+          <div class="about-card-stack">
+            <div class="acard acard-1">
+              <div class="acard-icon">✨</div>
+              <strong>AI-Curated</strong>
+              <span>Every gift is handpicked by our model</span>
+            </div>
+            <div class="acard acard-2">
+              <div class="acard-icon">🌍</div>
+              <strong>Pan-Nepal</strong>
+              <span>Delivery via Daraz & local partners</span>
+            </div>
+            <div class="acard acard-3">
+              <div class="acard-icon">❤️</div>
+              <strong>Made with love</strong>
+              <span>Built in Nepal, for the world</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-icon">✦</span>
+            INCANTO
+          </div>
+          <p>AI-powered gifting intelligence, crafted with care.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Facebook">👥</a>
+            <a href="#" aria-label="TikTok">🎵</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="#finder">Gift Finder</a>
+            <a href="#roulette">Gift Roulette</a>
+            <a href="#">Trending Gifts</a>
+            <a href="#">Gift Guides</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#about">About Us</a>
+            <a href="#">Blog</a>
+            <a href="#">Press</a>
+            <a href="#">Careers</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="mailto:hello@incanto.ai">hello@incanto.ai</a>
+            <a href="#">Support</a>
+            <a href="#">Affiliate Program</a>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 INCANTO. All rights reserved. Made with ❤️ in Nepal.</p>
+        <p class="footer-disclaimer">Affiliate links may earn us a small commission at no cost to you.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════ FAVORITES MODAL -->
+  <div class="modal-overlay" id="favsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>❤️ Saved Gifts</h3>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
