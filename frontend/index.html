@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INCANTO – AI Gift Finder</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
@@ -20,8 +24,8 @@
       <ul class="nav-links">
         <li><a href="#hero">Home</a></li>
         <li><a href="#finder">Finder</a></li>
-        <li><a href="trending.html">Trending</a></li>
-        <li><a href="guides.html">Guides</a></li>
+        <li><a href="#trending">Trending</a></li>
+        <li><a href="#guides">Guides</a></li>
         <li><a href="#about">About</a></li>
       </ul>
       <div class="nav-actions">
@@ -40,408 +44,1108 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#hero" class="mobile-link">Home</a>
     <a href="#finder" class="mobile-link">Finder</a>
-    <a href="trending.html" class="mobile-link">Trending</a>
-    <a href="guides.html" class="mobile-link">Guides</a>
+    <a href="#trending" class="mobile-link">Trending</a>
+    <a href="#guides" class="mobile-link">Guides</a>
     <a href="#about" class="mobile-link">About</a>
   </div>
 
-  <!-- ══════════════════════════════════════════ HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
-      <div class="grid-lines"></div>
+  <!-- HERO -->
+  <div id="home" class="view-section active">
+
+    <section class="hero" id="hero">
+      <div class="hero-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-lines"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="badge-dot"></span>
+          AI-Powered Gift Intelligence
+        </div>
+        <h1 class="hero-title reveal reveal-delay-1">
+          Find the Perfect Gift<br />
+          <em>with AI</em> <span class="gift-emoji">🎁</span>
+        </h1>
+        <p class="hero-sub reveal reveal-delay-2">
+          Stop guessing. Let INCANTO's intelligent recommendation engine discover<br class="br-desktop" />
+          gifts that genuinely move people — curated for every personality and moment.
+        </p>
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="#finder" class="btn-primary">Start Finding →</a>
+          <button class="btn-surprise" id="surpriseBtn">🎲 Surprise Me</button>
+        </div>
+        <div class="hero-stats reveal reveal-delay-4">
+          <div class="stat"><strong>12,000+</strong><span>Gifts Curated</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong>98%</strong><span>Satisfaction Rate</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong>50+</strong><span>Occasions Covered</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal reveal-delay-2">
+        <div class="floating-cards">
+          <div class="float-card fc-1">
+            <div class="fc-emoji">🌸</div>
+            <div class="fc-label">For Mom</div>
+            <div class="fc-price">Rs. 2,500</div>
+          </div>
+          <div class="float-card fc-2">
+            <div class="fc-emoji">💍</div>
+            <div class="fc-label">Anniversary</div>
+            <div class="fc-price">Rs. 8,000</div>
+          </div>
+          <div class="float-card fc-3">
+            <div class="fc-emoji">🎮</div>
+            <div class="fc-label">For Him</div>
+            <div class="fc-price">Rs. 4,500</div>
+          </div>
+          <div class="float-card fc-4">
+            <div class="fc-emoji">✨</div>
+            <div class="fc-label">Best Friend</div>
+            <div class="fc-price">Rs. 1,800</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">The Process</p>
+          <h2 class="section-title">Three steps to the perfect gift</h2>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card reveal">
+            <div class="step-num">01</div>
+            <div class="step-icon">💬</div>
+            <h3>Tell Us About Them</h3>
+            <p>Answer a few quick questions about the recipient — their personality, interests, and your budget.</p>
+          </div>
+          <div class="step-card reveal reveal-delay-1">
+            <div class="step-num">02</div>
+            <div class="step-icon">🧠</div>
+            <h3>AI Does the Magic</h3>
+            <p>Our intelligent engine analyzes thousands of options to find gifts that match perfectly.</p>
+          </div>
+          <div class="step-card reveal reveal-delay-2">
+            <div class="step-num">03</div>
+            <div class="step-icon">🎁</div>
+            <h3>Gift With Confidence</h3>
+            <p>Choose your favorite from curated results and buy directly via trusted affiliate partners.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--  FINDER -->
+    <section class="finder-section" id="finder">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">AI Gift Finder</p>
+          <h2 class="section-title">Let's find the perfect gift</h2>
+          <p class="section-sub">Answer a few questions and our AI will curate personalized recommendations just for
+            you.</p>
+        </div>
+
+        <!-- Finder Card -->
+        <div class="finder-card reveal">
+          <!-- Progress Bar -->
+          <div class="progress-bar-wrap">
+            <div class="progress-steps">
+              <div class="pstep active" data-step="1">
+                <div class="pstep-dot"></div>
+                <span>Occasion</span>
+              </div>
+              <div class="pstep" data-step="2">
+                <div class="pstep-dot"></div>
+                <span>Recipient</span>
+              </div>
+              <div class="pstep" data-step="3">
+                <div class="pstep-dot"></div>
+                <span>Budget</span>
+              </div>
+              <div class="pstep" data-step="4">
+                <div class="pstep-dot"></div>
+                <span>Interests</span>
+              </div>
+              <div class="pstep" data-step="5">
+                <div class="pstep-dot"></div>
+                <span>Personality</span>
+              </div>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+
+          <!-- Step 1: Occasion -->
+          <div class="finder-step active" id="step-1">
+            <h3 class="step-q">What's the occasion? 🎉</h3>
+            <p class="step-hint">Select the event you're gifting for</p>
+            <div class="choice-grid">
+              <button class="choice-btn" data-value="birthday">🎂 Birthday</button>
+              <button class="choice-btn" data-value="anniversary">💍 Anniversary</button>
+              <button class="choice-btn" data-value="wedding">💒 Wedding</button>
+              <button class="choice-btn" data-value="festival">🪔 Festival</button>
+              <button class="choice-btn" data-value="graduation">🎓 Graduation</button>
+              <button class="choice-btn" data-value="babyshower">👶 Baby Shower</button>
+              <button class="choice-btn" data-value="valentine">❤️ Valentine's</button>
+              <button class="choice-btn" data-value="justbecause">✨ Just Because</button>
+            </div>
+            <div class="step-nav">
+              <span></span>
+              <button class="btn-next" id="next1" disabled>Continue →</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Recipient -->
+          <div class="finder-step" id="step-2">
+            <h3 class="step-q">Who are you gifting? 💝</h3>
+            <p class="step-hint">Tell us about your recipient</p>
+            <div class="choice-grid">
+              <button class="choice-btn" data-value="partner">💑 Partner</button>
+              <button class="choice-btn" data-value="friend">👫 Friend</button>
+              <button class="choice-btn" data-value="mom">👩 Mom</button>
+              <button class="choice-btn" data-value="dad">👨 Dad</button>
+              <button class="choice-btn" data-value="sibling">🧑 Sibling</button>
+              <button class="choice-btn" data-value="colleague">💼 Colleague</button>
+              <button class="choice-btn" data-value="child">🧒 Child</button>
+              <button class="choice-btn" data-value="grandparent">👴 Grandparent</button>
+            </div>
+            <div class="step-nav">
+              <button class="btn-back">← Back</button>
+              <button class="btn-next" id="next2" disabled>Continue →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Budget -->
+          <div class="finder-step" id="step-3">
+            <h3 class="step-q">What's your budget? 💰</h3>
+            <p class="step-hint">We'll find amazing options within your range</p>
+            <div class="budget-wrap">
+              <div class="budget-display">
+                <span class="currency">Rs.</span>
+                <span class="budget-val" id="budgetVal">2,500</span>
+              </div>
+              <input type="range" class="budget-slider" id="budgetSlider" min="500" max="20000" step="100"
+                value="2500" />
+              <div class="budget-labels">
+                <span>Rs. 500</span>
+                <span>Rs. 20,000</span>
+              </div>
+              <div class="budget-presets">
+                <button class="preset-btn" data-val="1000">Under Rs. 1K</button>
+                <button class="preset-btn" data-val="3000">Rs. 1–3K</button>
+                <button class="preset-btn" data-val="7000">Rs. 3–7K</button>
+                <button class="preset-btn" data-val="15000">Rs. 7K+</button>
+              </div>
+            </div>
+            <div class="step-nav">
+              <button class="btn-back">← Back</button>
+              <button class="btn-next" id="next3">Continue →</button>
+            </div>
+          </div>
+
+          <!-- Step 4: Interests -->
+          <div class="finder-step" id="step-4">
+            <h3 class="step-q">What are they into? 🎯</h3>
+            <p class="step-hint">Select all that apply</p>
+            <div class="tags-wrap">
+              <button class="tag-btn" data-value="music">🎵 Music</button>
+              <button class="tag-btn" data-value="travel">✈️ Travel</button>
+              <button class="tag-btn" data-value="fitness">💪 Fitness</button>
+              <button class="tag-btn" data-value="cooking">🍳 Cooking</button>
+              <button class="tag-btn" data-value="art">🎨 Art</button>
+              <button class="tag-btn" data-value="books">📚 Books</button>
+              <button class="tag-btn" data-value="gaming">🎮 Gaming</button>
+              <button class="tag-btn" data-value="fashion">👗 Fashion</button>
+              <button class="tag-btn" data-value="tech">💻 Tech</button>
+              <button class="tag-btn" data-value="nature">🌿 Nature</button>
+              <button class="tag-btn" data-value="skincare">✨ Skincare</button>
+              <button class="tag-btn" data-value="photography">📷 Photography</button>
+            </div>
+            <div class="step-nav">
+              <button class="btn-back">← Back</button>
+              <button class="btn-next" id="next4">Continue →</button>
+            </div>
+          </div>
+
+          <!-- Step 5: Personality -->
+          <div class="finder-step" id="step-5">
+            <h3 class="step-q">How would you describe them? 🌟</h3>
+            <p class="step-hint">Pick the vibe that fits best</p>
+            <div class="personality-grid">
+              <button class="pers-btn" data-value="funny">
+                <span class="pers-emoji">😂</span>
+                <strong>Funny & Playful</strong>
+                <span>Loves to laugh, quirky taste</span>
+              </button>
+              <button class="pers-btn" data-value="romantic">
+                <span class="pers-emoji">🌹</span>
+                <strong>Romantic & Emotional</strong>
+                <span>Sentimental, loves meaning</span>
+              </button>
+              <button class="pers-btn" data-value="practical">
+                <span class="pers-emoji">⚡</span>
+                <strong>Practical & Efficient</strong>
+                <span>Values usefulness over aesthetics</span>
+              </button>
+              <button class="pers-btn" data-value="adventurous">
+                <span class="pers-emoji">🗺️</span>
+                <strong>Adventurous & Bold</strong>
+                <span>Always up for something new</span>
+              </button>
+              <button class="pers-btn" data-value="artistic">
+                <span class="pers-emoji">🎭</span>
+                <strong>Artistic & Creative</strong>
+                <span>Has an eye for beauty</span>
+              </button>
+              <button class="pers-btn" data-value="intellectual">
+                <span class="pers-emoji">🧠</span>
+                <strong>Intellectual & Curious</strong>
+                <span>Always learning, loves depth</span>
+              </button>
+            </div>
+            <div class="step-nav">
+              <button class="btn-back">← Back</button>
+              <button class="btn-find" id="findGifts">✨ Find Perfect Gifts</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ LOADING -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-content">
+        <div class="loader-ring"></div>
+        <p class="loader-text" id="loaderText">Analyzing your preferences...</p>
+        <div class="loader-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
     </div>
-    <div class="hero-content">
-      <div class="hero-badge reveal">
-        <span class="badge-dot"></span>
-        AI-Powered Gift Intelligence
-      </div>
-      <h1 class="hero-title reveal reveal-delay-1">
-        Find the Perfect Gift<br />
-        <em>with AI</em> <span class="gift-emoji">🎁</span>
-      </h1>
-      <p class="hero-sub reveal reveal-delay-2">
-        Stop guessing. Let INCANTO's intelligent recommendation engine discover<br class="br-desktop" />
-        gifts that genuinely move people — curated for every personality and moment.
-      </p>
-      <div class="hero-actions reveal reveal-delay-3">
-        <a href="#finder" class="btn-primary">Start Finding →</a>
-        <button class="btn-surprise" id="surpriseBtn">🎲 Surprise Me</button>
-      </div>
-      <div class="hero-stats reveal reveal-delay-4">
-        <div class="stat"><strong>12,000+</strong><span>Gifts Curated</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><strong>98%</strong><span>Satisfaction Rate</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><strong>50+</strong><span>Occasions Covered</span></div>
-      </div>
-    </div>
-    <div class="hero-visual reveal reveal-delay-2">
-      <div class="floating-cards">
-        <div class="float-card fc-1">
-          <div class="fc-emoji">🌸</div>
-          <div class="fc-label">For Mom</div>
-          <div class="fc-price">Rs. 2,500</div>
-        </div>
-        <div class="float-card fc-2">
-          <div class="fc-emoji">💍</div>
-          <div class="fc-label">Anniversary</div>
-          <div class="fc-price">Rs. 8,000</div>
-        </div>
-        <div class="float-card fc-3">
-          <div class="fc-emoji">🎮</div>
-          <div class="fc-label">For Him</div>
-          <div class="fc-price">Rs. 4,500</div>
-        </div>
-        <div class="float-card fc-4">
-          <div class="fc-emoji">✨</div>
-          <div class="fc-label">Best Friend</div>
-          <div class="fc-price">Rs. 1,800</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ══════════════════════════════════════════ HOW IT WORKS -->
-  <section class="how-it-works" id="how">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-eyebrow">The Process</p>
-        <h2 class="section-title">Three steps to the perfect gift</h2>
-      </div>
-      <div class="steps-grid">
-        <div class="step-card reveal">
-          <div class="step-num">01</div>
-          <div class="step-icon">💬</div>
-          <h3>Tell Us About Them</h3>
-          <p>Answer a few quick questions about the recipient — their personality, interests, and your budget.</p>
+    <!-- ══════════════════════════════════════════ RESULTS -->
+    <section class="results-section" id="results" style="display:none;">
+      <div class="container">
+        <div class="results-header">
+          <div class="results-title-wrap">
+            <p class="section-eyebrow">AI Recommendations</p>
+            <h2 class="section-title" id="resultsTitle">Perfect gifts, just for them ✨</h2>
+          </div>
+          <div class="results-actions">
+            <button class="btn-filter active" data-filter="all">All</button>
+            <button class="btn-filter" data-filter="under2k">Under Rs. 2K</button>
+            <button class="btn-filter" data-filter="2kto5k">Rs. 2–5K</button>
+            <button class="btn-filter" data-filter="above5k">Rs. 5K+</button>
+          </div>
         </div>
-        <div class="step-card reveal reveal-delay-1">
-          <div class="step-num">02</div>
-          <div class="step-icon">🧠</div>
-          <h3>AI Does the Magic</h3>
-          <p>Our intelligent engine analyzes thousands of options to find gifts that match perfectly.</p>
-        </div>
-        <div class="step-card reveal reveal-delay-2">
-          <div class="step-num">03</div>
-          <div class="step-icon">🎁</div>
-          <h3>Gift With Confidence</h3>
-          <p>Choose your favorite from curated results and buy directly via trusted affiliate partners.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ══════════════════════════════════════════ FINDER -->
-  <section class="finder-section" id="finder">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-eyebrow">AI Gift Finder</p>
-        <h2 class="section-title">Let's find the perfect gift</h2>
-        <p class="section-sub">Answer a few questions and our AI will curate personalized recommendations just for you.</p>
-      </div>
+        <!-- Favorites bar -->
+        <div class="favorites-bar" id="favoritesBar" style="display:none;">
+          <div class="fav-label">❤️ Saved Gifts (<span id="favCount">0</span>)</div>
+          <button class="view-fav-btn" id="viewFavsBtn">View Saved</button>
+        </div>
 
-      <!-- Finder Card -->
-      <div class="finder-card reveal">
-        <!-- Progress Bar -->
-        <div class="progress-bar-wrap">
-          <div class="progress-steps">
-            <div class="pstep active" data-step="1">
-              <div class="pstep-dot"></div>
-              <span>Occasion</span>
+        <div class="gifts-grid" id="giftsGrid">
+          <!-- Cards injected by JS -->
+        </div>
+
+        <div class="results-footer">
+          <button class="btn-more" id="loadMoreBtn">Show More Like These</button>
+          <button class="btn-restart" id="restartBtn">↩ Start Over</button>
+        </div>
+
+        <!-- Recently Viewed -->
+        <div class="recent-section" id="recentSection" style="display:none;">
+          <h3 class="recent-title">Recently Viewed</h3>
+          <div class="recent-grid" id="recentGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ GIFT ROULETTE -->
+    <section class="roulette-section" id="roulette">
+      <div class="container">
+        <div class="roulette-card reveal">
+          <div class="roulette-left">
+            <div class="roulette-emoji">🎲</div>
+            <h2>Gift Roulette</h2>
+            <p>Can't decide? Let fate choose! Spin the wheel and discover a surprise gift idea.</p>
+            <button class="btn-spin" id="spinBtn">Spin the Wheel</button>
+          </div>
+          <div class="roulette-right">
+            <div class="wheel-wrap">
+              <div class="wheel" id="rouletteWheel">
+                <div class="wheel-segment" style="--i:0">🎧</div>
+                <div class="wheel-segment" style="--i:1">📚</div>
+                <div class="wheel-segment" style="--i:2">🍫</div>
+                <div class="wheel-segment" style="--i:3">🧴</div>
+                <div class="wheel-segment" style="--i:4">🌸</div>
+                <div class="wheel-segment" style="--i:5">🎮</div>
+                <div class="wheel-segment" style="--i:6">✈️</div>
+                <div class="wheel-segment" style="--i:7">💌</div>
+              </div>
+              <div class="wheel-pointer">▼</div>
             </div>
-            <div class="pstep" data-step="2">
-              <div class="pstep-dot"></div>
-              <span>Recipient</span>
-            </div>
-            <div class="pstep" data-step="3">
-              <div class="pstep-dot"></div>
-              <span>Budget</span>
-            </div>
-            <div class="pstep" data-step="4">
-              <div class="pstep-dot"></div>
-              <span>Interests</span>
-            </div>
-            <div class="pstep" data-step="5">
-              <div class="pstep-dot"></div>
-              <span>Personality</span>
+            <div class="roulette-result" id="rouletteResult"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ ABOUT -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p class="section-eyebrow">Our Story</p>
+            <h2 class="section-title">Gifting, reimagined<br /><em>by intelligence</em></h2>
+            <p>INCANTO was built on a simple belief: every gift should feel like it was chosen with genuine care. We
+              combined AI with a deep understanding of human emotion to create a platform that doesn't just suggest
+              gifts — it finds meaning.</p>
+            <p>Whether it's a birthday for your best friend or a holiday surprise for someone far away, INCANTO helps
+              you show up beautifully — every single time.</p>
+            <div class="about-values">
+              <div class="value-item">
+                <span class="value-icon">🎯</span>
+                <div>
+                  <strong>Precision</strong>
+                  <p>Smart matching based on real personality traits</p>
+                </div>
+              </div>
+              <div class="value-item">
+                <span class="value-icon">💛</span>
+                <div>
+                  <strong>Emotion</strong>
+                  <p>Every recommendation carries meaning</p>
+                </div>
+              </div>
+              <div class="value-item">
+                <span class="value-icon">🔒</span>
+                <div>
+                  <strong>Trust</strong>
+                  <p>Curated from trusted sellers only</p>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="progress-track">
-            <div class="progress-fill" id="progressFill"></div>
-          </div>
-        </div>
-
-        <!-- Step 1: Occasion -->
-        <div class="finder-step active" id="step-1">
-          <h3 class="step-q">What's the occasion? 🎉</h3>
-          <p class="step-hint">Select the event you're gifting for</p>
-          <div class="choice-grid">
-            <button class="choice-btn" data-value="birthday">🎂 Birthday</button>
-            <button class="choice-btn" data-value="anniversary">💍 Anniversary</button>
-            <button class="choice-btn" data-value="wedding">💒 Wedding</button>
-            <button class="choice-btn" data-value="festival">🪔 Festival</button>
-            <button class="choice-btn" data-value="graduation">🎓 Graduation</button>
-            <button class="choice-btn" data-value="babyshower">👶 Baby Shower</button>
-            <button class="choice-btn" data-value="valentine">❤️ Valentine's</button>
-            <button class="choice-btn" data-value="justbecause">✨ Just Because</button>
-          </div>
-          <div class="step-nav">
-            <span></span>
-            <button class="btn-next" id="next1" disabled>Continue →</button>
-          </div>
-        </div>
-
-        <!-- Step 2: Recipient -->
-        <div class="finder-step" id="step-2">
-          <h3 class="step-q">Who are you gifting? 💝</h3>
-          <p class="step-hint">Tell us about your recipient</p>
-          <div class="choice-grid">
-            <button class="choice-btn" data-value="partner">💑 Partner</button>
-            <button class="choice-btn" data-value="friend">👫 Friend</button>
-            <button class="choice-btn" data-value="mom">👩 Mom</button>
-            <button class="choice-btn" data-value="dad">👨 Dad</button>
-            <button class="choice-btn" data-value="sibling">🧑 Sibling</button>
-            <button class="choice-btn" data-value="colleague">💼 Colleague</button>
-            <button class="choice-btn" data-value="child">🧒 Child</button>
-            <button class="choice-btn" data-value="grandparent">👴 Grandparent</button>
-          </div>
-          <div class="step-nav">
-            <button class="btn-back">← Back</button>
-            <button class="btn-next" id="next2" disabled>Continue →</button>
-          </div>
-        </div>
-
-        <!-- Step 3: Budget -->
-        <div class="finder-step" id="step-3">
-          <h3 class="step-q">What's your budget? 💰</h3>
-          <p class="step-hint">We'll find amazing options within your range</p>
-          <div class="budget-wrap">
-            <div class="budget-display">
-              <span class="currency">Rs.</span>
-              <span class="budget-val" id="budgetVal">2,500</span>
+          <div class="about-visual reveal reveal-delay-1">
+            <div class="about-card-stack">
+              <div class="acard acard-1">
+                <div class="acard-icon">✨</div>
+                <strong>AI-Curated</strong>
+                <span>Every gift is handpicked by our model</span>
+              </div>
+              <div class="acard acard-2">
+                <div class="acard-icon">🌍</div>
+                <strong>Pan-Nepal</strong>
+                <span>Delivery via Daraz & local partners</span>
+              </div>
+              <div class="acard acard-3">
+                <div class="acard-icon">❤️</div>
+                <strong>Made with love</strong>
+                <span>Built in Nepal, for the world</span>
+              </div>
             </div>
-            <input type="range" class="budget-slider" id="budgetSlider" min="500" max="20000" step="100" value="2500" />
-            <div class="budget-labels">
-              <span>Rs. 500</span>
-              <span>Rs. 20,000</span>
-            </div>
-            <div class="budget-presets">
-              <button class="preset-btn" data-val="1000">Under Rs. 1K</button>
-              <button class="preset-btn" data-val="3000">Rs. 1–3K</button>
-              <button class="preset-btn" data-val="7000">Rs. 3–7K</button>
-              <button class="preset-btn" data-val="15000">Rs. 7K+</button>
-            </div>
-          </div>
-          <div class="step-nav">
-            <button class="btn-back">← Back</button>
-            <button class="btn-next" id="next3">Continue →</button>
-          </div>
-        </div>
-
-        <!-- Step 4: Interests -->
-        <div class="finder-step" id="step-4">
-          <h3 class="step-q">What are they into? 🎯</h3>
-          <p class="step-hint">Select all that apply</p>
-          <div class="tags-wrap">
-            <button class="tag-btn" data-value="music">🎵 Music</button>
-            <button class="tag-btn" data-value="travel">✈️ Travel</button>
-            <button class="tag-btn" data-value="fitness">💪 Fitness</button>
-            <button class="tag-btn" data-value="cooking">🍳 Cooking</button>
-            <button class="tag-btn" data-value="art">🎨 Art</button>
-            <button class="tag-btn" data-value="books">📚 Books</button>
-            <button class="tag-btn" data-value="gaming">🎮 Gaming</button>
-            <button class="tag-btn" data-value="fashion">👗 Fashion</button>
-            <button class="tag-btn" data-value="tech">💻 Tech</button>
-            <button class="tag-btn" data-value="nature">🌿 Nature</button>
-            <button class="tag-btn" data-value="skincare">✨ Skincare</button>
-            <button class="tag-btn" data-value="photography">📷 Photography</button>
-          </div>
-          <div class="step-nav">
-            <button class="btn-back">← Back</button>
-            <button class="btn-next" id="next4">Continue →</button>
-          </div>
-        </div>
-
-        <!-- Step 5: Personality -->
-        <div class="finder-step" id="step-5">
-          <h3 class="step-q">How would you describe them? 🌟</h3>
-          <p class="step-hint">Pick the vibe that fits best</p>
-          <div class="personality-grid">
-            <button class="pers-btn" data-value="funny">
-              <span class="pers-emoji">😂</span>
-              <strong>Funny & Playful</strong>
-              <span>Loves to laugh, quirky taste</span>
-            </button>
-            <button class="pers-btn" data-value="romantic">
-              <span class="pers-emoji">🌹</span>
-              <strong>Romantic & Emotional</strong>
-              <span>Sentimental, loves meaning</span>
-            </button>
-            <button class="pers-btn" data-value="practical">
-              <span class="pers-emoji">⚡</span>
-              <strong>Practical & Efficient</strong>
-              <span>Values usefulness over aesthetics</span>
-            </button>
-            <button class="pers-btn" data-value="adventurous">
-              <span class="pers-emoji">🗺️</span>
-              <strong>Adventurous & Bold</strong>
-              <span>Always up for something new</span>
-            </button>
-            <button class="pers-btn" data-value="artistic">
-              <span class="pers-emoji">🎭</span>
-              <strong>Artistic & Creative</strong>
-              <span>Has an eye for beauty</span>
-            </button>
-            <button class="pers-btn" data-value="intellectual">
-              <span class="pers-emoji">🧠</span>
-              <strong>Intellectual & Curious</strong>
-              <span>Always learning, loves depth</span>
-            </button>
-          </div>
-          <div class="step-nav">
-            <button class="btn-back">← Back</button>
-            <button class="btn-find" id="findGifts">✨ Find Perfect Gifts</button>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══════════════════════════════════════════ LOADING -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-content">
-      <div class="loader-ring"></div>
-      <p class="loader-text" id="loaderText">Analyzing your preferences...</p>
-      <div class="loader-dots">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
   </div>
 
-  <!-- ══════════════════════════════════════════ RESULTS -->
-  <section class="results-section" id="results" style="display:none;">
+
+  <!-- ══════════════════════════════════════════ AFFILIATE -->
+  <section id="affiliate" class="page-section view-section" style="display: none;"
+    style="padding: 150px 0 100px; min-height: 80vh;">
     <div class="container">
-      <div class="results-header">
-        <div class="results-title-wrap">
-          <p class="section-eyebrow">AI Recommendations</p>
-          <h2 class="section-title" id="resultsTitle">Perfect gifts, just for them ✨</h2>
-        </div>
-        <div class="results-actions">
-          <button class="btn-filter active" data-filter="all">All</button>
-          <button class="btn-filter" data-filter="under2k">Under Rs. 2K</button>
-          <button class="btn-filter" data-filter="2kto5k">Rs. 2–5K</button>
-          <button class="btn-filter" data-filter="above5k">Rs. 5K+</button>
-        </div>
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Partnerships</p>
+        <h1 class="section-title">Affiliate Program</h1>
+        <p class="section-sub">Earn money while helping people find the perfect gifts.</p>
       </div>
 
-      <!-- Favorites bar -->
-      <div class="favorites-bar" id="favoritesBar" style="display:none;">
-        <div class="fav-label">❤️ Saved Gifts (<span id="favCount">0</span>)</div>
-        <button class="view-fav-btn" id="viewFavsBtn">View Saved</button>
+      <div style="margin-top: 40px;">
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 50px;">
+          <div
+            style="padding: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 15px;">💸</div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">High Commissions</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Earn up to 15% commission on qualifying purchases
+              generated from your unique INCANTO finder links.</p>
+          </div>
+          <div
+            style="padding: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 15px;">⏱️</div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">30-Day Cookie</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">If your audience uses your link, you'll earn a
+              commission on anything they buy through our partners for 30 days.</p>
+          </div>
+          <div
+            style="padding: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 15px;">📊</div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">Real-Time Tracking</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Access our partner portal to track clicks, sales,
+              and commissions in real-time with detailed analytics.</p>
+          </div>
+        </div>
+
+        <div
+          style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(230,57,70,0.1) 100%); border-radius: 24px; border: 1px solid var(--border);">
+          <h2 style="font-size: 2.5rem; margin-bottom: 15px;">Ready to monetize your audience?</h2>
+          <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px auto;">Join
+            5,000+ creators and publishers who are helping their audience find the perfect gifts while earning passive
+            income.</p>
+          <a href="mailto:affiliate@incanto.ai" class="btn-primary" style="padding: 16px 32px; font-size: 1.1rem;">Apply
+            for Early Access</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ BLOG -->
+  <section id="blog" class="page-section view-section" style="display: none;"
+    style="padding: 150px 0 100px; min-height: 80vh;">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Stories</p>
+        <h1 class="section-title">The INCANTO Blog</h1>
+        <p class="section-sub">Insights, stories, and the art of modern gifting.</p>
+      </div>
+
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 40px;">
+
+        <div style="border-bottom: 1px solid var(--border); padding-bottom: 30px; cursor: pointer;">
+          <div style="font-size: 0.85rem; color: var(--rose); margin-bottom: 10px; font-weight: 600;">GIFTING PSYCHOLOGY
+            • 5 MIN READ</div>
+          <h3 style="font-size: 1.6rem; margin-bottom: 15px; color: var(--text);">Why 'Just Because' Gifts Mean the Most
+          </h3>
+          <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">The science behind spontaneous
+            gifting and why unexpected presents create stronger emotional bonds than holiday obligations.</p>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div
+              style="width: 30px; height: 30px; background: var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">
+              👩🏽</div>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">Sarah Jenkins</span>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid var(--border); padding-bottom: 30px; cursor: pointer;">
+          <div style="font-size: 0.85rem; color: var(--gold); margin-bottom: 10px; font-weight: 600;">TRENDS • 4 MIN
+            READ</div>
+          <h3 style="font-size: 1.6rem; margin-bottom: 15px; color: var(--text);">The Rise of Experiential Gifting in
+            2025</h3>
+          <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">Material possessions are out.
+            Pottery classes, secret concerts, and weekend getaways are taking over the gifting landscape.</p>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div
+              style="width: 30px; height: 30px; background: var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">
+              👨🏻</div>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">David Chen</span>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid var(--border); padding-bottom: 30px; cursor: pointer;">
+          <div style="font-size: 0.85rem; color: #4ecdc4; margin-bottom: 10px; font-weight: 600;">AI & TECH • 6 MIN READ
+          </div>
+          <h3 style="font-size: 1.6rem; margin-bottom: 15px; color: var(--text);">How INCANTO Analyzes Personality
+            Traits</h3>
+          <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">A deep dive into our
+            recommendation engine and how it maps your responses to find hyper-personalized items.</p>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div
+              style="width: 30px; height: 30px; background: var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">
+              🤖</div>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">INCANTO Eng Team</span>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid var(--border); padding-bottom: 30px; cursor: pointer;">
+          <div style="font-size: 0.85rem; color: #a27b5c; margin-bottom: 10px; font-weight: 600;">LIFESTYLE • 4 MIN READ
+          </div>
+          <h3 style="font-size: 1.6rem; margin-bottom: 15px; color: var(--text);">The Art of Meaningful Corporate
+            Gifting</h3>
+          <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">Move beyond generic pens and
+            diaries. How to thoughtfully appreciate colleagues and clients with gifts they actually want.</p>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div
+              style="width: 30px; height: 30px; background: var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">
+              👩🏼</div>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">Elena Rossi</span>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid var(--border); padding-bottom: 30px; cursor: pointer;">
+          <div style="font-size: 0.85rem; color: #7f52ff; margin-bottom: 10px; font-weight: 600;">CURATED • 8 MIN READ
+          </div>
+          <h3 style="font-size: 1.6rem; margin-bottom: 15px; color: var(--text);">10 Gifts That Support Local Artisans
+            in Nepal</h3>
+          <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">From handcrafted ceramics to
+            handwoven Dhaka accessories. Explore our top picks that make an impact.</p>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div
+              style="width: 30px; height: 30px; background: var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">
+              🧑🏽</div>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">Sanjay Gurung</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ CAREERS -->
+  <section id="careers" class="page-section view-section" style="display: none;"
+    style="padding: 150px 0 100px; min-height: 80vh;">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Join Us</p>
+        <h1 class="section-title">Careers at INCANTO</h1>
+        <p class="section-sub">Help us build the future of AI-powered gifting.</p>
+      </div>
+
+      <div style="margin-top: 40px; display: grid; gap: 30px;">
+
+        <div
+          style="display: flex; flex-direction: column; gap: 20px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;">
+          <div>
+            <div
+              style="display: inline-block; padding: 4px 12px; background: rgba(230,57,70,0.1); color: var(--rose); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">
+              Engineering</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Senior Machine Learning Engineer</h3>
+            <p style="color: var(--text-muted); max-width: 600px; line-height: 1.6;">Help us refine our gift
+              recommendation models. You will be working directly with user personality datasets to improve
+              recommendation accuracy.</p>
+          </div>
+          <div style="display: flex; gap: 15px; margin-top: 10px;">
+            <span style="font-size: 0.9rem; color: var(--text-muted);">📍 Remote (Global)</span>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">🕒 Full-Time</span>
+          </div>
+          <a href="#" class="btn-primary" style="align-self: flex-start; margin-top: 10px;">Apply Now</a>
+        </div>
+
+        <div
+          style="display: flex; flex-direction: column; gap: 20px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;">
+          <div>
+            <div
+              style="display: inline-block; padding: 4px 12px; background: rgba(212,175,55,0.1); color: var(--gold); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">
+              Curation</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Head of Gift Curation</h3>
+            <p style="color: var(--text-muted); max-width: 600px; line-height: 1.6;">You have an eye for quality and
+              unique items. Scale our merchant partnerships and select the top 1% of gifts to feed into our automated
+              system.</p>
+          </div>
+          <div style="display: flex; gap: 15px; margin-top: 10px;">
+            <span style="font-size: 0.9rem; color: var(--text-muted);">📍 Hybrid (Kathmandu)</span>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">🕒 Full-Time</span>
+          </div>
+          <a href="#" class="btn-primary" style="align-self: flex-start; margin-top: 10px;">Apply Now</a>
+        </div>
+
+        <div
+          style="display: flex; flex-direction: column; gap: 20px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;">
+          <div>
+            <div
+              style="display: inline-block; padding: 4px 12px; background: rgba(78,205,196,0.1); color: #4ecdc4; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">
+              Marketing</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Social Social Media Manager</h3>
+            <p style="color: var(--text-muted); max-width: 600px; line-height: 1.6;">Create viral content around gifting
+              culture, unboxings, and share amazing gift ideas across TikTok and Instagram reels.</p>
+          </div>
+          <div style="display: flex; gap: 15px; margin-top: 10px;">
+            <span style="font-size: 0.9rem; color: var(--text-muted);">📍 Remote (Global)</span>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">🕒 Part-Time / Contract</span>
+          </div>
+          <a href="#" class="btn-primary" style="align-self: flex-start; margin-top: 10px;">Apply Now</a>
+        </div>
+
+        <div
+          style="display: flex; flex-direction: column; gap: 20px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;">
+          <div>
+            <div
+              style="display: inline-block; padding: 4px 12px; background: rgba(142,68,173,0.1); color: #8e44ad; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">
+              Design</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Senior UI/UX Designer</h3>
+            <p style="color: var(--text-muted); max-width: 600px; line-height: 1.6;">Design intuitive interfaces for our
+              gift finder tool. Create empathetic, emotion-driven user experiences across mobile and web.</p>
+          </div>
+          <div style="display: flex; gap: 15px; margin-top: 10px;">
+            <span style="font-size: 0.9rem; color: var(--text-muted);">📍 Remote (Global)</span>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">🕒 Full-Time</span>
+          </div>
+          <a href="#" class="btn-primary" style="align-self: flex-start; margin-top: 10px;">Apply Now</a>
+        </div>
+
+        <div
+          style="display: flex; flex-direction: column; gap: 20px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;">
+          <div>
+            <div
+              style="display: inline-block; padding: 4px 12px; background: rgba(52,152,219,0.1); color: #3498db; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">
+              Operations</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Merchant Success Manager</h3>
+            <p style="color: var(--text-muted); max-width: 600px; line-height: 1.6;">Build and maintain relationships
+              with our diverse network of artisan and commercial partners ensuring seamless integration.</p>
+          </div>
+          <div style="display: flex; gap: 15px; margin-top: 10px;">
+            <span style="font-size: 0.9rem; color: var(--text-muted);">📍 Kathmandu</span>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">🕒 Full-Time</span>
+          </div>
+          <a href="#" class="btn-primary" style="align-self: flex-start; margin-top: 10px;">Apply Now</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ GUIDES -->
+  <section id="guides" class="page-section view-section" style="display: none;"
+    style="padding: 150px 0 100px; min-height: 80vh;">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Curated</p>
+        <h1 class="section-title">Gift Guides</h1>
+        <p class="section-sub">Expertly curated guides for every occasion and personality.</p>
+      </div>
+
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+
+        <div
+          style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: all 0.3s ease; cursor: pointer;">
+          <div
+            style="height: 180px; background: linear-gradient(135deg, rgba(230,57,70,0.2) 0%, rgba(230,57,70,0.05) 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+            💌</div>
+          <div style="padding: 30px;">
+            <div
+              style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--rose); margin-bottom: 10px; font-weight: 600;">
+              Anniversary</div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--text);">The Ultimate Anniversary Guide</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem;">From 1st
+              year paper gifts to 50th year gold, discover thoughtful ways to celebrate your milestone.</p>
+            <a href="#"
+              style="color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--text); padding-bottom: 2px;">Read
+              Guide →</a>
+          </div>
+        </div>
+
+        <div
+          style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: all 0.3s ease; cursor: pointer;">
+          <div
+            style="height: 180px; background: linear-gradient(135deg, rgba(29,53,87,0.2) 0%, rgba(29,53,87,0.05) 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+            🎮</div>
+          <div style="padding: 30px;">
+            <div
+              style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 10px; font-weight: 600;">
+              For Him</div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--text);">Tech & Tools He'll Actually Use</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem;">Tired of
+              buying him socks? Here is a curated list of gadgets, tools, and experiences he will love.</p>
+            <a href="#"
+              style="color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--text); padding-bottom: 2px;">Read
+              Guide →</a>
+          </div>
+        </div>
+
+        <div
+          style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: all 0.3s ease; cursor: pointer;">
+          <div
+            style="height: 180px; background: linear-gradient(135deg, rgba(244,162,97,0.2) 0%, rgba(244,162,97,0.05) 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+            🏡</div>
+          <div style="padding: 30px;">
+            <div
+              style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #e76f51; margin-bottom: 10px; font-weight: 600;">
+              Housewarming</div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--text);">Turning a House into a Home</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem;">Aesthetic
+              decor, smart gadgets, and practical essentials for new homeowners.</p>
+            <a href="#"
+              style="color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--text); padding-bottom: 2px;">Read
+              Guide →</a>
+          </div>
+        </div>
+
+        <div
+          style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: all 0.3s ease; cursor: pointer;">
+          <div
+            style="height: 180px; background: linear-gradient(135deg, rgba(162,217,206,0.2) 0%, rgba(162,217,206,0.05) 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+            👶</div>
+          <div style="padding: 30px;">
+            <div
+              style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #117a65; margin-bottom: 10px; font-weight: 600;">
+              Baby Shower</div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--text);">Gifts for New Parents</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem;">From
+              sleep-saving gadgets to personalized keepsakes, find exactly what growing families need.</p>
+            <a href="#"
+              style="color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--text); padding-bottom: 2px;">Read
+              Guide →</a>
+          </div>
+        </div>
+
+        <div
+          style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: all 0.3s ease; cursor: pointer;">
+          <div
+            style="height: 180px; background: linear-gradient(135deg, rgba(210,180,222,0.2) 0%, rgba(210,180,222,0.05) 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+            🎓</div>
+          <div style="padding: 30px;">
+            <div
+              style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #8e44ad; margin-bottom: 10px; font-weight: 600;">
+              Graduation</div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--text);">Entering the Real World</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem;">Celebrate
+              their achievements with practical gifts that help them transition proudly into adulthood.</p>
+            <a href="#"
+              style="color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--text); padding-bottom: 2px;">Read
+              Guide →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ PRESS -->
+  <section id="press" class="page-section view-section" style="display: none;"
+    style="padding: 150px 0 100px; min-height: 80vh;">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">News</p>
+        <h1 class="section-title">In the Press</h1>
+        <p class="section-sub">Media coverage, press releases, and brand assets.</p>
+      </div>
+
+      <div style="margin-top: 40px;">
+        <div
+          style="display: flex; align-items: center; gap: 40px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; opacity: 0.7; filter: grayscale(100%);">
+          <h2 style="font-family: var(--font-display); font-size: 2rem;">TechCrunch</h2>
+          <h2 style="font-family: var(--font-display); font-size: 2rem;">WIRED</h2>
+          <h2 style="font-family: var(--font-display); font-size: 2rem;">VOGUE</h2>
+          <h2 style="font-family: var(--font-display); font-size: 2rem;">FORBES</h2>
+        </div>
+
+        <div style="display: grid; gap: 20px;">
+          <a href="#"
+            style="display: block; padding: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; color: var(--text); transition: all 0.2s ease;"
+            onmouseover="this.style.borderColor='var(--rose)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">March 15, 2026 • Press Release
+            </div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">INCANTO Announces $5M Seed Round to Expand AI
+              Recommendation Engine</h3>
+            <p style="color: var(--text-muted);">The fresh capital will be used to integrate direct checkout and expand
+              merchant partnerships globally.</p>
+          </a>
+
+          <a href="#"
+            style="display: block; padding: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; color: var(--text); transition: all 0.2s ease;"
+            onmouseover="this.style.borderColor='var(--rose)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">February 10, 2026 • TechCrunch
+              Feature</div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">How this startup is solving the dreaded "What do I buy
+              them" dilemma</h3>
+            <p style="color: var(--text-muted);">An exclusive interview with INCANTO's founders on the psychology of
+              their new behavioral mapping protocol.</p>
+          </a>
+
+          <a href="#"
+            style="display: block; padding: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; color: var(--text); transition: all 0.2s ease;"
+            onmouseover="this.style.borderColor='var(--rose)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">January 05, 2026 • Press
+              Release</div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">INCANTO Surpasses 1 Million Gifts Recommended</h3>
+            <p style="color: var(--text-muted);">A major milestone reached just six months after launching the public
+              beta.</p>
+          </a>
+
+          <a href="#"
+            style="display: block; padding: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; color: var(--text); transition: all 0.2s ease;"
+            onmouseover="this.style.borderColor='var(--rose)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">November 20, 2025 • FORBES
+              Feature</div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">The AI Assistants Changing How We Shop</h3>
+            <p style="color: var(--text-muted);">INCANTO highlighted as a leading innovator in utilizing emotion-driven
+              AI directly in consumer retail experiences.</p>
+          </a>
+
+          <a href="#"
+            style="display: block; padding: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; color: var(--text); transition: all 0.2s ease;"
+            onmouseover="this.style.borderColor='var(--rose)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">October 15, 2025 • Press
+              Release</div>
+            <h3 style="font-size: 1.4rem; margin-bottom: 10px;">INCANTO Partners with Daraz Nepal</h3>
+            <p style="color: var(--text-muted);">A strategic alliance bringing INCANTO's AI engine to South Asia's
+              largest e-commerce platform.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ PRIVACY -->
+  <section id="privacy" class="page-section view-section" style="display: none;"
+    style="padding: 150px 0 100px; min-height: 80vh;">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Legal</p>
+        <h1 class="section-title">Privacy Policy</h1>
+        <p class="section-sub">Your data belongs to you.</p>
+      </div>
+
+      <div style="padding: 50px; background: var(--surface); border-radius: 20px; border: 1px solid var(--border);">
+        <p style="color: var(--text-muted); margin-bottom: 30px;"><strong>Last Updated:</strong> April 2026</p>
+
+        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">1. Information We Collect</h3>
+        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
+          At INCANTO, we prioritize your privacy. We intentionally collect limited information. The primary data we
+          collect is anonymous: the inputs you provide in the Gift Finder (such as occasion, budget, recipient
+          relationship, and personality traits) to generate gift recommendations. We do not store this data assigned to
+          a personal profile.
+        </p>
+
+        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">2. How We Use Informational Data</h3>
+        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
+          The information processed via the AI prompt stays strictly transient and is solely used to query our
+          recommendation engine. Your "❤️ Saved Gifts" and "Recently Viewed" history are stored entirely locally on your
+          device via <code>localStorage</code>.
+        </p>
+
+        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">3. Affiliate Links and Third Parties</h3>
+        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
+          When you click on "Buy Now" for a recommended gift, you will be redirected to third-party seller platforms
+          (such as Daraz or independent merchants). These third-party sites have their own separate and independent
+          privacy policies. We have no responsibility or liability for the content and activities of these linked sites.
+        </p>
+
+        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">4. Data Security</h3>
+        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
+          We use administrative, technical, and physical security measures to help protect your usage data. However,
+          remember that no absolute transmission over the internet or electronic storage method can fully guarantee
+          security.
+        </p>
+
+        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">5. Revisions to this Privacy Policy</h3>
+        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
+          We may update this privacy notice from time to time to align with legal requirements or service capabilities.
+          The updated version will be indicated by an updated "Last Updated" date at the top of the policy.
+        </p>
+
+        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">6. Contacting Us</h3>
+        <p style="color: var(--text-muted); line-height: 1.8;">
+          If there are any questions regarding this privacy policy or to request a data audit, you may contact us using
+          the information below:
+          <br><br>
+          <strong>Email:</strong> <a href="mailto:privacy@incanto.ai">privacy@incanto.ai</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ SUPPORT -->
+  <section id="support" class="page-section view-section" style="display: none;"
+    style="padding: 150px 0 100px; min-height: 80vh;">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Here to help</p>
+        <h1 class="section-title">Support Center</h1>
+        <p class="section-sub">Have a question? We've got answers.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+
+        <div>
+          <h2 style="font-size: 2rem; margin-bottom: 20px;">Frequently Asked Questions</h2>
+          <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div
+              style="padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+              <h4 style="font-size: 1.1rem; margin-bottom: 8px;">How does the AI choose gifts?</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">Our engine maps the personality
+                traits and interests you provide directly to our curated database of 12,000+ items using semantic
+                matching.</p>
+            </div>
+            <div
+              style="padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+              <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Are the gifts physically held by INCANTO?</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">No, we are a discovery engine.
+                When you click "Buy Now," you are securely redirected to trusted affiliate partners like Daraz to
+                complete the purchase.</p>
+            </div>
+            <div
+              style="padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+              <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Is my data saved?</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">Your quiz inputs are processed
+                transiently and are not stored against a personal profile. Your favorites are saved strictly on your
+                local browser storage.</p>
+            </div>
+            <div
+              style="padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+              <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Do I pay extra using INCANTO?</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">Absolutely not! INCANTO is 100%
+                free to use. We may earn a small commission from merchants if you complete a purchase, but the price
+                remains exactly the same for you.</p>
+            </div>
+            <div
+              style="padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+              <h4 style="font-size: 1.1rem; margin-bottom: 8px;">How long does delivery take?</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">Delivery times depend entirely
+                on the third-party platform (like Daraz or local merchants) fulfilling your order. You can check the
+                estimated delivery times on their respective product pages.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px;">
+          <h2 style="font-size: 2rem; margin-bottom: 15px;">Send a Message</h2>
+          <p style="color: var(--text-muted); margin-bottom: 30px;">Have a specific query? Drop us a note below or at <a
+              href="mailto:support@incanto.ai">support@incanto.ai</a>.</p>
+          <form onsubmit="event.preventDefault(); alert('Message sent!');">
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Your Name</label>
+              <input type="text" required
+                style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email Address</label>
+              <input type="email" required
+                style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Message</label>
+              <textarea required rows="4"
+                style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); resize: vertical;"></textarea>
+            </div>
+            <button class="btn-primary" type="submit" style="width: 100%;">Submit Inquiry</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ TRENDING -->
+  <section id="trending" class="page-section view-section" style="display: none;"
+    style="padding: 150px 0 100px; min-height: 80vh;">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Discover</p>
+        <h1 class="section-title">Trending Gifts</h1>
+        <p class="section-sub">See what everyone is loving right now.</p>
       </div>
 
       <div class="gifts-grid" id="giftsGrid">
-        <!-- Cards injected by JS -->
-      </div>
-
-      <div class="results-footer">
-        <button class="btn-more" id="loadMoreBtn">Show More Like These</button>
-        <button class="btn-restart" id="restartBtn">↩ Start Over</button>
-      </div>
-
-      <!-- Recently Viewed -->
-      <div class="recent-section" id="recentSection" style="display:none;">
-        <h3 class="recent-title">Recently Viewed</h3>
-        <div class="recent-grid" id="recentGrid"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════ GIFT ROULETTE -->
-  <section class="roulette-section" id="roulette">
-    <div class="container">
-      <div class="roulette-card reveal">
-        <div class="roulette-left">
-          <div class="roulette-emoji">🎲</div>
-          <h2>Gift Roulette</h2>
-          <p>Can't decide? Let fate choose! Spin the wheel and discover a surprise gift idea.</p>
-          <button class="btn-spin" id="spinBtn">Spin the Wheel</button>
-        </div>
-        <div class="roulette-right">
-          <div class="wheel-wrap">
-            <div class="wheel" id="rouletteWheel">
-              <div class="wheel-segment" style="--i:0">🎧</div>
-              <div class="wheel-segment" style="--i:1">📚</div>
-              <div class="wheel-segment" style="--i:2">🍫</div>
-              <div class="wheel-segment" style="--i:3">🧴</div>
-              <div class="wheel-segment" style="--i:4">🌸</div>
-              <div class="wheel-segment" style="--i:5">🎮</div>
-              <div class="wheel-segment" style="--i:6">✈️</div>
-              <div class="wheel-segment" style="--i:7">💌</div>
-            </div>
-            <div class="wheel-pointer">▼</div>
+        <div class="gift-card" style="animation-delay: 0s;">
+          <div class="gift-img-wrap">
+            <span style="position:relative;z-index:1">🎧</span>
+            <div class="gift-badge">#1 Trending</div>
+            <button class="fav-btn">🤍</button>
           </div>
-          <div class="roulette-result" id="rouletteResult"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════ ABOUT -->
-  <section class="about-section" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <p class="section-eyebrow">Our Story</p>
-          <h2 class="section-title">Gifting, reimagined<br /><em>by intelligence</em></h2>
-          <p>INCANTO was built on a simple belief: every gift should feel like it was chosen with genuine care. We combined AI with a deep understanding of human emotion to create a platform that doesn't just suggest gifts — it finds meaning.</p>
-          <p>Whether it's a birthday for your best friend or a holiday surprise for someone far away, INCANTO helps you show up beautifully — every single time.</p>
-          <div class="about-values">
-            <div class="value-item">
-              <span class="value-icon">🎯</span>
-              <div>
-                <strong>Precision</strong>
-                <p>Smart matching based on real personality traits</p>
-              </div>
-            </div>
-            <div class="value-item">
-              <span class="value-icon">💛</span>
-              <div>
-                <strong>Emotion</strong>
-                <p>Every recommendation carries meaning</p>
-              </div>
-            </div>
-            <div class="value-item">
-              <span class="value-icon">🔒</span>
-              <div>
-                <strong>Trust</strong>
-                <p>Curated from trusted sellers only</p>
-              </div>
+          <div class="gift-body">
+            <h3 class="gift-name">Aura Noise Cancelling Headphones</h3>
+            <p class="gift-desc">Premium wireless headphones with spatial audio tracking.</p>
+            <div class="gift-ai-reason"><strong>✦ Why it's trending</strong><br>The ultimate remote work essential.
+              Highly gifted for birthdays.</div>
+            <div class="gift-footer">
+              <div class="gift-price">Rs. 8,500<span>onwards</span></div>
+              <a href="#" class="btn-buy">Buy Now →</a>
             </div>
           </div>
         </div>
-        <div class="about-visual reveal reveal-delay-1">
-          <div class="about-card-stack">
-            <div class="acard acard-1">
-              <div class="acard-icon">✨</div>
-              <strong>AI-Curated</strong>
-              <span>Every gift is handpicked by our model</span>
-            </div>
-            <div class="acard acard-2">
-              <div class="acard-icon">🌍</div>
-              <strong>Pan-Nepal</strong>
-              <span>Delivery via Daraz & local partners</span>
-            </div>
-            <div class="acard acard-3">
-              <div class="acard-icon">❤️</div>
-              <strong>Made with love</strong>
-              <span>Built in Nepal, for the world</span>
+
+        <div class="gift-card" style="animation-delay: 0.1s;">
+          <div class="gift-img-wrap">
+            <span style="position:relative;z-index:1">☕</span>
+            <div class="gift-badge">Hot Pick</div>
+            <button class="fav-btn">🤍</button>
+          </div>
+          <div class="gift-body">
+            <h3 class="gift-name">Artisan Coffee Brewing Kit</h3>
+            <p class="gift-desc">Complete pour-over setup with freshly roasted Himalayan beans.</p>
+            <div class="gift-ai-reason"><strong>✦ Why it's trending</strong><br>Winter is here, and this kit is
+              dominating the 'For Him' category.</div>
+            <div class="gift-footer">
+              <div class="gift-price">Rs. 3,200<span>onwards</span></div>
+              <a href="#" class="btn-buy">Buy Now →</a>
             </div>
           </div>
         </div>
+
+        <div class="gift-card" style="animation-delay: 0.2s;">
+          <div class="gift-img-wrap">
+            <span style="position:relative;z-index:1">🪴</span>
+            <div class="gift-badge">Fast Seller</div>
+            <button class="fav-btn">🤍</button>
+          </div>
+          <div class="gift-body">
+            <h3 class="gift-name">Smart Desktop Planter</h3>
+            <p class="gift-desc">Self-watering indoor planter with LED grow lights.</p>
+            <div class="gift-ai-reason"><strong>✦ Why it's trending</strong><br>Makes a fantastic low-maintenance desk
+              buddy for colleagues.</div>
+            <div class="gift-footer">
+              <div class="gift-price">Rs. 4,500<span>onwards</span></div>
+              <a href="#" class="btn-buy">Buy Now →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="gift-card" style="animation-delay: 0.3s;">
+          <div class="gift-img-wrap">
+            <span style="position:relative;z-index:1">🧶</span>
+            <div class="gift-badge">Highly Rated</div>
+            <button class="fav-btn">🤍</button>
+          </div>
+          <div class="gift-body">
+            <h3 class="gift-name">Chunky Knit Weighted Blanket</h3>
+            <p class="gift-desc">Cozy, temperature-regulating weighted blanket for deep sleep.</p>
+            <div class="gift-ai-reason"><strong>✦ Why it's trending</strong><br>A top recommendation for 'Practical' and
+              'Anxious' personalities this season.</div>
+            <div class="gift-footer">
+              <div class="gift-price">Rs. 6,800<span>onwards</span></div>
+              <a href="#" class="btn-buy">Buy Now →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="gift-card" style="animation-delay: 0.4s;">
+          <div class="gift-img-wrap">
+            <span style="position:relative;z-index:1">📷</span>
+            <div class="gift-badge">Nostalgia Pick</div>
+            <button class="fav-btn">🤍</button>
+          </div>
+          <div class="gift-body">
+            <h3 class="gift-name">Vintage Instant Film Camera</h3>
+            <p class="gift-desc">A retro-style instant camera with modern autofocus features.</p>
+            <div class="gift-ai-reason"><strong>✦ Why it's trending</strong><br>'Sentimental' and 'Artistic' friends are
+              loving this tangible photo experience.</div>
+            <div class="gift-footer">
+              <div class="gift-price">Rs. 12,000<span>onwards</span></div>
+              <a href="#" class="btn-buy">Buy Now →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="gift-card" style="animation-delay: 0.5s;">
+          <div class="gift-img-wrap">
+            <span style="position:relative;z-index:1">🍫</span>
+            <div class="gift-badge">Local Favorite</div>
+            <button class="fav-btn">🤍</button>
+          </div>
+          <div class="gift-body">
+            <h3 class="gift-name">Gourmet Himalayan Truffles</h3>
+            <p class="gift-desc">Handcrafted chocolates made with local nuts and berries.</p>
+            <div class="gift-ai-reason"><strong>✦ Why it's trending</strong><br>The ultimate 'Just Because' gift. Ships
+              perfectly without melting.</div>
+            <div class="gift-footer">
+              <div class="gift-price">Rs. 1,500<span>onwards</span></div>
+              <a href="#" class="btn-buy">Buy Now →</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -468,22 +1172,22 @@
             <h4>Product</h4>
             <a href="#finder">Gift Finder</a>
             <a href="#roulette">Gift Roulette</a>
-            <a href="trending.html">Trending Gifts</a>
-            <a href="guides.html">Gift Guides</a>
+            <a href="#trending">Trending Gifts</a>
+            <a href="#guides">Gift Guides</a>
           </div>
           <div class="footer-col">
             <h4>Company</h4>
             <a href="#about">About Us</a>
-            <a href="blog.html">Blog</a>
-            <a href="press.html">Press</a>
-            <a href="careers.html">Careers</a>
+            <a href="#blog">Blog</a>
+            <a href="#press">Press</a>
+            <a href="#careers">Careers</a>
           </div>
           <div class="footer-col">
             <h4>Contact</h4>
             <a href="mailto:hello@incanto.ai">hello@incanto.ai</a>
-            <a href="support.html">Support</a>
-            <a href="affiliate.html">Affiliate Program</a>
-            <a href="privacy.html">Privacy Policy</a>
+            <a href="#support">Support</a>
+            <a href="#affiliate">Affiliate Program</a>
+            <a href="#privacy">Privacy Policy</a>
           </div>
         </div>
       </div>
@@ -512,4 +1216,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>

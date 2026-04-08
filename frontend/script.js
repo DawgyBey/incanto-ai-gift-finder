@@ -664,16 +664,49 @@ function showToast(message) {
   }, 2800);
 }
 
-/* ─── SMOOTH SCROLL ──────────────────────── */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+/* ─── SPA ROUTING ────────────────────────── */
+function handleRouting() {
+  const hash = window.location.hash || '#home';
+  const targetId = hash.replace('#', '');
+  
+  const isHomeView = ['home', 'hero', 'how', 'finder', 'results', 'roulette', 'about'].includes(targetId);
+  const mainViewId = isHomeView ? 'home' : targetId;
+  
+  const sections = document.querySelectorAll('.view-section');
+  let found = false;
+  
+  sections.forEach(sec => {
+    if (sec.id === mainViewId) {
+      sec.classList.add('active');
+      found = true;
+    } else {
+      sec.classList.remove('active');
     }
   });
-});
+
+  if (!found) {
+    const homeMsg = document.getElementById('home');
+    if (homeMsg) homeMsg.classList.add('active');
+  }
+
+  // Handle smooth scroll if it's a home sub-section
+  if (isHomeView && targetId !== 'home') {
+    // slight delay to allow section display to toggle before scrolling
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if(el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }, 10);
+  } else {
+    window.scrollTo({top: 0});
+  }
+
+  // Close mobile menu if open
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (mobileMenu) mobileMenu.classList.remove('open');
+}
+
+window.addEventListener('hashchange', handleRouting);
+document.addEventListener('DOMContentLoaded', handleRouting);
 
 /* ─── KEYBOARD ACCESSIBILITY ─────────────── */
 document.addEventListener('keydown', (e) => {
