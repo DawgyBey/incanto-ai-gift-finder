@@ -1,7 +1,3 @@
-Here’s a clean GitHub **README.md** you can paste directly. Structured, readable, and not pretending your project achieved world peace.
-
----
-
 # Incanto – AI Gift & Product Finder
 
 Incanto is an AI-powered gift and product discovery platform that helps users find relevant products quickly through intelligent recommendations and real-time e-commerce data integration. It reduces the usual “scroll forever until you regret life choices” experience of online shopping.
