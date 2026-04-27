@@ -24,8 +24,11 @@ const state = {
   inputs: { occasion: null, recipient: null, budget: 2500, interests: [], personality: null },
   favorites: JSON.parse(localStorage.getItem('incanto_favorites') || '[]'),
   recentlyViewed: JSON.parse(localStorage.getItem('incanto_recent') || '[]'),
+  cart: JSON.parse(localStorage.getItem('incanto_cart') || '[]'),
   currentResults: [],
-  pendingPurchaseGift: null
+  pendingPurchaseGift: null,
+  isAuthenticated: window.IncantoAuth?.isAuthenticated() || false,
+  user: window.IncantoAuth?.getUser() || null
 };
 
 const recipientOptionsByOccasion = {
@@ -65,9 +68,19 @@ function updateRecipientOptions(occasion) {
 /* ─── HELPERS ────────────────────────────── */
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
+const escapeHtml = (value) =>
+  String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;',
+  }[char]));
 
 async function apiFetch(path, options = {}) {
   const headers = { 'Content-Type': 'application/json', ...options.headers };
+  const token = window.IncantoAuth?.getToken();
+  if (token) headers.Authorization = `Bearer ${token}`;
   const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
   const data = await res.json();
   return { ok: res.ok, status: res.status, data };
@@ -138,10 +151,11 @@ async function generateResults() {
         id: g.id,
         name: g.name,
         description: g.description,
-        imageUrl: g.imageUrl || g.image_url || null,
+        imageUrl: null,
         emoji: '🎁',
         price: g.price,
         priceLabel: g.price ? `Rs. ${g.price.toLocaleString()}` : 'Price unavailable',
+        category: g.category || 'Gift',
         badge: g.trending ? 'Trending' : (g.rating >= 4.8 ? 'Top Rated' : null),
         reason: g.reason || `Rated ${g.rating ?? '4.0'}/5 · ${g.category || ''}`,
         link: g.link || g.affiliateUrl || '#'
@@ -198,6 +212,7 @@ function displayResults(gifts) {
   section.style.display = 'block';
   section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   $$('.gift-card').forEach((card, idx) => { card.style.animationDelay = `${idx * 0.1}s`; });
+  renderCart();
   renderRecentlyViewed();
 }
 
@@ -222,6 +237,7 @@ function createGiftCard(gift) {
       <div class="gift-ai-reason"><strong>✦ Why it's perfect</strong> ${gift.reason}</div>
       <div class="gift-footer">
         <div class="gift-price">${gift.priceLabel} <span>onwards</span></div>
+        <button class="btn-cart" type="button" data-gift-id="${gift.id}">Add to Cart</button>
         <a href="#" class="btn-buy" data-gift-id="${gift.id}" data-link="${gift.link}">Buy Now →</a>
       </div>
     </div>
@@ -233,7 +249,16 @@ function createGiftCard(gift) {
     toggleFavorite(gift, favBtn);
   });
 
-  div.addEventListener('mouseenter', () => addToRecentlyViewed(gift));
+  div.querySelector('.btn-cart')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    addToCart(gift);
+  });
+
+  div.addEventListener('click', (event) => {
+    if (event.target.closest('button, a')) return;
+    addToRecentlyViewed(gift);
+    renderRecentlyViewed();
+  });
   return div;
 }
 
@@ -360,31 +385,131 @@ function openFavoritesModal() {
 }
 
 /* ─── RECENTLY VIEWED ────────────────────── */
-function addToRecentlyViewed(gift) {
-  state.recentlyViewed = state.recentlyViewed.filter(g => g.id !== gift.id);
-  state.recentlyViewed.unshift({ id: gift.id, name: gift.name, emoji: gift.emoji || '🎁', priceLabel: gift.priceLabel });
-  state.recentlyViewed = state.recentlyViewed.slice(0, 6);
-  localStorage.setItem('incanto_recent', JSON.stringify(state.recentlyViewed));
+function normalizeGiftForStorage(gift) {
+  return {
+    id: gift.id,
+    name: gift.name,
+    description: gift.description || '',
+    category: gift.category || 'Gift',
+    emoji: gift.emoji || 'ðŸŽ',
+    price: gift.price || null,
+    priceLabel: gift.priceLabel || 'Price unavailable',
+    reason: gift.reason || '',
+    link: gift.link || '#',
+  };
 }
 
-function renderRecentlyViewed() {
-  if (state.recentlyViewed.length === 0) return;
-  const grid = $('#recentGrid');
+function addToCart(gift) {
+  const existing = state.cart.find(item => item.id === gift.id);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    state.cart.unshift({ ...normalizeGiftForStorage(gift), quantity: 1, addedAt: new Date().toISOString() });
+  }
+  localStorage.setItem('incanto_cart', JSON.stringify(state.cart));
+  if (state.isAuthenticated) {
+    apiFetch('/users/cart', {
+      method: 'POST',
+      body: JSON.stringify({ gift: normalizeGiftForStorage(gift) }),
+    }).catch(() => {});
+  }
+  renderCart();
+  showToast(`Added "${gift.name}" to cart`);
+}
+
+function removeFromCart(giftId) {
+  state.cart = state.cart.filter(item => String(item.id) !== String(giftId));
+  localStorage.setItem('incanto_cart', JSON.stringify(state.cart));
+  if (state.isAuthenticated) {
+    apiFetch(`/users/cart/${encodeURIComponent(giftId)}`, { method: 'DELETE' }).catch(() => {});
+  }
+  renderCart();
+}
+
+function renderCart() {
+  const section = $('#cartSection');
+  const grid = $('#cartGrid');
+  const count = $('#cartCount');
+  if (!section || !grid || !count) return;
+
+  const totalItems = state.cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  count.textContent = totalItems;
+
+  if (state.cart.length === 0) {
+    section.style.display = 'none';
+    grid.innerHTML = '';
+    return;
+  }
+
   grid.innerHTML = '';
-  state.recentlyViewed.forEach(gift => {
+  state.cart.forEach(item => {
     const card = document.createElement('div');
-    card.className = 'recent-card';
+    card.className = 'cart-card';
     card.innerHTML = `
-      <div class="recent-emoji">${gift.emoji}</div>
-      <div class="recent-name">${gift.name.slice(0, 28)}${gift.name.length > 28 ? '…' : ''}</div>
-      <div class="recent-price">${gift.priceLabel}</div>
+      <div class="cart-emoji">${escapeHtml(item.emoji)}</div>
+      <div class="cart-info">
+        <strong>${escapeHtml(item.name)}</strong>
+        <span>${escapeHtml(item.priceLabel)} · Qty ${item.quantity || 1}</span>
+      </div>
+      <button class="cart-remove" type="button" data-id="${escapeHtml(item.id)}">Remove</button>
     `;
+    card.querySelector('.cart-remove')?.addEventListener('click', () => removeFromCart(item.id));
     grid.appendChild(card);
   });
-  $('#recentSection').style.display = 'block';
+  section.style.display = 'block';
 }
 
 /* ─── FINDER ─────────────────────────────── */
+function addToRecentlyViewed(gift) {
+  state.recentlyViewed = state.recentlyViewed.filter(item => item.id !== gift.id);
+  state.recentlyViewed.unshift({
+    ...normalizeGiftForStorage(gift),
+    viewedAt: new Date().toISOString(),
+  });
+  state.recentlyViewed = state.recentlyViewed.slice(0, 6);
+  localStorage.setItem('incanto_recent', JSON.stringify(state.recentlyViewed));
+  if (state.isAuthenticated) {
+    apiFetch('/users/recently-viewed', {
+      method: 'POST',
+      body: JSON.stringify({ gift: normalizeGiftForStorage(gift) }),
+    }).catch(() => {});
+  }
+}
+
+function renderRecentlyViewed() {
+  const grid = $('#recentGrid');
+  const section = $('#recentSection');
+  if (!grid || !section) return;
+
+  if (state.recentlyViewed.length === 0) {
+    section.style.display = 'none';
+    grid.innerHTML = '';
+    return;
+  }
+
+  grid.innerHTML = '';
+  state.recentlyViewed.forEach(gift => {
+    const viewedDate = gift.viewedAt
+      ? new Date(gift.viewedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+      : 'Recent';
+    const card = document.createElement('div');
+    card.className = 'recent-card';
+    card.innerHTML = `
+      <div class="recent-emoji">${escapeHtml(gift.emoji || 'Gift')}</div>
+      <div class="recent-meta">${escapeHtml(gift.category || 'Gift')} · ${escapeHtml(viewedDate)}</div>
+      <div class="recent-name">${escapeHtml(gift.name || 'Gift item')}</div>
+      <div class="recent-desc">${escapeHtml(gift.description || gift.reason || 'Recommended from your latest gift search.')}</div>
+      <div class="recent-footer">
+        <div class="recent-price">${escapeHtml(gift.priceLabel || 'Price unavailable')}</div>
+        <button class="recent-buy" type="button">View</button>
+      </div>
+    `;
+    card.querySelector('.recent-buy')?.addEventListener('click', () => showPurchaseConfirmation(gift));
+    grid.appendChild(card);
+  });
+  section.style.display = 'block';
+}
+
 function initFinder() {
   $$('#step-1 .choice-btn, #step-2 .choice-btn').forEach(btn => {
     btn.addEventListener('click', function () {
@@ -580,10 +705,216 @@ function showToast(message, duration = 2800) {
 }
 
 /* ─── ROUTING ────────────────────────────── */
+function showAuthModal(mode = 'login') {
+  setAuthMode(mode);
+  $('#authModal')?.classList.add('open');
+}
+
+function hideAuthModal() {
+  $('#authModal')?.classList.remove('open');
+}
+
+function setAuthMode(mode) {
+  const isRegister = mode === 'register';
+  $('#authModalTitle').textContent = isRegister ? 'Create account' : 'Log in';
+  $('#authLoginTab').classList.toggle('active', !isRegister);
+  $('#authRegisterTab').classList.toggle('active', isRegister);
+  $('#loginForm').classList.toggle('active', !isRegister);
+  $('#registerForm').classList.toggle('active', isRegister);
+}
+
+function updateProfileUI(user = state.user) {
+  $('#profileUsername').textContent = user?.username || '';
+  $('#profileEmail').textContent = user?.email || '';
+  $('#profileVerified').textContent = user?.verified ? 'Yes' : 'No';
+
+  const info = user?.personalInfo || {};
+  $('#personalFullName').value = info.fullName || user?.username || '';
+  $('#personalPhone').value = info.phone || '';
+  $('#personalBirthday').value = info.birthday || '';
+  $('#personalLocation').value = info.location || '';
+
+  const prefs = user?.preferences || {};
+  if ($('#prefRecipient')) $('#prefRecipient').value = prefs.recipient || '';
+  if ($('#prefBudget')) $('#prefBudget').value = prefs.budget || '';
+  if ($('#prefInterests')) $('#prefInterests').value = Array.isArray(prefs.interests) ? prefs.interests.join(', ') : '';
+  if ($('#prefPersonality')) $('#prefPersonality').value = prefs.personality || '';
+}
+
+function updateAuthUI() {
+  state.isAuthenticated = window.IncantoAuth?.isAuthenticated() || false;
+  state.user = window.IncantoAuth?.getUser() || null;
+  if (state.user?.cart) {
+    state.cart = state.user.cart;
+    localStorage.setItem('incanto_cart', JSON.stringify(state.cart));
+  }
+  if (state.user?.recentlyViewed) {
+    state.recentlyViewed = state.user.recentlyViewed;
+    localStorage.setItem('incanto_recent', JSON.stringify(state.recentlyViewed));
+  }
+
+  $('#loginBtn').style.display = state.isAuthenticated ? 'none' : 'inline-flex';
+  $('#mobileLoginBtn').style.display = state.isAuthenticated ? 'none' : 'block';
+  $('#profileBtn').style.display = state.isAuthenticated ? 'inline-flex' : 'none';
+  $('#mobileProfileBtn').style.display = state.isAuthenticated ? 'block' : 'none';
+  $('#logoutBtn').style.display = state.isAuthenticated ? 'inline-flex' : 'none';
+  updateProfileUI();
+}
+
+async function handleAuthSubmit(formType, event) {
+  event.preventDefault();
+  const submit = event.target.querySelector('button[type="submit"]');
+  const originalText = submit.textContent;
+  submit.disabled = true;
+  submit.textContent = formType === 'register' ? 'Creating...' : 'Logging in...';
+
+  try {
+    if (formType === 'register') {
+      await window.IncantoAuth.register({
+        username: $('#registerUsername').value.trim(),
+        email: $('#registerEmail').value.trim(),
+        password: $('#registerPassword').value,
+      });
+      showToast('Account created. You are signed in.');
+    } else {
+      await window.IncantoAuth.login({
+        email: $('#loginEmail').value.trim(),
+        password: $('#loginPassword').value,
+      });
+      showToast('Welcome back.');
+    }
+    hideAuthModal();
+    updateAuthUI();
+  } catch (err) {
+    showToast(err.message || 'Authentication failed.');
+  } finally {
+    submit.disabled = false;
+    submit.textContent = originalText;
+  }
+}
+
+async function saveProfilePreferences(event) {
+  event.preventDefault();
+  if (!state.isAuthenticated) {
+    showAuthModal('login');
+    return;
+  }
+
+  const interests = $('#prefInterests').value
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  const { ok, data } = await apiFetch('/users/preferences', {
+    method: 'POST',
+    body: JSON.stringify({
+      recipient: $('#prefRecipient').value,
+      budget: $('#prefBudget').value,
+      interests,
+      personality: $('#prefPersonality').value,
+    }),
+  });
+
+  if (ok && data.success) {
+    localStorage.setItem('incanto_user', JSON.stringify(data.data.user));
+    updateAuthUI();
+    showToast('Preferences saved.');
+  } else {
+    showToast(data.message || 'Could not save preferences.');
+  }
+}
+
+async function savePersonalInfo(event) {
+  event.preventDefault();
+  if (!state.isAuthenticated) {
+    showAuthModal('login');
+    return;
+  }
+
+  const { ok, data } = await apiFetch('/users/personal-info', {
+    method: 'POST',
+    body: JSON.stringify({
+      fullName: $('#personalFullName').value,
+      phone: $('#personalPhone').value,
+      birthday: $('#personalBirthday').value,
+      location: $('#personalLocation').value,
+    }),
+  });
+
+  if (ok && data.success) {
+    localStorage.setItem('incanto_user', JSON.stringify(data.data.user));
+    updateAuthUI();
+    showToast('Personal information saved.');
+  } else {
+    showToast(data.message || 'Could not save personal information.');
+  }
+}
+
+function initGoogleSignIn() {
+  const clientId = window.IncantoAuth?.GOOGLE_CLIENT_ID;
+  const googleWrap = $('#googleButtonWrap');
+  const setupBtn = $('#googleSetupBtn');
+
+  if (!clientId || !window.google?.accounts?.id) {
+    setupBtn.style.display = 'inline-flex';
+    return;
+  }
+
+  setupBtn.style.display = 'none';
+  $('#googleNote').style.display = 'none';
+
+  window.google.accounts.id.initialize({
+    client_id: clientId,
+    callback: async (response) => {
+      try {
+        await window.IncantoAuth.loginWithGoogle(response.credential);
+        hideAuthModal();
+        updateAuthUI();
+        showToast('Signed in with Google.');
+      } catch (err) {
+        showToast(err.message || 'Google sign-in failed.');
+      }
+    },
+  });
+  window.google.accounts.id.renderButton(googleWrap, {
+    theme: 'filled_black',
+    size: 'large',
+    width: Math.min(360, googleWrap.clientWidth || 360),
+  });
+}
+
+function initAuth() {
+  $('#loginBtn')?.addEventListener('click', () => showAuthModal('login'));
+  $('#mobileLoginBtn')?.addEventListener('click', () => showAuthModal('login'));
+  $('#logoutBtn')?.addEventListener('click', () => {
+    window.IncantoAuth.logout();
+    updateAuthUI();
+    showToast('Signed out.');
+    if (window.location.hash === '#profile') window.location.hash = '#home';
+  });
+  $('#authModalClose')?.addEventListener('click', hideAuthModal);
+  $('#authModal')?.addEventListener('click', (event) => { if (event.target === $('#authModal')) hideAuthModal(); });
+  $('#authLoginTab')?.addEventListener('click', () => setAuthMode('login'));
+  $('#authRegisterTab')?.addEventListener('click', () => setAuthMode('register'));
+  $('#loginForm')?.addEventListener('submit', (event) => handleAuthSubmit('login', event));
+  $('#registerForm')?.addEventListener('submit', (event) => handleAuthSubmit('register', event));
+  $('#personalInfoForm')?.addEventListener('submit', savePersonalInfo);
+  $('#preferencesForm')?.addEventListener('submit', saveProfilePreferences);
+  $('#googleSetupBtn')?.addEventListener('click', () => showToast('Paste your Google OAuth client ID in frontend/user.js first.'));
+  window.addEventListener('incanto:auth-change', updateAuthUI);
+  window.addEventListener('load', initGoogleSignIn);
+  updateAuthUI();
+}
+
 function handleRouting() {
   const hash = window.location.hash || '#home';
   const targetId = hash.replace('#', '');
-  const isHomeView = ['home','hero','how','finder','results','profile','purchase','trending','about'].includes(targetId);
+  if (targetId === 'profile' && !state.isAuthenticated) {
+    showAuthModal('login');
+    window.location.hash = '#home';
+    return;
+  }
+  const isHomeView = ['home','hero','how','finder','results','about'].includes(targetId);
   $$('.view-section').forEach(sec => sec.classList.toggle('active', sec.id === (isHomeView ? 'home' : targetId)));
   if (!document.querySelector('.view-section.active')) $('#home')?.classList.add('active');
   if (isHomeView && targetId !== 'home') {
@@ -598,6 +929,7 @@ window.addEventListener('hashchange', handleRouting);
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     $('#favsModal').classList.remove('open');
+    hideAuthModal();
     if (window.location.hash === '#purchase') cancelPurchase();
   }
 });
@@ -609,7 +941,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initFinder();
   initBudgetSlider();
   initFilters();
+  initAuth();
   updateFavoritesUI();
+  renderCart();
+  renderRecentlyViewed();
   initBuyButtons();
   $('#confirmPurchaseBtn')?.addEventListener('click', confirmPurchase);
   $('#cancelPurchaseBtn')?.addEventListener('click', cancelPurchase);

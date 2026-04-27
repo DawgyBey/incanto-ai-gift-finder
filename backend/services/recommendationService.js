@@ -1,7 +1,6 @@
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import { pricingService } from "./pricingService.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const giftsPath = join(__dirname, "../data/gifts.json");
@@ -40,7 +39,7 @@ const normalizeGift = (rawGift) => {
     description: String(rawGift.Description || rawGift.description || "").trim(),
     availability: String(rawGift.Availability || rawGift.availability || "").trim(),
     tags: normalizeTags(rawGift.Tags || rawGift.tags),
-    imageUrl: String(rawGift.image_url || rawGift.imageUrl || "").trim(),
+    imageUrl: "",
     link: String(rawGift.daraz_search_link || rawGift.link || "").trim(),
   };
 };
@@ -139,12 +138,9 @@ const scoreGift = (gift, { budget, recipient, interests, personality, occasion }
 };
 
 export const getRecommendations = async (preferences = {}, options = {}) => {
-  let gifts = loadGifts();
+  const gifts = loadGifts();
   const { budget = null, recipient = null, interests = [], personality = null, occasion = null } = preferences;
   const { limit = 10, page = 1 } = options;
-
-  // Update prices with live data
-  gifts = await pricingService.updateAllPrices(gifts);
 
   const scored = gifts
     .map((gift) => ({

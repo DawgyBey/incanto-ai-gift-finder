@@ -23,7 +23,6 @@ class PricingService {
     try {
       let livePrice = null;
       if (gift.link && gift.link.includes('daraz.com.np')) {
-        // Use RapidAPI for Daraz products
         livePrice = await this.scrapeDarazPrice(gift.link);
       }
 
@@ -45,12 +44,6 @@ class PricingService {
 
   async scrapeDarazPrice(url) {
     try {
-      // Try RapidAPI first if key is available
-      if (process.env.RAPIDAPI_KEY) {
-        return await this.fetchFromRapidAPI(url);
-      }
-
-      // Fallback to direct scraping
       const response = await axios.get(url, {
         headers: {
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
@@ -74,34 +67,6 @@ class PricingService {
     }
 
     return 0;
-  }
-
-  async fetchFromRapidAPI(productUrl) {
-    try {
-      const url = `https://${process.env.RAPIDAPI_HOST}/ProductDetail?url=${encodeURIComponent(productUrl)}`;
-
-      const response = await axios.get(url, {
-        headers: {
-          'x-rapidapi-key': process.env.RAPIDAPI_KEY,
-          'x-rapidapi-host': process.env.RAPIDAPI_HOST
-        }
-      });
-
-      const data = response.data;
-
-      // Extract price from RapidAPI response
-      // Adjust based on actual API response structure
-      if (data && data.price) {
-        const price = parseFloat(data.price);
-        return isNaN(price) ? 0 : price;
-      }
-
-      console.warn('RapidAPI response does not contain price:', data);
-      return 0;
-    } catch (error) {
-      console.error('Error fetching from RapidAPI:', error.message);
-      return 0;
-    }
   }
 
   async updateAllPrices(gifts) {

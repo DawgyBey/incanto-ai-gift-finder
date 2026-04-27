@@ -53,26 +53,14 @@ incanto-backend/
 | `PORT`           | Server port                          | `5000`                     |
 | `NODE_ENV`       | Environment mode                     | `development`              |
 | `CLIENT_ORIGIN`  | CORS allowed origin                  | `*`                        |
-| `RAPIDAPI_KEY`   | API key for RapidAPI Daraz service   | —                          |
-| `RAPIDAPI_HOST`  | Host for RapidAPI Daraz service      | `daraz-product-details.p.rapidapi.com` |
 
 ---
 
 ## 💰 Live Pricing Configuration
 
-The system supports live price fetching for Daraz products using RapidAPI. Configure the following environment variables:
+The system can try to read prices directly from Daraz product pages. If a live price cannot be read, it falls back to static prices from `gifts.json`.
 
-- `RAPIDAPI_KEY`: Your API key for RapidAPI Daraz service
-- `RAPIDAPI_HOST`: The host for the RapidAPI service (usually `daraz-product-details.p.rapidapi.com`)
-
-If not configured, the system falls back to static prices from `gifts.json`.
-
-For Daraz products, the system uses the RapidAPI service to fetch accurate, up-to-date pricing information. This is more reliable than web scraping and provides better performance.
-
-To use live prices:
-1. Sign up for RapidAPI and subscribe to the Daraz Product Details API
-2. Add your API key and host to `.env`
-3. Ensure gift links in `gifts.json` point to specific Daraz product pages (not search results)
+To improve live price results, ensure gift links in `gifts.json` point to specific Daraz product pages, not search results.
 
 ---
 

@@ -28,6 +28,9 @@
         <li><a href="#about">About</a></li>
       </ul>
       <div class="nav-actions">
+        <button class="nav-auth-btn" id="loginBtn" type="button">Log in</button>
+        <a href="#profile" class="nav-auth-profile" id="profileBtn" style="display:none;">Profile</a>
+        <button class="nav-auth-btn" id="logoutBtn" type="button" style="display:none;">Log out</button>
         <a href="#finder" class="nav-cta" id="navCta">Find a Gift</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -42,6 +45,8 @@
     <a href="#finder" class="mobile-link">Finder</a>
     <a href="#trending" class="mobile-link">Trending</a>
     <a href="#about" class="mobile-link">About</a>
+    <button class="mobile-link mobile-auth-link" id="mobileLoginBtn" type="button">Log in</button>
+    <a href="#profile" class="mobile-link" id="mobileProfileBtn" style="display:none;">Profile</a>
   </div>
 
   <!-- HERO -->
@@ -317,6 +322,14 @@
           <button class="view-fav-btn" id="viewFavsBtn">View Saved</button>
         </div>
 
+        <div class="cart-section" id="cartSection" style="display:none;">
+          <div class="cart-header">
+            <h3 class="cart-title">Cart</h3>
+            <span class="cart-count"><span id="cartCount">0</span> items</span>
+          </div>
+          <div class="cart-grid" id="cartGrid"></div>
+        </div>
+
         <div class="gifts-grid" id="giftsGrid">
           <!-- Cards injected by JS -->
         </div>
@@ -401,8 +414,7 @@
 
 
   <!-- ══════════════════════════════════════════ PRIVACY -->
-  <section id="privacy" class="page-section view-section" style="display: none;"
-    style="padding: 150px 0 100px; min-height: 80vh;">
+  <section id="privacy" class="page-section view-section" style="padding: 150px 0 100px; min-height: 80vh;">
     <div class="container">
       <div class="section-header reveal">
         <p class="section-eyebrow">Legal</p>
@@ -460,8 +472,7 @@
   </section>
 
   <!-- ══════════════════════════════════════════ SUPPORT -->
-  <section id="support" class="page-section view-section" style="display: none;"
-    style="padding: 150px 0 100px; min-height: 80vh;">
+  <section id="support" class="page-section view-section" style="padding: 150px 0 100px; min-height: 80vh;">
     <div class="container">
       <div class="section-header reveal">
         <p class="section-eyebrow">Here to help</p>
@@ -541,8 +552,7 @@
   </section>
 
   <!-- ══════════════════════════════════════════ TRENDING -->
-  <section id="trending" class="page-section view-section" style="display: none;"
-    style="padding: 150px 0 100px; min-height: 80vh;">
+  <section id="trending" class="page-section view-section" style="padding: 150px 0 100px; min-height: 80vh;">
     <div class="container">
       <div class="section-header reveal">
         <p class="section-eyebrow">Discover</p>
@@ -664,7 +674,7 @@
   </section>
 
   <!-- ══════════════════════════════════════════ PURCHASE CONFIRMATION -->
-  <section id="purchase" class="page-section view-section" style="display: none; padding: 150px 0 100px; min-height: 80vh;">
+  <section id="purchase" class="page-section view-section" style="padding: 150px 0 100px; min-height: 80vh;">
     <div class="container">
       <div class="purchase-confirmation">
         <div class="purchase-header">
@@ -691,7 +701,7 @@
   </section>
 
   <!-- ══════════════════════════════════════════ PROFILE -->
-  <section id="profile" class="page-section view-section" style="display: none; padding: 150px 0 100px; min-height: 80vh;">
+  <section id="profile" class="page-section view-section" style="padding: 150px 0 100px; min-height: 80vh;">
     <div class="container">
       <div class="profile-container">
         <h1 class="section-title">Your Profile</h1>
@@ -702,43 +712,26 @@
             <p><strong>Email:</strong> <span id="profileEmail"></span></p>
             <p><strong>Verified:</strong> <span id="profileVerified"></span></p>
           </div>
-          <div class="profile-preferences">
-            <h3>Gift Preferences</h3>
-            <form id="preferencesForm">
+          <div class="profile-personal">
+            <h3>Personal Information</h3>
+            <form id="personalInfoForm">
               <div class="form-group">
-                <label for="prefRecipient">Recipient Type</label>
-                <select id="prefRecipient">
-                  <option value="">Select recipient</option>
-                  <option value="partner">Partner</option>
-                  <option value="friend">Friend</option>
-                  <option value="parent">Parent</option>
-                  <option value="child">Child</option>
-                  <option value="colleague">Colleague</option>
-                  <option value="sibling">Sibling</option>
-                  <option value="other">Other</option>
-                </select>
+                <label for="personalFullName">Full Name</label>
+                <input type="text" id="personalFullName" autocomplete="name" placeholder="Enter your full name">
               </div>
               <div class="form-group">
-                <label for="prefBudget">Budget (PKR)</label>
-                <input type="number" id="prefBudget" min="0" placeholder="Enter budget">
+                <label for="personalPhone">Phone Number</label>
+                <input type="tel" id="personalPhone" autocomplete="tel" placeholder="Enter your phone number">
               </div>
               <div class="form-group">
-                <label for="prefInterests">Interests (comma-separated)</label>
-                <input type="text" id="prefInterests" placeholder="e.g., books, music, sports">
+                <label for="personalBirthday">Birthday</label>
+                <input type="date" id="personalBirthday" autocomplete="bday">
               </div>
               <div class="form-group">
-                <label for="prefPersonality">Personality</label>
-                <select id="prefPersonality">
-                  <option value="">Select personality</option>
-                  <option value="funny">Funny</option>
-                  <option value="romantic">Romantic</option>
-                  <option value="practical">Practical</option>
-                  <option value="adventurous">Adventurous</option>
-                  <option value="artistic">Artistic</option>
-                  <option value="intellectual">Intellectual</option>
-                </select>
+                <label for="personalLocation">Location</label>
+                <input type="text" id="personalLocation" autocomplete="address-level2" placeholder="Enter your city">
               </div>
-              <button type="submit" class="btn-primary">Save Preferences</button>
+              <button type="submit" class="btn-primary">Save Personal Info</button>
             </form>
           </div>
         </div>
@@ -777,9 +770,64 @@
     </div>
   </div>
 
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal auth-modal">
+      <div class="modal-header">
+        <h3 id="authModalTitle">Log in</h3>
+        <button class="modal-close" id="authModalClose" type="button">x</button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="authLoginTab" type="button">Log in</button>
+          <button class="auth-tab" id="authRegisterTab" type="button">Create account</button>
+        </div>
+
+        <form class="auth-form active" id="loginForm">
+          <label>
+            Email
+            <input type="email" id="loginEmail" autocomplete="email" required />
+          </label>
+          <label>
+            Password
+            <input type="password" id="loginPassword" autocomplete="current-password" required />
+          </label>
+          <button class="btn-primary auth-submit" type="submit">Log in</button>
+        </form>
+
+        <form class="auth-form" id="registerForm">
+          <label>
+            Username
+            <input type="text" id="registerUsername" autocomplete="username" required />
+          </label>
+          <label>
+            Email
+            <input type="email" id="registerEmail" autocomplete="email" required />
+          </label>
+          <label>
+            Password
+            <input type="password" id="registerPassword" autocomplete="new-password" minlength="8" required />
+          </label>
+          <button class="btn-primary auth-submit" type="submit">Create account</button>
+        </form>
+
+        <div class="auth-divider"><span>or</span></div>
+        <div id="googleButtonWrap"></div>
+        <button class="google-fallback-btn" id="googleSetupBtn" type="button">
+          Login with Google
+        </button>
+        <p class="auth-note" id="googleNote">
+          Add your Google OAuth client ID in user.js to enable Google sign-in.
+        </p>
+      </div>
+    </div>
+  </div>
+
   <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="user.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
