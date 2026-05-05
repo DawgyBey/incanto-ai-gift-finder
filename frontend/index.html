@@ -427,45 +427,71 @@
 
         <h3 style="font-size: 1.6rem; margin-bottom: 15px;">1. Information We Collect</h3>
         <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
-          At INCANTO, we prioritize your privacy. We intentionally collect limited information. The primary data we
-          collect is anonymous: the inputs you provide in the Gift Finder (such as occasion, budget, recipient
-          relationship, and personality traits) to generate gift recommendations. We do not store this data assigned to
-          a personal profile.
+          At INCANTO, we prioritize your privacy and believe data belongs to you. We collect minimal information:
         </p>
+        <ul style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; margin-left: 20px;">
+          <li><strong>Anonymous Preferences:</strong> Occasion, budget, recipient relationship, personality traits, and interests provided in the Gift Finder are processed transiently for recommendations.</li>
+          <li><strong>Optional Account Data:</strong> If you create an account, we store your email, username, and hashed password for authentication. We never sell or share this data.</li>
+          <li><strong>Local Storage:</strong> Your favorites and recently viewed gifts are stored only in your browser's local storage — not on our servers.</li>
+          <li><strong>No Tracking:</strong> We do not use cookies, analytics tracking, or third-party trackers on INCANTO.</li>
+        </ul>
 
-        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">2. How We Use Informational Data</h3>
+        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">2. How We Use Your Data</h3>
         <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
-          The information processed via the AI prompt stays strictly transient and is solely used to query our
-          recommendation engine. Your "❤️ Saved Gifts" and "Recently Viewed" history are stored entirely locally on your
-          device via <code>localStorage</code>.
+          <strong>Preference Data:</strong> Your gift preferences are processed securely and only used to generate recommendations. We never use your data for machine learning, profile building, or behavioral analysis beyond the immediate recommendation request.
+          <br><br>
+          <strong>Account Data:</strong> If authenticated, we use your email and preferences to personalize your experience and save your cart and recently viewed items. Your password is hashed with industry-standard protocols (PBKDF2-SHA512).
+          <br><br>
+          <strong>Local Storage:</strong> Your "❤️ Saved Gifts" and "Recently Viewed" history are stored entirely on your device and never transmitted to our servers unless you explicitly save preferences to your profile.
         </p>
 
         <h3 style="font-size: 1.6rem; margin-bottom: 15px;">3. Affiliate Links and Third Parties</h3>
         <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
-          When you click on "Buy Now" for a recommended gift, you will be redirected to third-party seller platforms
-          (such as Daraz or independent merchants). These third-party sites have their own separate and independent
-          privacy policies. We have no responsibility or liability for the content and activities of these linked sites.
+          INCANTO is a discovery engine, not a marketplace. When you click "Buy Now" for a gift, you are securely redirected to trusted third-party merchants (such as Daraz, Amazon, or local retailers). 
+          <br><br>
+          <strong>Important:</strong> Once you leave INCANTO, you are subject to their privacy policies, not ours. We are not responsible for their data practices. We do not share your personal information with these merchants unless you explicitly provide it during checkout.
+          <br><br>
+          <strong>Affiliate Compensation:</strong> INCANTO may earn a small affiliate commission if you complete a purchase through our links. This does not affect the price you pay — it remains identical.
         </p>
 
         <h3 style="font-size: 1.6rem; margin-bottom: 15px;">4. Data Security</h3>
         <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
-          We use administrative, technical, and physical security measures to help protect your usage data. However,
-          remember that no absolute transmission over the internet or electronic storage method can fully guarantee
-          security.
+          We employ industry-standard security measures to protect your data:
         </p>
-
-        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">5. Revisions to this Privacy Policy</h3>
+        <ul style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; margin-left: 20px;">
+          <li><strong>HTTPS/TLS Encryption:</strong> All data transmitted between your browser and our servers is encrypted.</li>
+          <li><strong>Password Hashing:</strong> Passwords are hashed using PBKDF2 with a 120,000 iteration count — we never store plain-text passwords.</li>
+          <li><strong>Database Security:</strong> Your data is stored in Supabase with row-level security, encryption at rest, and automated backups.</li>
+          <li><strong>No Third-Party Sharing:</strong> We do not sell, share, or rent your personal information to advertisers or data brokers.</li>
+        </ul>
         <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
-          We may update this privacy notice from time to time to align with legal requirements or service capabilities.
-          The updated version will be indicated by an updated "Last Updated" date at the top of the policy.
+          While we maintain strict security practices, no system is 100% immune to breaches. We commit to notifying you within 48 hours if your data is compromised.
         </p>
 
-        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">6. Contacting Us</h3>
-        <p style="color: var(--text-muted); line-height: 1.8;">
-          If there are any questions regarding this privacy policy or to request a data audit, you may contact us using
-          the information below:
+        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">5. Your Rights and Choices</h3>
+        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
+          <strong>Access Your Data:</strong> You can download a copy of your account data by requesting it at privacy@incanto.ai.
           <br><br>
-          <strong>Email:</strong> <a href="mailto:privacy@incanto.ai">privacy@incanto.ai</a>
+          <strong>Delete Your Account:</strong> You can request permanent deletion of your account and associated data. We will comply within 30 days.
+          <br><br>
+          <strong>Opt-Out:</strong> You can clear your browser's local storage at any time to remove saved favorites and recently viewed items.
+          <br><br>
+          <strong>Email Communications:</strong> If we send you emails, you can unsubscribe using the link in the email.
+        </p>
+        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">6. Revisions to this Privacy Policy</h3>
+        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
+          We may update this privacy notice to align with legal requirements or service improvements. Changes will be indicated by an updated "Last Updated" date. Continued use of INCANTO after updates constitutes acceptance of the revised policy.
+        </p>
+
+        <h3 style="font-size: 1.6rem; margin-bottom: 15px;">7. Contact & Data Requests</h3>
+        <p style="color: var(--text-muted); line-height: 1.8;">
+          For privacy concerns, data access requests, deletion requests, or general inquiries:
+          <br><br>
+          <strong>Email:</strong> <a href="mailto:privacy@incanto.ai" style="color: var(--primary);">privacy@incanto.ai</a>
+          <br><br>
+          We commit to responding to all legitimate privacy requests within 10 business days.
+          <br><br>
+          <strong>Last Updated:</strong> April 2026
         </p>
       </div>
     </div>
@@ -816,9 +842,7 @@
         <button class="google-fallback-btn" id="googleSetupBtn" type="button">
           Login with Google
         </button>
-        <p class="auth-note" id="googleNote">
-          Add your Google OAuth client ID in user.js to enable Google sign-in.
-        </p>
+        <div id="googleNote" class="auth-note"></div>
       </div>
     </div>
   </div>

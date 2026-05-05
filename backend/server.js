@@ -5,13 +5,13 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import config from "./config.js";
 
 import indexRouter from "./routes/index.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-const allowedOrigins = (process.env.CLIENT_ORIGIN || "*")
+const allowedOrigins = (config.clientOrigin || "*")
   .split(",")
   .map((origin) => origin.trim());
 
@@ -35,8 +35,8 @@ app.use(
 
 // Rate limiter
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+  windowMs: config.rateLimit.windowMs,
+  max: config.rateLimit.max,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -55,7 +55,12 @@ app.use("/api/v1", indexRouter);
 
 // Health check
 app.get("/health", (_req, res) => {
-  res.json({ success: true, message: "Incanto API is running" });
+  res.json({
+    success: true,
+    message: "Incanto API is running",
+    environment: config.nodeEnv,
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // 404 handler
@@ -67,8 +72,8 @@ app.use((_req, res) => {
 app.use(errorHandler);
 
 // Server start
-app.listen(PORT, () => {
-  console.log(`Incanto API running on port ${PORT}`);
+app.listen(config.port, () => {
+  console.log(`Incanto API running on port ${config.port} (${config.nodeEnv})`);
 });
 
 export default app;
