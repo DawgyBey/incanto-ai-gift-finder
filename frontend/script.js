@@ -168,6 +168,7 @@ async function generateResults() {
     }
 
   } catch (err) {
+    console.error('API fetch failed:', err.message);
     done();
     console.warn('API recommendations failed, using local fallback:', err.message);
 
