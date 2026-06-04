@@ -1,3 +1,5 @@
+
+//backend-routes-gifts.js
 import { Router } from "express";
 import { getRecommendations } from "../services/recommendationService.js";
 import { createError } from "../middleware/errorHandler.js";
@@ -21,6 +23,7 @@ router.get("/recommendations", async (req, res, next) => {
       preferLocal,
       limit = 10,
       page = 1,
+      useAI = "true",
     } = req.query;
 
     const resolvedBudget =
@@ -76,7 +79,7 @@ router.get("/recommendations", async (req, res, next) => {
         preferOnline: String(preferOnline || "").toLowerCase() === "true",
         preferLocal: String(preferLocal || "").toLowerCase() === "true",
       },
-      { limit: parsedLimit, page: parsedPage }
+      { limit: parsedLimit, page: parsedPage, useAI: String(useAI) !== "false" }
     );
 
     const responseMessage =

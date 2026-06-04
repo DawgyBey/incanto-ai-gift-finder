@@ -1,3 +1,5 @@
+// frontend-script.js
+
 'use strict';
 
 /* ─── CONFIG ─────────────────────────────── */
@@ -135,10 +137,9 @@ const state = {
   cart: readScopedArray('cart'),
   orders: readScopedArray('orders'),
   currentResults: [],
-  aiConversationHistory: [],
-  isAskingAi: false,
   isFindingGifts: false,
   isProcessingPayment: false,
+  useAI: true,
   pendingPurchaseGift: null,
   pendingCheckoutItems: [],
   voucher: { code: '', amount: 0, message: 'Try INCANTO10 for 10% off.' },
@@ -222,76 +223,6 @@ function isWithinBudgetRange(price) {
   if (!Number.isFinite(numericPrice)) return false;
   const { minBudget, maxBudget } = getBudgetRange();
   return numericPrice >= minBudget && numericPrice <= maxBudget;
-}
-
-function normalizeGiftList(value) {
-  if (Array.isArray(value)) return value.map(item => String(item || '').toLowerCase().trim()).filter(Boolean);
-  return String(value || '').split(',').map(item => item.toLowerCase().trim()).filter(Boolean);
-}
-
-function formatChoiceLabel(value) {
-  return String(value || '').replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
-}
-
-function buildDetailedGiftReason(gift = {}, extra = {}) {
-  const { minBudget, maxBudget } = getBudgetRange();
-  const selectedRecipient = String(state.inputs.recipient || '').toLowerCase();
-  const selectedOccasion = String(state.inputs.occasion || '').toLowerCase();
-  const selectedInterests = state.inputs.interests.map(item => String(item || '').toLowerCase());
-  const selectedPersonality = String(state.inputs.personality || '').toLowerCase();
-  const giftTags = normalizeGiftList(gift.tags);
-  const giftRecipients = normalizeGiftList(gift.recipients || gift.recipient);
-  const giftOccasions = normalizeGiftList(gift.occasions || gift.occasion);
-  const giftCategory = String(gift.category || '').toLowerCase();
-  const matches = [];
-
-  if (selectedRecipient && giftRecipients.includes(selectedRecipient)) {
-    matches.push(`it is suitable for ${formatChoiceLabel(selectedRecipient)}`);
-  }
-
-  if (selectedOccasion && giftOccasions.includes(selectedOccasion)) {
-    matches.push(`it works well for ${formatChoiceLabel(selectedOccasion)}`);
-  }
-
-  const interestMatches = selectedInterests.filter(interest =>
-    giftTags.includes(interest) || giftCategory === interest
-  );
-  if (interestMatches.length) {
-    matches.push(`it connects with ${interestMatches.slice(0, 2).map(formatChoiceLabel).join(' and ')}`);
-  }
-
-  if (selectedPersonality) {
-    const personalityWords = {
-      funny: ['playful', 'funny', 'gaming', 'social'],
-      romantic: ['romantic', 'sentimental', 'personalized', 'fashion'],
-      practical: ['practical', 'useful', 'home', 'tech', 'cooking'],
-      adventurous: ['adventurous', 'travel', 'outdoor', 'nature'],
-      artistic: ['artistic', 'art', 'creative', 'handmade'],
-      intellectual: ['intellectual', 'books', 'classic', 'stationery'],
-    };
-    const personalityMatch = (personalityWords[selectedPersonality] || [selectedPersonality])
-      .some(word => giftTags.includes(word) || giftCategory.includes(word));
-    if (personalityMatch) matches.push(`it fits a ${formatChoiceLabel(selectedPersonality)} personality`);
-  }
-
-  const price = Number(gift.price);
-  if (Number.isFinite(price)) {
-    if (price >= minBudget && price <= maxBudget) {
-      matches.push(`it stays inside your Rs. ${minBudget.toLocaleString('en-IN')} to Rs. ${maxBudget.toLocaleString('en-IN')} budget`);
-    } else if (price > maxBudget) {
-      matches.push(`it is a stretch pick above your selected budget`);
-    }
-  }
-
-  const baseDetail = gift.description
-    ? `The item itself is a strong fit because ${String(gift.description).replace(/\.$/, '').toLowerCase()}.`
-    : '';
-  const ratingDetail = extra.rating ? `It also carries a ${extra.rating}/5 rating signal.` : '';
-  const matchDetail = matches.length
-    ? `Selected because ${matches.slice(0, 4).join(', ')}.`
-    : `Selected as a close match from the curated gift dataset for ${formatChoiceLabel(state.inputs.recipient || 'this recipient')}.`;
-
-  return [matchDetail, baseDetail, ratingDetail].filter(Boolean).join(' ');
 }
 
 async function apiFetch(path, options = {}) {
@@ -495,6 +426,7 @@ async function generateResults() {
     if (state.inputs.personality) params.set('personality', state.inputs.personality);
     if (state.inputs.occasion) params.set('occasion', state.inputs.occasion);
     params.set('preferOnline', 'true');
+    params.set('useAI', state.useAI ? 'true' : 'false');
     params.set('limit', '9');
 
     const { ok, data } = await apiFetch(`/gifts/recommendations?${params}`);
@@ -514,7 +446,7 @@ async function generateResults() {
         priceLabel: (g.price_npr || g.price) ? `Rs. ${Number(g.price_npr || g.price).toLocaleString('en-IN')}` : 'Price unavailable',
         category: g.category || 'Gift',
         badge: g.availability || g.price_range || null,
-        reason: g.reason || `Rated ${g.rating ?? '4.0'}/5 · ${g.category || ''}`,
+        reason: g.aiReason || g.reason || `${g.category || 'Gift'} · Rs. ${Number(g.price_npr || g.price).toLocaleString('en-IN')}`,
         link: g.daraz_search_link || g.link || '#',
         recipients: g.recipient || g.recipients || [],
         occasions: g.occasion || g.occasions || [],
@@ -522,11 +454,6 @@ async function generateResults() {
         availability: g.availability || 'Available',
         priceRange: g.price_range,
         isLocalNepaliGift: Boolean(g.is_local_nepali_gift)
-      })).map(gift => ({
-        ...gift,
-        reason: /^Rated\b/i.test(String(gift.reason || ''))
-          ? buildDetailedGiftReason(gift, { rating: String(gift.reason).match(/Rated\s+([^/]+)/i)?.[1] || '4.0' })
-          : gift.reason,
       })).filter(gift => isWithinBudgetRange(gift.price));
       const presentationGifts = getBudgetFallbackGifts(9);
       const seenGiftKeys = new Set();
@@ -600,9 +527,6 @@ function displayResults(gifts) {
   grid.innerHTML = '';
   if (!Array.isArray(gifts) || gifts.length === 0) {
     grid.innerHTML = '<div class="results-empty">No gifts found inside this exact price range. Try widening your minimum or maximum budget.</div>';
-    $('#floatingAiBtn').style.display = 'none';
-  } else {
-    $('#floatingAiBtn').style.display = 'flex';
   }
 
   gifts.forEach((gift, idx) => {
@@ -615,193 +539,15 @@ function displayResults(gifts) {
   $$('.gift-card').forEach((card, idx) => { card.style.animationDelay = `${idx * 0.1}s`; });
   renderCart();
   renderRecentlyViewed();
-  updateAiChoiceIntro();
 }
 
-function getAiPreferences() {
-  return {
-    occasion: state.inputs.occasion,
-    recipient: state.inputs.recipient,
-    minBudget: state.inputs.minBudget,
-    budget: state.inputs.budget,
-    interests: state.inputs.interests,
-    personality: state.inputs.personality,
-  };
-}
-
-function getAiGiftPayload() {
-  return state.currentResults.slice(0, 9).map((gift) => ({
-    id: gift.id,
-    name: gift.name,
-    description: gift.description,
-    price: gift.price,
-    priceLabel: gift.priceLabel,
-    category: gift.category,
-    tags: gift.tags || [],
-    recipients: gift.recipients || gift.recipient || [],
-    occasions: gift.occasions || gift.occasion || [],
-    reason: gift.reason,
-  }));
-}
-
-function updateAiChoiceIntro() {
-  const message = $('#aiChoiceMessage');
-  if (!message) return;
-  const hasResults = state.currentResults.length > 0;
-  message.textContent = hasResults
-    ? `Ready to compare ${state.currentResults.length} gifts using your finder choices.`
-    : 'Generate recommendations first, then ask for the strongest pick or chat about tradeoffs.';
-  // Ensure the AI panel is visible even when there are no results (compact mode)
-  const panel = $('#aiChoicePanel');
-  if (panel) panel.style.display = 'grid';
-}
-
-function renderAiChoiceResponse(response, meta = {}) {
-  const answer = $('#aiChoiceAnswer');
-  if (!answer) return;
-  const suggestions = Array.isArray(response?.suggestions) ? response.suggestions : [];
-  const statusText = meta.aiProvider === 'local'
-    ? 'Local smart ranking'
-    : 'Gemini ranking';
-  const suggestionHtml = suggestions.length
-    ? `<ol>${suggestions.map((item) => `
-        <li class="ai-suggestion-item">
-          <div class="ai-suggestion-content">
-            <strong>${escapeHtml(item.name || 'Gift option')}</strong>
-            <span>${escapeHtml(item.reason || 'A strong match for your current choices.')}</span>
-          </div>
-          <button class="ai-buy-now-btn" data-gift-name="${escapeHtml(item.name || 'Gift')}" type="button">
-            🛒 Buy Now
-          </button>
-        </li>
-      `).join('')}</ol>`
-    : '';
-
-  answer.innerHTML = `
-    <div class="ai-answer-status">${escapeHtml(statusText)}</div>
-    <div class="ai-answer-main">${escapeHtml(response?.message || 'AI found a few strong gift matches.')}</div>
-    ${suggestionHtml}
-  `;
-  answer.style.display = 'block';
-  
-  // Add event listeners to buy now buttons
-  $$('.ai-buy-now-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const giftName = this.dataset.giftName;
-      // Find the gift in currentResults by name
-      const matchedGift = state.currentResults.find(g => g.name === giftName);
-      if (matchedGift) {
-        showPurchaseConfirmation(matchedGift);
-      } else {
-        showToast('Gift item not found in current results.');
-      }
-    });
-  });
-}
-
-function reorderResultsBySuggestions(suggestions) {
-  if (!Array.isArray(suggestions) || !suggestions.length) return;
-  const suggestionsKeys = suggestions.map(s => (s.id || String(s.name || '')).toString().toLowerCase());
-  const rest = [];
-  const picked = [];
-  state.currentResults.forEach((g) => {
-    const key = (g.id || String(g.name || '')).toString().toLowerCase();
-    const idx = suggestionsKeys.indexOf(key);
-    if (idx === -1) rest.push(g);
-    else picked[idx] = g;
-  });
-  const ordered = [...picked.filter(Boolean), ...rest];
-  state.currentResults = ordered;
-  displayResults(state.currentResults);
-}
-
-async function askSmartChoice(message, triggerBtn = null) {
-  if (state.isAskingAi) return;
-  if (!state.currentResults.length) {
-    showToast('Find gifts first, then Smart Choice can rank them.');
-    return;
-  }
-
-  state.isAskingAi = true;
-  const smartBtn = triggerBtn || $('#smartChoiceBtn');
-  const originalText = smartBtn?.textContent;
-  if (smartBtn) {
-    smartBtn.disabled = true;
-    smartBtn.textContent = 'Thinking...';
-  }
-
-  try {
-    const userMessage = (message || 'Rank these gifts and choose the smartest single pick.').trim();
-    const { ok, data } = await apiFetch('/ai/chat', {
-      method: 'POST',
-      body: JSON.stringify({
-        message: userMessage,
-        preferences: getAiPreferences(),
-        gifts: getAiGiftPayload(),
-        conversationHistory: state.aiConversationHistory,
-      }),
-    });
-
-    if (!ok || !data.success) {
-      throw new Error(data.message || 'AI could not rank the gifts.');
-    }
-
-    const response = data.data?.response || {};
-    const aiProvider = data.data?.aiProvider || response.source || 'gemini';
-    state.aiConversationHistory.push({ role: 'user', content: userMessage });
-    state.aiConversationHistory.push({ role: 'assistant', content: response.message || '' });
-    state.aiConversationHistory = state.aiConversationHistory.slice(-8);
-    renderAiChoiceResponse(response, { aiProvider });
-    
-    // For local ranking, ensure results are randomized (different from original order)
-    if (aiProvider === 'local') {
-      let shuffled = [...state.currentResults];
-      // Fisher-Yates shuffle with multiple passes to ensure good randomization
-      for (let pass = 0; pass < 2; pass++) {
-        for (let i = shuffled.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-      }
-      state.currentResults = shuffled;
-      displayResults(state.currentResults);
-      showToast('✨ Local Smart Ranking: Results randomized for variety.');
-    } else {
-      // If AI returned ordered suggestions, reorder the visible results
-      if (Array.isArray(response.suggestions) && response.suggestions.length) {
-        reorderResultsBySuggestions(response.suggestions);
-      }
-      showToast('Smart Choice is ready.');
-    }
-  } catch (err) {
-    console.warn('Smart choice failed:', err.message);
-    showToast(err.message || 'AI ranking failed. Showing randomized order.');
-    // Randomize results with double-pass shuffle to ensure difference from original
-    let shuffled = [...state.currentResults];
-    for (let pass = 0; pass < 2; pass++) {
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-    }
-    state.currentResults = shuffled;
-    displayResults(state.currentResults);
-  } finally {
-    state.isAskingAi = false;
-    if (smartBtn) {
-      smartBtn.disabled = false;
-      smartBtn.textContent = originalText || 'Smart Choice';
-    }
-  }
-}
-
-function createGiftCard(gift, idx = 0) {
+function createGiftCard(gift) {
   const isFaved = state.favorites.some(f => f.id === gift.id);
   const div = document.createElement('div');
   div.className = 'gift-card';
   div.dataset.id = gift.id;
   div.dataset.price = gift.price;
+  const fallbackImage = '/images/fallback-gift.jpg';
   const safeName = escapeHtml(gift.name || 'Gift item');
   const safeDescription = escapeHtml(gift.description || 'A thoughtful recommendation based on your choices.');
   const safeReason = escapeHtml(gift.reason || 'It matches the preferences you selected.');
@@ -812,27 +558,14 @@ function createGiftCard(gift, idx = 0) {
   const safeRecipients = escapeHtml((gift.recipients || gift.recipient || []).join(', ') || 'Anyone');
   const safeOccasions = escapeHtml((gift.occasions || gift.occasion || []).join(', ') || 'Any occasion');
   const safeTagsHtml = (gift.tags || []).slice(0, 4).map((tag) => `<span>${escapeHtml(tag)}</span>`).join('');
-  const hasImage = Boolean(gift.imageUrl);
-  const imageSrc = escapeHtml(gift.imageUrl || '');
+  const imageSrc = escapeHtml(gift.imageUrl || fallbackImage);
   const safeEmoji = escapeHtml(gift.emoji || '🎁');
 
-  const imageHtml = hasImage
-    ? `<img src="${imageSrc}" alt="" class="gift-image" loading="lazy" onerror="this.hidden=true;this.closest('.gift-img-wrap')?.classList.add('image-missing');" />`
-    : '';
-  const aiInlineHtml = (idx === 0)
-    ? `<button class="ai-inline-badge" type="button" title="Ask AI about this pick">🤖</button>`
-    : '';
-
   div.innerHTML = `
-    <div class="gift-img-wrap ${hasImage ? '' : 'image-missing'}">
-      ${imageHtml}
-      <div class="gift-image-placeholder" aria-hidden="true">
-        <span>${safeCategory}</span>
-        <strong>${safeName}</strong>
-      </div>
+    <div class="gift-img-wrap">
+      <img src="${imageSrc}" alt="${safeName}" class="gift-image" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}';" />
       <span class="gift-emoji-fallback" aria-hidden="true">${safeEmoji}</span>
       <div class="gift-badge">${safeBadge}</div>
-      ${aiInlineHtml}
       <button class="fav-btn ${isFaved ? 'saved' : ''}" data-id="${gift.id}" title="Save to favorites">
         ${isFaved ? '❤️' : '🤍'}
       </button>
@@ -871,13 +604,6 @@ function createGiftCard(gift, idx = 0) {
     addToRecentlyViewed(gift);
     renderRecentlyViewed();
   });
-  const aiBtn = div.querySelector('.ai-inline-badge');
-  if (aiBtn) {
-    aiBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      askSmartChoice(`Rank these gifts and tell me why ${gift.name} is a strong pick.`, aiBtn);
-    });
-  }
   return div;
 }
 
@@ -1366,22 +1092,6 @@ function closePurchaseSuccessPopup() {
 }
 
 function showPurchaseSuccessPopup(order, itemCount) {
-  // Show floating payment success overlay first
-  const overlay = $('#paymentSuccessOverlay');
-  if (overlay) {
-    overlay.classList.add('active');
-    // Auto-hide overlay after 3 seconds, then show the regular modal
-    setTimeout(() => {
-      overlay.classList.remove('active');
-      showPurchaseSuccessModal(order, itemCount);
-    }, 3000);
-  } else {
-    // Fallback if overlay not found
-    showPurchaseSuccessModal(order, itemCount);
-  }
-}
-
-function showPurchaseSuccessModal(order, itemCount) {
   updatePaymentProcess('Order confirmed and saved to your account.', false);
   const modal = $('#purchaseSuccessModal');
   if (!modal) {
@@ -1822,33 +1532,6 @@ function initFinder() {
   $('#favsModal').addEventListener('click', (e) => { if (e.target === $('#favsModal')) $('#favsModal').classList.remove('open'); });
 }
 
-function initAiChoice() {
-  $('#smartChoiceBtn')?.addEventListener('click', () => {
-    askSmartChoice('Rank these gifts and choose the smartest single pick.', $('#smartChoiceBtn'));
-  });
-
-  $('#floatingAiBtn')?.addEventListener('click', () => {
-    askSmartChoice('Rank these gifts and choose the smartest single pick.', $('#floatingAiBtn'));
-    // Scroll to see results being reordered
-    setTimeout(() => {
-      const grid = $('#recommendationsGrid');
-      if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 500);
-  });
-
-  $('#aiChatForm')?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const input = $('#aiChatInput');
-    const message = input?.value?.trim();
-    if (!message) {
-      showToast('Ask a gift question first.');
-      return;
-    }
-    if (input) input.value = '';
-    askSmartChoice(message, event.submitter || $('#smartChoiceBtn'));
-  });
-}
-
 function goToStep(step) {
   if (step < 1 || step > state.totalSteps) return;
   $(`.pstep[data-step="${state.currentStep}"]`).classList.remove('active');
@@ -1972,7 +1655,6 @@ function restartFinder() {
   state.inputs = { occasion: null, recipient: null, minBudget: 500, budget: 2500, interests: [], personality: null };
   state.currentStep = 1;
   state.currentResults = [];
-  state.aiConversationHistory = [];
   $$('.choice-btn, .tag-btn, .pers-btn').forEach(b => b.classList.remove('selected'));
   $$('.btn-next').forEach(b => b.disabled = true);
   $('#next3').disabled = false;
@@ -1988,12 +1670,6 @@ function restartFinder() {
   $('.pstep[data-step="1"]').classList.add('active');
   $('#progressFill').style.width = '0%';
   $('#results').style.display = 'none';
-  const aiAnswer = $('#aiChoiceAnswer');
-  if (aiAnswer) {
-    aiAnswer.style.display = 'none';
-    aiAnswer.innerHTML = '';
-  }
-  updateAiChoiceIntro();
   const recipientHint = $('#step-2 .step-hint');
   if (recipientHint) recipientHint.textContent = 'Tell us about your recipient';
   $('#finder').scrollIntoView({ behavior: 'smooth' });
@@ -2288,15 +1964,28 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ─── INIT ───────────────────────────────── */
+function initAIToggle() {
+  const toggle = $('#aiToggle');
+  const label  = $('#aiToggleLabel');
+  if (!toggle || !label) return;
+  toggle.checked = state.useAI;
+  label.textContent = state.useAI ? '✦ AI Ranking: On' : 'AI Ranking: Off';
+  toggle.addEventListener('change', function () {
+    state.useAI = this.checked;
+    label.textContent = state.useAI ? '✦ AI Ranking: On' : 'AI Ranking: Off';
+    showToast(state.useAI ? '✦ AI ranking enabled' : 'AI ranking off — rule-based results');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initScrollReveal();
   initAuth();
+  initAIToggle();
   if (!IS_PAYMENT_PAGE) {
     initFinder();
     initBudgetSlider();
     initFilters();
-    initAiChoice();
     updateFavoritesUI();
   }
   updateCartUI();
