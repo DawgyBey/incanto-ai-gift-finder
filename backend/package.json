@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "validate:gifts": "node validateGifts.js",
+    "build": "npm run validate:gifts"
   },
   "engines": {
     "node": ">=18.0.0"
