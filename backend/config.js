@@ -24,6 +24,8 @@ const config = {
   mongodbUri: process.env.MONGODB_URI || "mongodb://localhost:27017/incanto",
 
   // AI/API Keys
+  geminiApiKey: process.env.GEMINI_API_KEY || "",
+  geminiModel: process.env.GEMINI_MODEL || "gemini-2.0-flash",
   openaiApiKey: process.env.OPENAI_API_KEY || "",
   huggingfaceApiKey: process.env.HUGGINGFACE_API_KEY || "",
   apiKey: process.env.API_KEY || "",

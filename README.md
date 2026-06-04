@@ -69,6 +69,30 @@ API_KEY=your_api_key
 
 Important: don’t commit this file unless you enjoy leaking secrets publicly (some people do, but we’re pretending you’re not one of them).
 
+## JSON to SQLite Converter
+
+Keep the Nepal gift JSON file at:
+
+```bash
+data/database.json
+```
+
+The JSON should contain gift records under the main key `nepal_gift_database`. The converter also supports the existing project key `gifts`.
+
+Run the converter from the project root:
+
+```bash
+python scripts/json_to_sqlite.py
+```
+
+After a successful run, it creates:
+
+```bash
+database/gifts.db
+```
+
+The SQLite database contains a `gifts` table with clean columns for item name, category, recipient, price, occasion, description, availability, tags, image URL, and Daraz search link.
+
 ## Purpose
 
 Built as an innovation-focused project to simplify gift selection and product discovery using AI logic and live product data, making online shopping slightly less painful.

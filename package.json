@@ -1,0 +1,15 @@
+{
+  "name": "incanto",
+  "version": "1.0.0",
+  "private": true,
+  "description": "INCANTO AI gift finder",
+  "scripts": {
+    "start": "npm --prefix backend start",
+    "dev": "npm --prefix backend run dev",
+    "build": "npm --prefix backend run build",
+    "validate:gifts": "npm --prefix backend run validate:gifts"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

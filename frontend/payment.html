@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment - INCANTO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="nav-inner">
+        <a href="index.html#home" class="logo">
+          <span class="logo-icon">*</span>
+          INCANTO
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#finder">Finder</a></li>
+          <li><a href="index.html#trending">Trending</a></li>
+          <li><a href="index.html#cart" class="nav-link nav-cart-link">Cart <span class="nav-badge" id="navCartCount">0</span></a></li>
+          <li><a href="index.html#orders">My Purchases</a></li>
+          <li><a href="index.html#about">About</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="nav-auth-btn" id="loginBtn" type="button">
+            Log in
+          </button>
+          <a
+            href="index.html#profile"
+            class="nav-auth-profile"
+            id="profileBtn"
+            style="display: none"
+            >Profile</a
+          >
+          <button
+            class="nav-auth-btn"
+            id="logoutBtn"
+            type="button"
+            style="display: none"
+          >
+            Log out
+          </button>
+          <a href="index.html#finder" class="nav-cta" id="navCta">Find a Gift</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html#hero" class="mobile-link">Home</a>
+      <a href="index.html#finder" class="mobile-link">Finder</a>
+      <a href="index.html#trending" class="mobile-link">Trending</a>
+      <a href="index.html#cart" class="mobile-link">Cart</a>
+      <a href="index.html#orders" class="mobile-link">My Purchases</a>
+      <a href="index.html#about" class="mobile-link">About</a>
+      <button class="mobile-link mobile-auth-link" id="mobileLoginBtn" type="button">
+        Log in
+      </button>
+      <a
+        href="index.html#profile"
+        class="mobile-link"
+        id="mobileProfileBtn"
+        style="display: none"
+        >Profile</a
+      >
+    </div>
+
+    <main>
+      <section id="payment" class="page-section view-section active">
+        <div class="container">
+          <div class="section-header reveal">
+            <p class="section-eyebrow">Payment</p>
+            <h2 class="section-title">Complete your purchase</h2>
+            <p class="section-sub">
+              Use our demo card and voucher to test the checkout experience.
+            </p>
+          </div>
+
+          <div class="payment-panel">
+            <div class="payment-summary">
+              <div class="payment-summary-top">
+                <span class="payment-emoji" id="paymentGiftEmoji">Gift</span>
+                <div>
+                  <h3 id="paymentGiftName">Gift item</h3>
+                  <p id="paymentGiftReason">Ready for checkout.</p>
+                </div>
+              </div>
+              <div class="payment-price" id="paymentGiftPrice">Rs. 0</div>
+            </div>
+
+            <form id="paymentForm" class="payment-form">
+              <div class="payment-group">
+                <label for="deliveryAddress">Delivery address</label>
+                <input id="deliveryAddress" placeholder="Enter shipping address" required />
+              </div>
+
+              <div class="payment-methods" aria-label="Payment method">
+                <label class="payment-method active">
+                  <input type="radio" name="paymentMethod" value="card" checked />
+                  Card
+                </label>
+                <label class="payment-method">
+                  <input type="radio" name="paymentMethod" value="wallet" />
+                  Wallet
+                </label>
+                <label class="payment-method">
+                  <input type="radio" name="paymentMethod" value="cash" />
+                  Cash
+                </label>
+              </div>
+
+              <div class="payment-group voucher-row">
+                <div>
+                  <label for="voucherCode">Voucher code</label>
+                  <input id="voucherCode" placeholder="INCANTO10 or GIFT50" />
+                </div>
+                <button type="button" class="btn-secondary" id="applyVoucherBtn">
+                  Apply
+                </button>
+              </div>
+              <div class="voucher-message" id="voucherMessage">
+                Try INCANTO10 for 10% off.
+              </div>
+
+              <div class="payment-group">
+                <label for="cardName">Cardholder name</label>
+                <input id="cardName" autocomplete="cc-name" placeholder="Demo cardholder" required />
+              </div>
+
+              <div class="payment-row">
+                <div class="payment-group">
+                  <label for="cardNumber">Card number</label>
+                  <input id="cardNumber" autocomplete="cc-number" placeholder="4242 4242 4242 4242" required />
+                </div>
+                <div class="payment-group">
+                  <label for="cardExpiry">Expiry</label>
+                  <input id="cardExpiry" autocomplete="cc-exp" placeholder="MM/YY" required />
+                </div>
+                <div class="payment-group">
+                  <label for="cardCvc">CVC</label>
+                  <input id="cardCvc" autocomplete="cc-csc" placeholder="123" required />
+                </div>
+              </div>
+
+              <div class="demo-note">
+                Demo card: <strong>4242 4242 4242 4242</strong>. Voucher codes: <strong>INCANTO10</strong>, <strong>GIFT50</strong>.
+              </div>
+
+              <div class="payment-process" id="paymentProcessStatus" aria-live="polite">
+                <span></span>
+                <p>Ready for secure demo payment.</p>
+              </div>
+
+              <div class="payment-footer">
+                <div class="payment-total">Total <span id="paymentTotal">Rs. 0</span></div>
+                <div class="payment-actions">
+                  <button type="button" class="btn-secondary" id="backToPurchaseBtn">
+                    Back
+                  </button>
+                  <button type="button" class="btn-secondary" id="cancelPurchaseBtn">
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn-primary" id="paymentSubmitBtn">
+                    <span class="payment-submit-label">Confirm & Pay</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- PAYMENT SUCCESS OVERLAY -->
+    <div class="payment-success-overlay" id="paymentSuccessOverlay">
+      <div class="payment-success-content">
+        <div class="checkmark-circle">
+          <div class="checkmark"></div>
+        </div>
+        <h1>Payment Successful</h1>
+        <p>Your order has been confirmed</p>
+      </div>
+    </div>
+
+    <div class="purchase-success-modal" id="purchaseSuccessModal" aria-hidden="true">
+      <div class="purchase-success-card" role="dialog" aria-modal="true" aria-labelledby="purchaseSuccessTitle">
+        <div class="purchase-success-icon">✓</div>
+        <p class="purchase-success-kicker">Purchase Complete</p>
+        <h2 id="purchaseSuccessTitle">Your order is confirmed</h2>
+        <p id="purchaseSuccessMessage">
+          We saved this purchase to your account.
+        </p>
+        <div class="purchase-success-meta">
+          <span id="purchaseSuccessOrderId">Order INC-</span>
+          <strong id="purchaseSuccessTotal">Rs. 0</strong>
+        </div>
+        <button class="btn-primary" id="purchaseSuccessClose" type="button">
+          View My Purchases
+        </button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="user.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
