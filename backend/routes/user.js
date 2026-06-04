@@ -7,7 +7,7 @@ import { createError } from "../middleware/errorHandler.js";
 
 const router = Router();
 const TOKEN_SECRET = process.env.AUTH_TOKEN_SECRET || "incanto-dev-secret-change-me";
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || "";
+const GOOGLE_CLIENT_ID = (process.env.GOOGLE_CLIENT_ID || "").trim();
 const TOKEN_TTL_MS = 1000 * 60 * 60 * 24 * 7;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,6 +47,10 @@ const ensureUserProfileFields = (user) => {
     user.cart = [];
     changed = true;
   }
+  if (!Array.isArray(user.orders)) {
+    user.orders = [];
+    changed = true;
+  }
   return changed;
 };
 
@@ -64,6 +68,7 @@ const toPublicUser = (user) => ({
   preferences: user.preferences || {},
   recentlyViewed: user.recentlyViewed || [],
   cart: user.cart || [],
+  orders: user.orders || [],
 });
 
 const base64Url = (value) =>
@@ -187,6 +192,7 @@ router.post("/register", (req, res, next) => {
       preferences: {},
       recentlyViewed: [],
       cart: [],
+      orders: [],
       createdAt: new Date().toISOString(),
     };
 
@@ -241,6 +247,7 @@ router.post("/google", (req, res, next) => {
         preferences: {},
         recentlyViewed: [],
         cart: [],
+        orders: [],
         createdAt: new Date().toISOString(),
       };
       users.push(user);
@@ -248,6 +255,8 @@ router.post("/google", (req, res, next) => {
     } else {
       user.verified = user.verified || Boolean(payload.email_verified);
       user.provider = user.provider === "password" ? "password+google" : user.provider;
+      user.cart = user.cart || [];
+      user.orders = user.orders || [];
       saveUsers();
     }
 
@@ -273,7 +282,8 @@ router.get("/", (_req, res) => {
       preferences: "POST /api/v1/users/preferences",
       personalInfo: "POST /api/v1/users/personal-info",
       recentlyViewed: "POST /api/v1/users/recently-viewed",
-      cart: "POST /api/v1/users/cart",
+      cart: "POST /api/v1/users/cart, PUT/DELETE /api/v1/users/cart/:id",
+      orders: "GET /api/v1/users/orders, POST /api/v1/users/orders",
     },
   });
 });
@@ -385,6 +395,71 @@ router.delete("/cart/:id", requireAuth, (req, res) => {
   saveUsers();
 
   res.json({ success: true, data: { user: toPublicUser(req.user) } });
+});
+
+router.put("/cart/:id", requireAuth, (req, res) => {
+  const quantity = Math.max(1, Number(req.body.quantity) || 1);
+  const item = (req.user.cart || []).find(
+    (gift) => String(gift.id) === String(req.params.id)
+  );
+
+  if (!item) {
+    return res.status(404).json({ success: false, message: "Cart item not found." });
+  }
+
+  item.quantity = quantity;
+  saveUsers();
+
+  res.json({ success: true, data: { user: toPublicUser(req.user) } });
+});
+
+router.get("/orders", requireAuth, (req, res) => {
+  res.json({
+    success: true,
+    data: {
+      orders: req.user.orders || [],
+      user: toPublicUser(req.user),
+    },
+  });
+});
+
+router.post("/orders", requireAuth, (req, res) => {
+  const order = req.body.order || req.body;
+  if (!order || !Array.isArray(order.items) || order.items.length === 0) {
+    return res.status(400).json({ success: false, message: "Order data is required." });
+  }
+
+  const normalizedOrder = {
+    id: String(order.id || `INC-${Date.now()}`),
+    placedAt: order.placedAt || new Date().toISOString(),
+    status: order.status || "Confirmed",
+    paymentMethod: order.paymentMethod || "card",
+    voucher: order.voucher || null,
+    discount: Number(order.discount) || 0,
+    items: order.items.map((item) => ({
+      id: item.id,
+      name: String(item.name || "Gift item"),
+      description: String(item.description || ""),
+      category: String(item.category || "Gift"),
+      emoji: String(item.emoji || "🎁"),
+      price: Number(item.price) || 0,
+      priceLabel: String(item.priceLabel || "Price unavailable"),
+      quantity: Number(item.quantity) || 1,
+      link: String(item.link || "#"),
+    })),
+    total: Number(order.total) || 0,
+    shippingAddress: String(order.shippingAddress || ""),
+  };
+
+  req.user.orders = req.user.orders || [];
+  req.user.orders.unshift(normalizedOrder);
+  const orderedIds = new Set(normalizedOrder.items.map((item) => String(item.id)));
+  req.user.cart = (req.user.cart || []).filter(
+    (item) => !orderedIds.has(String(item.id))
+  );
+  saveUsers();
+
+  res.json({ success: true, data: { order: normalizedOrder, user: toPublicUser(req.user) } });
 });
 
 export default router;

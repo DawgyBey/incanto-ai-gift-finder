@@ -45,35 +45,33 @@ router.get("/gifts", (req, res, next) => {
     let filtered = [...gifts];
 
     // Apply filters
+    const normalizeText = (value) => String(value || "").toLowerCase().trim();
+    const normalizeGiftRecipients = (gift) =>
+      Array.isArray(gift.Recipient)
+        ? gift.Recipient.map((r) => String(r || "").toLowerCase().trim())
+        : String(gift.Recipient || "")
+            .split(/[,;&]/)
+            .map((r) => String(r || "").toLowerCase().trim())
+            .filter(Boolean);
+
     if (category) {
-      const normalizedCategory = String(category).toLowerCase().trim();
+      const normalizedCategory = normalizeText(category);
       filtered = filtered.filter(
-        (gift) =>
-          String(gift.Category || gift.category || "")
-            .toLowerCase()
-            .includes(normalizedCategory)
+        (gift) => normalizeText(gift.Category || gift.category) === normalizedCategory
       );
     }
 
     if (occasion) {
-      const normalizedOccasion = String(occasion).toLowerCase().trim();
+      const normalizedOccasion = normalizeText(occasion);
       filtered = filtered.filter(
-        (gift) =>
-          String(gift.Occasion || gift.occasion || "")
-            .toLowerCase()
-            .includes(normalizedOccasion)
+        (gift) => normalizeText(gift.Occasion || gift.occasion) === normalizedOccasion
       );
     }
 
     if (recipient) {
-      const normalizedRecipient = String(recipient).toLowerCase().trim();
-      const recipients = Array.isArray(gift.Recipient)
-        ? gift.Recipient
-        : String(gift.Recipient || "")
-            .split(/[,;&]/)
-            .map((r) => r.trim().toLowerCase());
+      const normalizedRecipient = normalizeText(recipient);
       filtered = filtered.filter((gift) =>
-        recipients.some((r) => r.includes(normalizedRecipient))
+        normalizeGiftRecipients(gift).some((r) => r === normalizedRecipient)
       );
     }
 
