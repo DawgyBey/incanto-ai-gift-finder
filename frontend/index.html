@@ -25,8 +25,6 @@
           <li><a href="#hero">Home</a></li>
           <li><a href="#finder">Finder</a></li>
           <li><a href="#trending">Trending</a></li>
-          <li><a href="#cart" class="nav-link nav-cart-link">Cart <span class="nav-badge" id="navCartCount">0</span></a></li>
-          <li><a href="#orders">My Purchases</a></li>
           <li><a href="#about">About</a></li>
         </ul>
         <div class="nav-actions">
@@ -61,8 +59,6 @@
       <a href="#hero" class="mobile-link">Home</a>
       <a href="#finder" class="mobile-link">Finder</a>
       <a href="#trending" class="mobile-link">Trending</a>
-      <a href="#cart" class="mobile-link">Cart</a>
-      <a href="#orders" class="mobile-link">My Purchases</a>
       <a href="#about" class="mobile-link">About</a>
       <button
         class="mobile-link mobile-auth-link"
@@ -94,16 +90,12 @@
             <em>with AI</em> <span class="gift-emoji">🎁</span>
           </h1>
           <p class="hero-sub reveal reveal-delay-2">
-            Stop guessing. Let INCANTO's intelligent recommendation engine
+            Stop guessing. Let IcanNCANTO's intelligent recommendation engine
             discover<br class="br-desktop" />
             gifts that genuinely move people — curated for every personality and
             moment.
           </p>
-          <blockquote class="hero-quote reveal reveal-delay-3">
-            “A great gift is less about the object and more about showing you
-            noticed who they are.”
-          </blockquote>
-          <div class="hero-actions reveal reveal-delay-4">
+          <div class="hero-actions reveal reveal-delay-3">
             <a href="#finder" class="btn-primary" id="heroStartBtn"
               >Start Finding →</a
             >
@@ -122,60 +114,6 @@
             </div>
           </div>
         </div>
-
-        <div class="hero-float reveal reveal-delay-5">
-          <div class="hero-float-chip">Thoughtful gift cues</div>
-          <div class="hero-float-card hero-float-card--wide">
-            <div class="hero-float-icon">✨</div>
-            <div>
-              <strong>Meaningful matches</strong>
-              <span>AI surfaces ideas that feel personal.</span>
-            </div>
-          </div>
-          <div class="hero-float-card hero-float-card--stacked">
-            <div>
-              <strong>For every mood</strong>
-              <span>Cozy, creative, luxe, playful.</span>
-            </div>
-            <div class="hero-float-badge">Quick inspiration</div>
-          </div>
-        </div>
-
-        <aside class="hero-panel reveal reveal-delay-6">
-          <div class="panel-card panel-card--featured">
-            <span class="panel-tag">AI-curated preview</span>
-            <h3>Handpicked gifts for the moment.</h3>
-            <p>Real ideas, minimal fuss — this is the thoughtful inspiration your search will unlock.</p>
-            <div class="panel-chip-row">
-              <span>Cozy</span>
-              <span>Personal</span>
-              <span>Timeless</span>
-            </div>
-          </div>
-          <div class="panel-card panel-card--list">
-            <div class="panel-item">
-              <div class="panel-icon">☕</div>
-              <div>
-                <strong>Artisan coffee set</strong>
-                <span>Perfect for creative mornings</span>
-              </div>
-            </div>
-            <div class="panel-item">
-              <div class="panel-icon">🪴</div>
-              <div>
-                <strong>Living desk planter</strong>
-                <span>Fresh ideas for home spaces</span>
-              </div>
-            </div>
-            <div class="panel-item">
-              <div class="panel-icon">🕯️</div>
-              <div>
-                <strong>Scented ritual candle</strong>
-                <span>Small luxury that feels personal</span>
-              </div>
-            </div>
-          </div>
-        </aside>
       </section>
 
       <!-- HOW IT WORKS -->
@@ -335,51 +273,24 @@
               <div class="budget-wrap">
                 <div class="budget-display">
                   <span class="currency">Rs.</span>
-                  <span class="budget-val" id="minBudgetVal">500</span>
-                  <span class="budget-range-separator">to</span>
-                  <span class="currency">Rs.</span>
                   <span class="budget-val" id="budgetVal">2,500</span>
-                </div>
-                <div class="budget-inputs">
-                  <label>
-                    Minimum
-                    <input
-                      type="number"
-                      id="minBudgetInput"
-                      min="0"
-                      max="20000"
-                      step="100"
-                      value="500"
-                    />
-                  </label>
-                  <label>
-                    Maximum
-                    <input
-                      type="number"
-                      id="maxBudgetInput"
-                      min="0"
-                      max="20000"
-                      step="100"
-                      value="2500"
-                    />
-                  </label>
                 </div>
                 <input
                   type="range"
                   class="budget-slider"
                   id="budgetSlider"
-                  min="0"
+                  min="500"
                   max="20000"
                   step="100"
                   value="2500"
                 />
                 <div class="budget-labels">
-                  <span>Rs. 0</span>
+                  <span>Rs. 500</span>
                   <span>Rs. 20,000</span>
                 </div>
                 <div class="budget-presets">
-                  <button class="preset-btn" data-min="0" data-val="1000">
-                    Up to Rs. 1K
+                  <button class="preset-btn" data-val="1000">
+                    Under Rs. 1K
                   </button>
                   <button class="preset-btn" data-val="3000">Rs. 1–3K</button>
                   <button class="preset-btn" data-val="7000">Rs. 3–7K</button>
@@ -478,12 +389,6 @@
         </div>
       </div>
 
-      <!-- ══════════════════════════════════════════ FLOATING AI BUTTON -->
-      <button class="floating-ai-btn" id="floatingAiBtn" type="button" title="Ask AI to rank gifts" style="display: none;">
-        <span class="ai-icon">🤖</span>
-        <span class="ai-label">Smart Choice</span>
-      </button>
-
       <!-- ══════════════════════════════════════════ RESULTS -->
       <section class="results-section" id="results" style="display: none">
         <div class="container">
@@ -504,32 +409,6 @@
             </div>
           </div>
 
-          <div class="quick-cart-banner" id="quickCartBanner" style="display:none">
-            <div class="quick-cart-text">
-              🛒 <strong id="quickCartItemsCount">0</strong> gift(s) added to your cart.
-            </div>
-            <div class="quick-cart-actions">
-              <button class="btn-secondary" id="quickViewCartBtn" type="button">View Cart</button>
-              <button class="btn-primary" id="quickCheckoutNowBtn" type="button">Checkout Now</button>
-            </div>
-          </div>
-
-          <div class="ai-choice-panel" id="aiChoicePanel">
-            <div class="ai-choice-copy">
-              <p class="ai-choice-kicker">🤖 Gemini Smart Choice — AI Enhanced</p>
-              <h3>Let AI rank and choose the best gift from these results.</h3>
-              <p id="aiChoiceMessage">Generate recommendations first, then ask for the strongest pick or chat about tradeoffs.</p>
-            </div>
-            <div class="ai-choice-controls">
-              <button class="btn-ai-choice" id="smartChoiceBtn" type="button">🎯 Smart Choice</button>
-              <form class="ai-chat-form" id="aiChatForm">
-                <input id="aiChatInput" type="text" placeholder="Ask: which one feels most personal?" />
-                <button type="submit">💬 Ask AI</button>
-              </form>
-            </div>
-          </div>
-          <div class="ai-choice-answer" id="aiChoiceAnswer" style="display:none" aria-live="polite"></div>
-
           <!-- Favorites bar -->
           <div class="favorites-bar" id="favoritesBar" style="display: none">
             <div class="fav-label">
@@ -548,7 +427,7 @@
             <div class="cart-grid" id="cartGrid"></div>
           </div>
 
-          <div class="gifts-grid" id="recommendationsGrid">
+          <div class="gifts-grid" id="giftsGrid">
             <!-- Cards injected by JS -->
           </div>
 
@@ -564,154 +443,6 @@
             <h3 class="recent-title">Recently Viewed</h3>
             <div class="recent-grid" id="recentGrid"></div>
           </div>
-        </div>
-      </section>
-
-      <!-- ══════════════════════════════════════════ CART -->
-      <section id="cart" class="page-section view-section">
-        <div class="container">
-          <div class="section-header reveal">
-            <p class="section-eyebrow">Your Cart</p>
-            <h2 class="section-title">Items ready for checkout</h2>
-            <p class="section-sub">
-              Review all selected gifts before you confirm your purchase.
-            </p>
-          </div>
-
-          <div class="cart-page-summary">
-            <div class="cart-summary">
-              <strong id="cartPageCount">0</strong> item(s) in your cart
-            </div>
-            <div class="cart-total" id="cartPageTotal">Rs. 0</div>
-          </div>
-
-          <div class="cart-page-list" id="cartPageList"></div>
-
-          <div class="results-footer">
-            <button class="btn-primary" id="checkoutCartBtn" type="button">
-              Checkout Cart
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════════════════════════════════════ PAYMENT -->
-      <section id="payment" class="page-section view-section">
-        <div class="container">
-          <div class="section-header reveal">
-            <p class="section-eyebrow">Payment</p>
-            <h2 class="section-title">Complete your purchase</h2>
-            <p class="section-sub">
-              Use our demo card and voucher to test the checkout experience.
-            </p>
-          </div>
-
-          <div class="payment-panel">
-            <div class="payment-summary">
-              <div class="payment-summary-top">
-                <span class="payment-emoji" id="paymentGiftEmoji">🎁</span>
-                <div>
-                  <h3 id="paymentGiftName">Gift item</h3>
-                  <p id="paymentGiftReason">Ready for checkout.</p>
-                </div>
-              </div>
-              <div class="payment-price" id="paymentGiftPrice">Rs. 0</div>
-            </div>
-
-            <form id="paymentForm" class="payment-form">
-              <div class="payment-group">
-                <label for="deliveryAddress">Delivery address</label>
-                <input id="deliveryAddress" placeholder="Enter shipping address" required />
-              </div>
-
-              <div class="payment-methods" aria-label="Payment method">
-                <label class="payment-method active">
-                  <input type="radio" name="paymentMethod" value="card" checked />
-                  Card
-                </label>
-                <label class="payment-method">
-                  <input type="radio" name="paymentMethod" value="wallet" />
-                  Wallet
-                </label>
-                <label class="payment-method">
-                  <input type="radio" name="paymentMethod" value="cash" />
-                  Cash
-                </label>
-              </div>
-
-              <div class="payment-group voucher-row">
-                <div>
-                  <label for="voucherCode">Voucher code</label>
-                  <input id="voucherCode" placeholder="INCANTO10 or GIFT50" />
-                </div>
-                <button type="button" class="btn-secondary" id="applyVoucherBtn">
-                  Apply
-                </button>
-              </div>
-              <div class="voucher-message" id="voucherMessage">
-                Try voucher <strong>INCANTO10</strong> for 10% off.
-              </div>
-
-              <div class="payment-group">
-                <label for="cardName">Cardholder name</label>
-                <input id="cardName" autocomplete="cc-name" placeholder="Demo cardholder" required />
-              </div>
-
-              <div class="payment-row">
-                <div class="payment-group">
-                  <label for="cardNumber">Card number</label>
-                  <input id="cardNumber" autocomplete="cc-number" placeholder="4242 4242 4242 4242" required />
-                </div>
-                <div class="payment-group">
-                  <label for="cardExpiry">Expiry</label>
-                  <input id="cardExpiry" autocomplete="cc-exp" placeholder="MM/YY" required />
-                </div>
-                <div class="payment-group">
-                  <label for="cardCvc">CVC</label>
-                  <input id="cardCvc" autocomplete="cc-csc" placeholder="123" required />
-                </div>
-              </div>
-
-              <div class="demo-note">
-                Demo card: <strong>4242 4242 4242 4242</strong>. Voucher codes: <strong>INCANTO10</strong>, <strong>GIFT50</strong>.
-              </div>
-
-              <div class="payment-process" id="paymentProcessStatus" aria-live="polite">
-                <span></span>
-                <p>Ready for secure demo payment.</p>
-              </div>
-
-              <div class="payment-footer">
-                <div class="payment-total">Total <span id="paymentTotal">Rs. 0</span></div>
-                <div class="payment-actions">
-                  <button type="button" class="btn-secondary" id="backToPurchaseBtn">
-                    Back
-                  </button>
-                  <button type="button" class="btn-secondary" id="cancelPurchaseBtn">
-                    Cancel
-                  </button>
-                  <button type="submit" class="btn-primary" id="paymentSubmitBtn">
-                    <span class="payment-submit-label">Confirm & Pay</span>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════════════════════════════════════ ORDERS -->
-      <section id="orders" class="page-section view-section">
-        <div class="container">
-          <div class="section-header reveal">
-            <p class="section-eyebrow">My Purchases</p>
-            <h2 class="section-title">Purchase history</h2>
-            <p class="section-sub">
-              Track all completed orders and review past purchases.
-            </p>
-          </div>
-
-          <div class="orders-page" id="ordersList"></div>
         </div>
       </section>
 
@@ -818,40 +549,16 @@
               margin-bottom: 30px;
             "
           >
-            At INCANTO, we prioritize your privacy and believe data belongs to
-            you. We collect minimal information:
+            At INCANTO, we prioritize your privacy. We intentionally collect
+            limited information. The primary data we collect is anonymous: the
+            inputs you provide in the Gift Finder (such as occasion, budget,
+            recipient relationship, and personality traits) to generate gift
+            recommendations. We do not store this data assigned to a personal
+            profile.
           </p>
-          <ul
-            style="
-              color: var(--text-muted);
-              line-height: 1.8;
-              margin-bottom: 30px;
-              margin-left: 20px;
-            "
-          >
-            <li>
-              <strong>Anonymous Preferences:</strong> Occasion, budget,
-              recipient relationship, personality traits, and interests provided
-              in the Gift Finder are processed transiently for recommendations.
-            </li>
-            <li>
-              <strong>Optional Account Data:</strong> If you create an account,
-              we store your email, username, and hashed password for
-              authentication. We never sell or share this data.
-            </li>
-            <li>
-              <strong>Local Storage:</strong> Your favorites and recently viewed
-              gifts are stored only in your browser's local storage — not on our
-              servers.
-            </li>
-            <li>
-              <strong>No Tracking:</strong> We do not use cookies, analytics
-              tracking, or third-party trackers on INCANTO.
-            </li>
-          </ul>
 
           <h3 style="font-size: 1.6rem; margin-bottom: 15px">
-            2. How We Use Your Data
+            2. How We Use Informational Data
           </h3>
           <p
             style="
@@ -860,19 +567,10 @@
               margin-bottom: 30px;
             "
           >
-            <strong>Preference Data:</strong> Your gift preferences are
-            processed securely and only used to generate recommendations. We
-            never use your data for machine learning, profile building, or
-            behavioral analysis beyond the immediate recommendation request.
-            <br /><br />
-            <strong>Account Data:</strong> If authenticated, we use your email
-            and preferences to personalize your experience and save your cart
-            and recently viewed items. Your password is hashed with
-            industry-standard protocols (PBKDF2-SHA512). <br /><br />
-            <strong>Local Storage:</strong> Your "❤️ Saved Gifts" and "Recently
-            Viewed" history are stored entirely on your device and never
-            transmitted to our servers unless you explicitly save preferences to
-            your profile.
+            The information processed via the AI prompt stays strictly transient
+            and is solely used to query our recommendation engine. Your "❤️
+            Saved Gifts" and "Recently Viewed" history are stored entirely
+            locally on your device via <code>localStorage</code>.
           </p>
 
           <h3 style="font-size: 1.6rem; margin-bottom: 15px">
@@ -885,18 +583,11 @@
               margin-bottom: 30px;
             "
           >
-            INCANTO is a discovery engine, not a marketplace. When you click
-            "Buy Now" for a gift, you are securely redirected to trusted
-            third-party merchants (such as Daraz, Amazon, or local retailers).
-            <br /><br />
-            <strong>Important:</strong> Once you leave INCANTO, you are subject
-            to their privacy policies, not ours. We are not responsible for
-            their data practices. We do not share your personal information with
-            these merchants unless you explicitly provide it during checkout.
-            <br /><br />
-            <strong>Affiliate Compensation:</strong> INCANTO may earn a small
-            affiliate commission if you complete a purchase through our links.
-            This does not affect the price you pay — it remains identical.
+            When you click on "Buy Now" for a recommended gift, you will be
+            redirected to third-party seller platforms (such as Daraz or
+            independent merchants). These third-party sites have their own
+            separate and independent privacy policies. We have no responsibility
+            or liability for the content and activities of these linked sites.
           </p>
 
           <h3 style="font-size: 1.6rem; margin-bottom: 15px">
@@ -909,49 +600,14 @@
               margin-bottom: 30px;
             "
           >
-            We employ industry-standard security measures to protect your data:
-          </p>
-          <ul
-            style="
-              color: var(--text-muted);
-              line-height: 1.8;
-              margin-bottom: 30px;
-              margin-left: 20px;
-            "
-          >
-            <li>
-              <strong>HTTPS/TLS Encryption:</strong> All data transmitted
-              between your browser and our servers is encrypted.
-            </li>
-            <li>
-              <strong>Password Hashing:</strong> Passwords are hashed using
-              PBKDF2 with a 120,000 iteration count — we never store plain-text
-              passwords.
-            </li>
-            <li>
-              <strong>Database Security:</strong> Your data is stored in
-              Supabase with row-level security, encryption at rest, and
-              automated backups.
-            </li>
-            <li>
-              <strong>No Third-Party Sharing:</strong> We do not sell, share, or
-              rent your personal information to advertisers or data brokers.
-            </li>
-          </ul>
-          <p
-            style="
-              color: var(--text-muted);
-              line-height: 1.8;
-              margin-bottom: 30px;
-            "
-          >
-            While we maintain strict security practices, no system is 100%
-            immune to breaches. We commit to notifying you within 48 hours if
-            your data is compromised.
+            We use administrative, technical, and physical security measures to
+            help protect your usage data. However, remember that no absolute
+            transmission over the internet or electronic storage method can
+            fully guarantee security.
           </p>
 
           <h3 style="font-size: 1.6rem; margin-bottom: 15px">
-            5. Your Rights and Choices
+            5. Revisions to this Privacy Policy
           </h3>
           <p
             style="
@@ -960,53 +616,25 @@
               margin-bottom: 30px;
             "
           >
-            <strong>Access Your Data:</strong> You can download a copy of your
-            account data by requesting it at privacy@incanto.ai. <br /><br />
-            <strong>Delete Your Account:</strong> You can request permanent
-            deletion of your account and associated data. We will comply within
-            30 days. <br /><br />
-            <strong>Opt-Out:</strong> You can clear your browser's local storage
-            at any time to remove saved favorites and recently viewed items.
-            <br /><br />
-            <strong>Email Communications:</strong> If we send you emails, you
-            can unsubscribe using the link in the email.
-          </p>
-          <h3 style="font-size: 1.6rem; margin-bottom: 15px">
-            6. Revisions to this Privacy Policy
-          </h3>
-          <p
-            style="
-              color: var(--text-muted);
-              line-height: 1.8;
-              margin-bottom: 30px;
-            "
-          >
-            We may update this privacy notice to align with legal requirements
-            or service improvements. Changes will be indicated by an updated
-            "Last Updated" date. Continued use of INCANTO after updates
-            constitutes acceptance of the revised policy.
+            We may update this privacy notice from time to time to align with
+            legal requirements or service capabilities. The updated version will
+            be indicated by an updated "Last Updated" date at the top of the
+            policy.
           </p>
 
           <h3 style="font-size: 1.6rem; margin-bottom: 15px">
-            7. Contact & Data Requests
+            6. Contacting Us
           </h3>
           <p style="color: var(--text-muted); line-height: 1.8">
-            For privacy concerns, data access requests, deletion requests, or
-            general inquiries:
+            If there are any questions regarding this privacy policy or to
+            request a data audit, you may contact us using the information
+            below:
             <br /><br />
             <strong>Email:</strong>
-            <a href="mailto:privacy@incanto.ai" style="color: var(--primary)"
-              >privacy@incanto.ai</a
-            >
-            <br /><br />
-            We commit to responding to all legitimate privacy requests within 10
-            business days.
-            <br /><br />
-            <strong>Last Updated:</strong> April 2026
+            <a href="mailto:privacy@incanto.ai">privacy@incanto.ai</a>
           </p>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- ══════════════════════════════════════════ SUPPORT -->
     <section
@@ -1249,8 +877,8 @@
           <p class="section-sub">See what everyone is loving right now.</p>
         </div>
 
-        <div class="gifts-grid" id="trendingGrid">
-          <div class="gift-card" data-id="1" data-price="8500" style="animation-delay: 0s">
+        <div class="gifts-grid" id="giftsGrid">
+          <div class="gift-card" style="animation-delay: 0s">
             <div class="gift-img-wrap">
               <span style="position: relative; z-index: 1">🎧</span>
               <div class="gift-badge">#1 Trending</div>
@@ -1267,13 +895,12 @@
               </div>
               <div class="gift-footer">
                 <div class="gift-price">Rs. 8,500<span>onwards</span></div>
-                <button class="btn-cart" type="button" data-gift-id="1">Add to Cart</button>
-                <a href="#" class="btn-buy" data-gift-id="1" data-link="#">Buy Now →</a>
+                <a href="#" class="btn-buy">Buy Now →</a>
               </div>
             </div>
           </div>
 
-          <div class="gift-card" data-id="2" data-price="3200" style="animation-delay: 0.1s">
+          <div class="gift-card" style="animation-delay: 0.1s">
             <div class="gift-img-wrap">
               <span style="position: relative; z-index: 1">☕</span>
               <div class="gift-badge">Hot Pick</div>
@@ -1290,13 +917,12 @@
               </div>
               <div class="gift-footer">
                 <div class="gift-price">Rs. 3,200<span>onwards</span></div>
-                <button class="btn-cart" type="button" data-gift-id="2">Add to Cart</button>
-                <a href="#" class="btn-buy" data-gift-id="2" data-link="#">Buy Now →</a>
+                <a href="#" class="btn-buy">Buy Now →</a>
               </div>
             </div>
           </div>
 
-          <div class="gift-card" data-id="3" data-price="4500" style="animation-delay: 0.2s">
+          <div class="gift-card" style="animation-delay: 0.2s">
             <div class="gift-img-wrap">
               <span style="position: relative; z-index: 1">🪴</span>
               <div class="gift-badge">Fast Seller</div>
@@ -1313,13 +939,12 @@
               </div>
               <div class="gift-footer">
                 <div class="gift-price">Rs. 4,500<span>onwards</span></div>
-                <button class="btn-cart" type="button" data-gift-id="3">Add to Cart</button>
-                <a href="#" class="btn-buy" data-gift-id="3" data-link="#">Buy Now →</a>
+                <a href="#" class="btn-buy">Buy Now →</a>
               </div>
             </div>
           </div>
 
-          <div class="gift-card" data-id="4" data-price="6800" style="animation-delay: 0.3s">
+          <div class="gift-card" style="animation-delay: 0.3s">
             <div class="gift-img-wrap">
               <span style="position: relative; z-index: 1">🧶</span>
               <div class="gift-badge">Highly Rated</div>
@@ -1336,13 +961,12 @@
               </div>
               <div class="gift-footer">
                 <div class="gift-price">Rs. 6,800<span>onwards</span></div>
-                <button class="btn-cart" type="button" data-gift-id="4">Add to Cart</button>
-                <a href="#" class="btn-buy" data-gift-id="4" data-link="#">Buy Now →</a>
+                <a href="#" class="btn-buy">Buy Now →</a>
               </div>
             </div>
           </div>
 
-          <div class="gift-card" data-id="5" data-price="12000" style="animation-delay: 0.4s">
+          <div class="gift-card" style="animation-delay: 0.4s">
             <div class="gift-img-wrap">
               <span style="position: relative; z-index: 1">📷</span>
               <div class="gift-badge">Nostalgia Pick</div>
@@ -1359,13 +983,12 @@
               </div>
               <div class="gift-footer">
                 <div class="gift-price">Rs. 12,000<span>onwards</span></div>
-                <button class="btn-cart" type="button" data-gift-id="5">Add to Cart</button>
-                <a href="#" class="btn-buy" data-gift-id="5" data-link="#">Buy Now →</a>
+                <a href="#" class="btn-buy">Buy Now →</a>
               </div>
             </div>
           </div>
 
-          <div class="gift-card" data-id="6" data-price="1500" style="animation-delay: 0.5s">
+          <div class="gift-card" style="animation-delay: 0.5s">
             <div class="gift-img-wrap">
               <span style="position: relative; z-index: 1">🍫</span>
               <div class="gift-badge">Local Favorite</div>
@@ -1382,8 +1005,7 @@
               </div>
               <div class="gift-footer">
                 <div class="gift-price">Rs. 1,500<span>onwards</span></div>
-                <button class="btn-cart" type="button" data-gift-id="6">Add to Cart</button>
-                <a href="#" class="btn-buy" data-gift-id="6" data-link="#">Buy Now →</a>
+                <a href="#" class="btn-buy">Buy Now →</a>
               </div>
             </div>
           </div>
@@ -1418,7 +1040,7 @@
             </div>
           </div>
           <div class="purchase-actions">
-            <button class="btn-secondary" id="purchaseCancelBtn">Cancel</button>
+            <button class="btn-secondary" id="cancelPurchaseBtn">Cancel</button>
             <button class="btn-primary" id="confirmPurchaseBtn">
               Confirm & Buy Now
             </button>
@@ -1428,49 +1050,6 @@
     </section>
 
     <!-- ══════════════════════════════════════════ PROFILE -->
-    <section
-      id="purchase-final"
-      class="page-section view-section"
-      style="padding: 150px 0 100px; min-height: 80vh"
-    >
-      <div class="container">
-        <div class="purchase-final">
-          <div class="purchase-final-status">Purchase Review</div>
-          <div class="purchase-header">
-            <span class="purchase-emoji" id="finalPurchaseGiftEmoji">🎁</span>
-            <h1 class="purchase-title">Confirm before payment</h1>
-            <p class="purchase-subtitle">
-              Review your selected gift one more time. Payment will be collected
-              on the next page.
-            </p>
-          </div>
-          <div class="purchase-details">
-            <div class="purchase-item">
-              <h3 id="finalPurchaseGiftName">Gift Name</h3>
-              <p id="finalPurchaseGiftReason">Reason</p>
-              <div class="purchase-price" id="finalPurchaseGiftPrice">Price</div>
-            </div>
-            <div class="purchase-info">
-              <p id="finalPurchaseGiftDetails">
-                Confirm this purchase to continue to payment.
-              </p>
-            </div>
-          </div>
-          <div class="purchase-actions">
-            <button class="btn-secondary" id="finalPurchaseBackBtn" type="button">
-              Back
-            </button>
-            <button class="btn-secondary" id="finalPurchaseCancelBtn" type="button">
-              Cancel
-            </button>
-            <button class="btn-primary" id="continueToPaymentBtn" type="button">
-              Continue to Payment
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section
       id="profile"
       class="page-section view-section"
@@ -1596,7 +1175,6 @@
               Create account
             </button>
           </div>
-          <p class="auth-message" id="authModalMessage"></p>
 
           <form class="auth-form active" id="loginForm">
             <label>
@@ -1661,37 +1239,10 @@
           <button class="google-fallback-btn" id="googleSetupBtn" type="button">
             Login with Google
           </button>
-          <div id="googleNote" class="auth-note"></div>
+          <p class="auth-note" id="googleNote">
+            Add your Google OAuth client ID in user.js to enable Google sign-in.
+          </p>
         </div>
-      </div>
-    </div>
-
-    <!-- PAYMENT SUCCESS OVERLAY -->
-    <div class="payment-success-overlay" id="paymentSuccessOverlay">
-      <div class="payment-success-content">
-        <div class="checkmark-circle">
-          <div class="checkmark"></div>
-        </div>
-        <h1>Payment Successful</h1>
-        <p>Your order has been confirmed</p>
-      </div>
-    </div>
-
-    <div class="purchase-success-modal" id="purchaseSuccessModal" aria-hidden="true">
-      <div class="purchase-success-card" role="dialog" aria-modal="true" aria-labelledby="purchaseSuccessTitle">
-        <div class="purchase-success-icon">✓</div>
-        <p class="purchase-success-kicker">Purchase Complete</p>
-        <h2 id="purchaseSuccessTitle">Your order is confirmed</h2>
-        <p id="purchaseSuccessMessage">
-          We saved this purchase to your account.
-        </p>
-        <div class="purchase-success-meta">
-          <span id="purchaseSuccessOrderId">Order INC-</span>
-          <strong id="purchaseSuccessTotal">Rs. 0</strong>
-        </div>
-        <button class="btn-primary" id="purchaseSuccessClose" type="button">
-          View My Purchases
-        </button>
       </div>
     </div>
 
