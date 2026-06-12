@@ -1,4 +1,2 @@
-backend/.env
-backend/data/users.json
-node_modules/
+node_modules
 .env

@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--
+      INCANTO — index.html (Landing)
+      Purpose: Marketing homepage with full funnel sections.
+      Assets: ../css/* and ../js/* — keep paths relative when moving folders.
+    -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Incanto — AI-powered gift and product discovery. Find thoughtful gifts in minutes."
+    />
+    <title>Incanto · AI Gift Discovery</title>
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/wizard.css" />
+  </head>
+  <body class="bg-gradient-page">
+    <div id="site-loader" class="loader" aria-live="polite" aria-busy="true">
+      <div class="loader__inner">
+        <div class="loader__mark" aria-hidden="true"></div>
+        <div class="loader__title">Incanto</div>
+        <div class="loader__sub">Preparing something thoughtful…</div>
+      </div>
+    </div>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- SITE HEADER: sticky bar + mobile drawer -->
+    <header class="site-header" data-site-header>
+      <div class="site-header__bar container">
+        <a class="logo" href="index.html" aria-current="page">
+          <span class="logo__glyph" aria-hidden="true">✦</span>
+          Incanto
+        </a>
+
+        <nav class="nav-desktop" aria-label="Primary">
+          <a href="index.html" aria-current="page">Home</a>
+          <a href="#incanto-wizard" data-wizard-open data-no-transition
+            >Gift wizard</a
+          >
+          <a href="categories.html">Categories</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <button
+            type="button"
+            class="theme-toggle"
+            data-theme-toggle
+            aria-label="Toggle color theme"
+          >
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zm10.48 0l1.79-1.79 1.41 1.41-1.79 1.8-1.41-1.42zM12 4V1h-1v3h1zm0 19v-3h-1v3h1zm8-9h3v-1h-3v1zM1 12v1h3v-1H1zm18.36-6.36l1.41-1.41-1.79-1.8-1.42 1.42 1.8 1.79zM4.22 19.78l1.8 1.79 1.41-1.41-1.79-1.8-1.42 1.42zM12 6.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z" />
+            </svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+          <a class="btn btn--ghost" href="login.html">Log in</a>
+          <a class="btn btn--primary" href="signup.html" data-sound-click>Get started</a>
+          <button
+            type="button"
+            class="nav-toggle"
+            data-nav-toggle
+            aria-expanded="false"
+            aria-controls="mobile-drawer"
+            aria-label="Open menu"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <nav id="mobile-drawer" class="mobile-drawer" data-mobile-drawer aria-label="Mobile">
+        <a href="#incanto-wizard" data-wizard-open data-no-transition>Gift wizard</a>
+        <a href="categories.html">Categories</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="saved.html">Saved gifts</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO: primary story + search + visual cards -->
+      <section class="hero container">
+        <div class="mesh-blobs" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="hero__grid">
+          <div class="hero-animate">
+            <p class="section__eyebrow">AI gift discovery</p>
+            <h1 class="hero__title text-balance">
+              Gifts that feel <span>effortlessly personal</span>
+            </h1>
+            <p class="hero__lead">
+              Incanto blends taste, context, and budget into recommendations you
+              can trust — like a stylist for gifting, without the guesswork.
+            </p>
+            <div class="hero__actions">
+              <button type="button" class="btn btn--primary btn--lg" data-wizard-open data-sound-click>
+                Start discovering
+              </button>
+              <a class="btn btn--secondary btn--lg" href="categories.html">Browse categories</a>
+            </div>
+          </div>
+
+          <div class="hero__visual reveal">
+            <div class="hero-card-stack" aria-hidden="true">
+              <div class="hero-card hero-card--1">
+                <img src="images/AirPods-Pro-White.jpg" alt="" />
+                <div class="hero-card__body">
+                  <div class="hero-card__tag">Trending</div>
+                  <div class="hero-card__title">Aurora Earbuds</div>
+                </div>
+              </div>
+              <div class="hero-card hero-card--2">
+                <img src="images/AirPods-Pro-White.jpg" alt="" />
+                <div class="hero-card__body">
+                  <div class="hero-card__tag">Luxury</div>
+                  <div class="hero-card__title">Dior Sauvage</div>
+                </div>
+              </div>
+              <div class="hero-card hero-card--3">
+                <img src="images/AirPods-Pro-White.jpg" alt="" />
+                <div class="hero-card__body">
+                  <div class="hero-card__tag">Moments</div>
+                  <div class="hero-card__title">Fresh bouquet</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUSTED BY: logo strip -->
+      <section class="section section--tight container reveal">
+        <p class="text-center text-muted" style="margin-bottom: var(--space-6); font-size: var(--text-sm)">
+          Trusted by thoughtful teams and shoppers worldwide
+        </p>
+        <div class="logo-strip">
+          <span>Daraz</span><span>Gyapu</span><span>Gevee</span>
+      </section>
+
+      <!-- QUICK GIFT WIZARD SECTION -->
+      <section class="section container reveal">
+        <div class="section__header">
+          <p class="section__eyebrow">Try the wizard</p>
+          <h2 class="section__title">Describe them. We’ll handle the rest.</h2>
+          <p class="section__lead">
+            Combine relationship, hobbies, and budget — Incanto translates
+            your story into a shortlist you can feel proud giving.
+          </p>
+        </div>
+        <div class="glass-panel" style="padding: clamp(1.25rem, 3vw, 2rem)">
+          <div class="ai-box">
+            <p style="font-weight: 600; margin-bottom: var(--space-3)">Gift wizard (quick)</p>
+            <p class="text-muted" style="font-size: var(--text-sm); margin-bottom: var(--space-4)">
+              Use the sliders and chips below to prefill the full Gift Wizard — then open it to continue.
+            </p>
+
+            <div class="mini-wiz">
+              <div id="mini-wiz-budget-display" class="mini-wiz__budget-display" aria-live="polite">
+                Rs. 10,000
+              </div>
+              <!-- MAX UPDATED TO 20,000 -->
+              <input
+                id="mini-wiz-budget-range"
+                type="range"
+                min="500"
+                max="20000"
+                step="500"
+                value="10000"
+                class="mini-wiz__range"
+              />
+              <div class="mini-wiz__range-labels" style="display: flex; justify-content: space-between; font-size: var(--text-xs); margin-top: 6px;">
+                <span>Rs. 500</span>
+                <span>Rs. 20,000</span>
+              </div>
+
+              <p class="text-muted" style="margin-top: var(--space-4); margin-bottom: var(--space-2);">Interests</p>
+              <div class="mini-wiz__chips" style="display: flex; gap: 8px; flex-wrap: wrap">
+                <button type="button" class="chip" data-mini-chip="gaming">Gamer</button>
+                <button type="button" class="chip" data-mini-chip="anime">Anime</button>
+                <button type="button" class="chip" data-mini-chip="reading">Reading</button>
+                <button type="button" class="chip" data-mini-chip="travel">Travel</button>
+                <button type="button" class="chip" data-mini-chip="tech">Tech</button>
+              </div>
+
+              <div style="margin-top: var(--space-4); display: flex; gap: var(--space-3); flex-wrap: wrap;">
+                <button type="button" class="btn btn--primary" data-wizard-open id="mini-open-wiz">Open gift wizard</button>
+                <a class="btn btn--ghost" href="results.html">See sample results</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRENDING CATEGORIES -->
+      <section class="section container reveal">
+        <div class="section__header">
+          <p class="section__eyebrow">Categories</p>
+          <h2 class="section__title">Trending gift universes</h2>
+          <p class="section__lead">Curated rails for every taste — tap through to explore the catalog.</p>
+        </div>
+        <div class="grid-4">
+          <a class="glass-panel" style="padding: var(--space-6); text-align: center" href="categories.html">
+            <div style="font-size: 1.75rem" aria-hidden="true">🎮</div>
+            <div class="font-display" style="font-weight: 700; margin-top: var(--space-3)">Gaming</div>
+          </a>
+          <a class="glass-panel" style="padding: var(--space-6); text-align: center" href="categories.html">
+            <div style="font-size: 1.75rem" aria-hidden="true">🎧</div>
+            <div class="font-display" style="font-weight: 700; margin-top: var(--space-3)">Tech</div>
+          </a>
+          <a class="glass-panel" style="padding: var(--space-6); text-align: center" href="categories.html">
+            <div style="font-size: 1.75rem" aria-hidden="true">🌸</div>
+            <div class="font-display" style="font-weight: 700; margin-top: var(--space-3)">Beauty</div>
+          </a>
+          <a class="glass-panel" style="padding: var(--space-6); text-align: center" href="categories.html">
+            <div style="font-size: 1.75rem" aria-hidden="true">📚</div>
+            <div class="font-display" style="font-weight: 700; margin-top: var(--space-3)">Books</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- FEATURED PRODUCTS -->
+      <section class="section container reveal">
+        <div class="section__header">
+          <p class="section__eyebrow">Featured</p>
+          <h2 class="section__title">Products people actually keep</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card-product">
+            <div class="card-product__media">
+              <img src="https://images.unsplash.com/photo-1590658260037-6b121765e9f1?w=800&q=80" alt="Aurora Earbuds" />
+              <button type="button" class="card-product__wish" data-wishlist-toggle data-product-id="aurora-1">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0-7.8-7.8z" />
+                </svg>
+              </button>
+            </div>
+            <div class="card-product__body">
+              <div class="card-product__meta">Tech</div>
+              <h3 class="card-product__title"><a href="product.html?id=aurora-1">Aurora Noise-Canceling Earbuds</a></h3>
+              <div class="card-product__row">
+                <div class="card-product__price">Rs. 17,028</div>
+                <div class="card-product__rating">★ 4.8</div>
+              </div>
+              <div style="margin-top: 0.75rem">
+                <button type="button" class="btn btn--secondary" data-modal-open data-product-id="aurora-1">Quick view</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-product">
+            <div class="card-product__media">
+              <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&q=80" alt="Perfume" />
+              <button type="button" class="card-product__wish" data-wishlist-toggle data-product-id="velvet-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0-7.8-7.8z" />
+                </svg>
+              </button>
+            </div>
+            <div class="card-product__body">
+              <div class="card-product__meta">Beauty</div>
+              <h3 class="card-product__title"><a href="product.html?id=velvet-2">Velvet Bloom Eau de Parfum</a></h3>
+              <div class="card-product__row">
+                <div class="card-product__price">Rs. 11,748</div>
+                <div class="card-product__rating">★ 4.9</div>
+              </div>
+              <div style="margin-top: 0.75rem">
+                <button type="button" class="btn btn--secondary" data-modal-open data-product-id="velvet-2">Quick view</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-product">
+            <div class="card-product__media">
+              <img src="https://images.unsplash.com/photo-1618384887927-ce16e2d424d0?w=800&q=80" alt="Keyboard" />
+              <button type="button" class="card-product__wish" data-wishlist-toggle data-product-id="pixel-5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0-7.8-7.8z" />
+                </svg>
+              </button>
+            </div>
+            <div class="card-product__body">
+              <div class="card-product__meta">Gaming</div>
+              <h3 class="card-product__title"><a href="product.html?id=pixel-5">PixelForge Mechanical Keyboard</a></h3>
+              <div class="card-product__row">
+                <div class="card-product__price">Rs. 24,948</div>
+                <div class="card-product__rating">★ 4.8</div>
+              </div>
+              <div style="margin-top: 0.75rem">
+                <button type="button" class="btn btn--secondary" data-modal-open data-product-id="pixel-5">Quick view</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="section container reveal">
+        <div class="section__header text-center" style="margin-inline: auto">
+          <p class="section__eyebrow">How it works</p>
+          <h2 class="section__title">Personalized recommendations, simplified</h2>
+        </div>
+        <div class="grid-3">
+          <div class="glass-panel" style="padding: var(--space-8)">
+            <div class="font-display" style="font-size: var(--text-3xl); font-weight: 800; color: var(--color-primary);">01</div>
+            <h3 class="font-display" style="font-size: var(--text-xl); margin: var(--space-4) 0">Tell the story</h3>
+            <p class="text-muted">Age, relationship, occasion, hobbies — the more context, the sharper the match.</p>
+          </div>
+          <div class="glass-panel" style="padding: var(--space-8)">
+            <div class="font-display" style="font-size: var(--text-3xl); font-weight: 800; color: var(--color-primary);">02</div>
+            <h3 class="font-display" style="font-size: var(--text-xl); margin: var(--space-4) 0">Incanto ranks</h3>
+            <p class="text-muted">We score catalog items for fit, budget, and “delight potential” — not just popularity.</p>
+          </div>
+          <div class="glass-panel" style="padding: var(--space-8)">
+            <div class="font-display" style="font-size: var(--text-3xl); font-weight: 800; color: var(--color-primary);">03</div>
+            <h3 class="font-display" style="font-size: var(--text-xl); margin: var(--space-4) 0">Save & send</h3>
+            <p class="text-muted">Wishlist, notes, and shareable shortlists make coordination with friends painless.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section container reveal">
+        <div class="section__header">
+          <p class="section__eyebrow">Loved by gifters</p>
+          <h2 class="section__title">Real reactions, real moments</h2>
+        </div>
+        <div class="grid-3">
+          <figure class="testimonial">
+            <blockquote class="testimonial__quote">“Incanto nailed a birthday gift for my sister-in-law in one pass. It felt like I hired a concierge.”</blockquote>
+            <figcaption class="testimonial__who">
+              <div class="testimonial__avatar" aria-hidden="true"></div>
+              <div>
+                <div class="font-display" style="font-weight: 700">Success</div>
+                <div class="text-muted" style="font-size: var(--text-sm)">Student in Sunway</div>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote class="testimonial__quote">“Our team uses Incanto for client appreciation. The suggestions are tasteful — not random gadget spam.”</blockquote>
+            <figcaption class="testimonial__who">
+              <div class="testimonial__avatar" aria-hidden="true"></div>
+              <div>
+                <div class="font-display" style="font-weight: 700">Prajana Shrestha</div>
+                <div class="text-muted" style="font-size: var(--text-sm)">Ceo of Sunway </div>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote class="testimonial__quote">“Dami raixa malai ta babal lagyo k gift dine vairako thiyo best.”</blockquote>
+            <figcaption class="testimonial__who">
+              <div class="testimonial__avatar" aria-hidden="true"></div>
+              <div>
+                <div class="font-display" style="font-weight: 700"></div>
+                <div class="text-muted" style="font-size: var(--text-sm)">ceo ko baini</div>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- WHY + STATS -->
+      <section class="section container reveal">
+        <div class="grid-2">
+          <div>
+            <p class="section__eyebrow">Why Incanto</p>
+            <h2 class="section__title">Premium taste, transparent logic</h2>
+            <p class="section__lead" style="margin-bottom: var(--space-6)">We bias toward quality, longevity, and story — not impulse SKUs.</p>
+            <a class="btn btn--primary" href="about.html">Our philosophy</a>
+          </div>
+          <div class="grid-2" style="gap: var(--space-4)">
+            <div class="stat reveal">
+              <div class="stat__value"><span data-counter data-counter-target="1200">0</span>+</div>
+              <div class="stat__label">Curated products scored</div>
+            </div>
+            <div class="stat reveal">
+              <div class="stat__value"><span data-counter data-counter-target="48">0</span>h</div>
+              <div class="stat__label">Average time saved</div>
+            </div>
+            <div class="stat reveal">
+              <div class="stat__value"><span data-counter data-counter-target="98">0</span>%</div>
+              <div class="stat__label">User satisfaction</div>
+            </div>
+            <div class="stat reveal">
+              <div class="stat__value"><span data-counter data-counter-target="99">0</span>%</div>
+              <div class="stat__label">Brief accuracy</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section container reveal">
+        <div class="section__header"><p class="section__eyebrow">FAQ</p><h2 class="section__title">Answers, upfront</h2></div>
+        <div>
+          <div class="faq-item" data-faq-item>
+            <button type="button" class="faq-item__q" data-faq-q aria-expanded="false">Is this real AI?<span class="faq-item__icon" aria-hidden="true">+</span></button>
+            <div class="faq-item__a" data-faq-a><div class="faq-item__a-inner">Yes, this demo uses our heuristic model.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="section container reveal">
+        <div class="glass-panel" style="padding: clamp(2rem, 5vw, 3rem); text-align: center">
+          <h2 class="font-display" style="font-size: var(--text-4xl); font-weight: 800; margin-bottom: var(--space-4);">Ready for your next “perfect gift” moment?</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center;">
+            <a class="btn btn--primary btn--lg" href="signup.html">Create free account</a>
+            <button type="button" class="btn btn--secondary btn--lg" data-wizard-open>Gift wizard</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <span class="logo__glyph" aria-hidden="true">✦</span>Incanto
+          </a>
+          <p class="text-muted" style="margin-top: var(--space-4); line-height: var(--leading-relaxed);">AI-assisted gifting with human taste.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <a href="categories.html">Categories</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="login.html">Log in</a>
+        </div>
+        <div class="footer-links">
+          <h4>Experience</h4>
+          <a href="#incanto-wizard" data-wizard-open data-no-transition>Gift wizard</a>
+          <a href="wishlist.html">Wishlist</a>
+          <a href="saved.html">Saved gifts</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© <span id="year"></span> Incanto. All rights reserved.</span>
+      </div>
+    </footer>
+
+    <!-- GIFT WIZARD (MAX BUDGET UPDATED TO 20,000) -->
+    <div id="incanto-wizard" class="incanto-wizard incanto-wizard--embed" hidden role="dialog" aria-modal="true" aria-labelledby="wiz-dialog-title">
+      <div class="incanto-wizard__topbar">
+        <button id="wiz-close" type="button" class="incanto-wizard__top-close" data-wizard-close>
+          <span aria-hidden="true">×</span><span class="visually-hidden">Close</span>
+        </button>
+      </div>
+      <div class="incanto-wizard__shell">
+        <header class="incanto-wizard__header">
+          <div class="incanto-wizard__brand">✦ Incanto</div>
+          <h1 id="wiz-dialog-title" class="incanto-wizard__title">The Gift Discovery Wizard</h1>
+        </header>
+        <div class="incanto-wizard__progress">
+          <div class="incanto-wizard__dot is-active" data-wiz-dot></div>
+          <div class="incanto-wizard__dot" data-wiz-dot></div>
+          <div class="incanto-wizard__dot" data-wiz-dot></div>
+          <div class="incanto-wizard__dot" data-wiz-dot></div>
+          <div class="incanto-wizard__dot" data-wiz-dot></div>
+        </div>
+        <section id="wiz-stage" class="incanto-wizard__stage" aria-live="polite">
+          <div class="incanto-wizard__panels">
+            <section class="incanto-wizard__panel is-active" data-wiz-panel data-wiz-step="0">
+              <h2 class="incanto-wizard__step-title">What’s the occasion?</h2>
+              <div id="wiz-step-occasion" class="incanto-wizard__grid cols-2">
+                <button type="button" class="incanto-wizard__choice" data-wiz-choice="birthday">Birthday</button>
+                <button type="button" class="incanto-wizard__choice" data-wiz-choice="wedding">Wedding</button>
+              </div>
+            </section>
+            
+            <!-- BUDGET STEP IN MAIN WIZARD -->
+            <section class="incanto-wizard__panel" data-wiz-panel data-wiz-step="2">
+              <h2 class="incanto-wizard__step-title">Define the budget</h2>
+              <div class="incanto-wizard__budget">
+                <div id="wiz-budget-display" class="incanto-wizard__budget-display">Rs. 10,000</div>
+                <div class="incanto-wizard__range-wrap">
+                  <!-- MAX UPDATED TO 20,000 -->
+                  <input id="wiz-budget-range" class="incanto-wizard__range" type="range" min="500" max="20000" value="10000" />
+                  <div class="incanto-wizard__range-labels">
+                    <span>Rs. 500</span><span>Rs. 20,000</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <footer class="incanto-wizard__footer">
+            <button id="wiz-btn-back" type="button" class="incanto-wizard__btn incanto-wizard__btn--ghost">Back</button>
+            <button id="wiz-btn-next" type="button" class="incanto-wizard__btn incanto-wizard__btn--primary">Next</button>
+          </footer>
+        </section>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <script src="js/data/products.js"></script>
+    <script src="js/price.js"></script>
+    <script src="js/wizard.js"></script>
+    <script src="js/mini-wizard.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/ui-toast.js"></script>
+    <script src="js/ui-modal.js"></script>
+    <script src="js/ui-faq.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
