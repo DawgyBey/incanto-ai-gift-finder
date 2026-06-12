@@ -1,0 +1,632 @@
+/**
+ * ============================================================================
+ * INCANTO — Gift Discovery Wizard (wizard.css)
+ * ============================================================================
+ * "Heavens" aesthetic: soft mesh, glass cards, luxury spacing.
+ * Scoped under .incanto-wizard to avoid colliding with global components.
+ * ============================================================================
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap");
+
+.incanto-wizard {
+  --wiz-bg: #fafafa;
+  --wiz-lav: #8b5cf6;
+  --wiz-lav-soft: #c084fc;
+  --wiz-peach: #ffe8d6;
+  --wiz-text: #1a1528;
+  --wiz-muted: #6b6478;
+  --wiz-glass: rgba(255, 255, 255, 0.52);
+  --wiz-border: rgba(139, 92, 246, 0.14);
+  --wiz-shadow-deep: 0 32px 80px rgba(24, 18, 40, 0.12), 0 12px 32px rgba(139, 92, 246, 0.12);
+  --wiz-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --wiz-ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+
+  min-height: 100vh;
+  background: var(--wiz-bg);
+  color: var(--wiz-text);
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.75;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* When the wizard is embedded on the page, make it occupy the full viewport
+   so users get a full-screen experience when it's shown. The element is
+   hidden by default (hidden attribute); these rules apply when it's displayed. */
+.incanto-wizard--embed {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: block;
+  background: var(--wiz-bg);
+}
+.incanto-wizard--embed .incanto-wizard__shell {
+  max-width: 100%;
+  padding: clamp(24px, 5vw, 64px);
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+.incanto-wizard--embed .incanto-wizard__stage {
+  min-height: calc(100vh - 160px);
+}
+
+/* --- Atmospheric gradient blobs (fixed, non-interactive) --- */
+.incanto-wizard__mesh {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(900px 520px at 12% 8%, rgba(192, 132, 252, 0.35), transparent 55%),
+    radial-gradient(760px 520px at 88% 12%, rgba(255, 232, 214, 0.85), transparent 52%),
+    radial-gradient(640px 480px at 52% 92%, rgba(139, 92, 246, 0.12), transparent 55%);
+}
+
+.incanto-wizard__shell {
+  position: relative;
+  z-index: 1;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 96px) clamp(24px, 5vw, 80px) clamp(64px, 10vw, 120px);
+}
+
+/* Luxury spacing: generous vertical rhythm */
+.incanto-wizard__header {
+  text-align: center;
+  margin-bottom: clamp(48px, 7vw, 88px);
+}
+
+.incanto-wizard__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: 1.05rem;
+  color: var(--wiz-lav);
+  margin-bottom: 18px;
+}
+
+.incanto-wizard__title {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  font-size: clamp(2.1rem, 4.6vw, 3.25rem);
+  margin: 0 0 16px;
+}
+
+.incanto-wizard__subtitle {
+  margin: 0 auto;
+  max-width: 56ch;
+  color: var(--wiz-muted);
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+/* Progress rail */
+.incanto-wizard__progress {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: clamp(40px, 6vw, 72px) 0 clamp(32px, 5vw, 56px);
+}
+.incanto-wizard__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.18);
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  transition: transform 420ms var(--wiz-ease), background 420ms var(--wiz-ease), width 420ms var(--wiz-ease);
+}
+.incanto-wizard__dot.is-active {
+  width: 34px;
+  background: linear-gradient(135deg, var(--wiz-lav), #a855f7);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 14px 34px rgba(139, 92, 246, 0.28);
+}
+
+/* Glass stage card */
+.incanto-wizard__stage {
+  border-radius: 28px;
+  padding: clamp(56px, 7vw, 88px) clamp(32px, 6vw, 96px);
+  min-height: 520px;
+  background: var(--wiz-glass);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--wiz-shadow-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.incanto-wizard__panels {
+  position: relative;
+}
+
+.incanto-wizard__panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 520ms var(--wiz-ease-out-soft), transform 520ms var(--wiz-ease-out-soft);
+}
+.incanto-wizard__panel.is-active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+.incanto-wizard__panel.is-exit {
+  display: block;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.incanto-wizard__step-title {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: clamp(1.55rem, 3vw, 2.05rem);
+  margin: 0 0 12px;
+}
+.incanto-wizard__step-lead {
+  margin: 0 0 clamp(40px, 5vw, 64px);
+  color: var(--wiz-muted);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  max-width: 62ch;
+}
+
+/* Large occasion / relationship / personality cards */
+.incanto-wizard__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .incanto-wizard__grid.cols-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .incanto-wizard__grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.incanto-wizard__choice {
+  text-align: left;
+  border-radius: 20px;
+  padding: 22px 20px;
+  border: 1px solid rgba(139, 92, 246, 0.16);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 18px 46px rgba(24, 18, 40, 0.06);
+  cursor: pointer;
+  transition: transform 420ms var(--wiz-ease), box-shadow 420ms var(--wiz-ease), border-color 420ms var(--wiz-ease),
+    background 420ms var(--wiz-ease);
+}
+.incanto-wizard__choice:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 70px rgba(24, 18, 40, 0.1);
+  border-color: rgba(139, 92, 246, 0.28);
+}
+.incanto-wizard__choice.is-selected {
+  border-color: rgba(139, 92, 246, 0.45);
+  background: linear-gradient(135deg, rgba(243, 232, 255, 0.75), rgba(255, 255, 255, 0.65));
+  box-shadow: 0 28px 80px rgba(139, 92, 246, 0.16);
+}
+
+.incanto-wizard__choice-kicker {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: 1.1rem;
+  margin: 0 0 8px;
+}
+.incanto-wizard__choice-copy {
+  margin: 0;
+  color: var(--wiz-muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* --- Step 3: Luxury budget slider (no default range styling) --- */
+.incanto-wizard__budget {
+  text-align: center;
+  padding: clamp(12px, 2vw, 18px) 0 clamp(8px, 2vw, 14px);
+}
+
+.incanto-wizard__budget-display {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: clamp(2.6rem, 6vw, 4.25rem);
+  line-height: 1.02;
+  margin: 0 0 10px;
+  background: linear-gradient(135deg, #1a1528, var(--wiz-lav));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.incanto-wizard__budget-hint {
+  margin: 0 0 clamp(28px, 4vw, 44px);
+  color: var(--wiz-muted);
+}
+
+.incanto-wizard__range-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 18px 8px 8px;
+}
+
+.incanto-wizard__range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 18px;
+  background: transparent;
+  outline: none;
+}
+
+/* Track */
+.incanto-wizard__range::-webkit-slider-runnable-track {
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(243, 232, 255, 0.95), rgba(192, 132, 252, 0.85), rgba(253, 186, 116, 0.55));
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+.incanto-wizard__range::-moz-range-track {
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(243, 232, 255, 0.95), rgba(192, 132, 252, 0.85), rgba(253, 186, 116, 0.55));
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+/* Thumb: floating white pill */
+.incanto-wizard__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  box-shadow: 0 18px 40px rgba(24, 18, 40, 0.18), 0 10px 22px rgba(139, 92, 246, 0.18);
+  margin-top: -10px; /* centers thumb on track */
+  transition: transform 220ms var(--wiz-ease), box-shadow 220ms var(--wiz-ease);
+}
+.incanto-wizard__range::-moz-range-thumb {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  box-shadow: 0 18px 40px rgba(24, 18, 40, 0.18), 0 10px 22px rgba(139, 92, 246, 0.18);
+}
+.incanto-wizard__range:active::-webkit-slider-thumb {
+  transform: scale(1.06);
+}
+
+.incanto-wizard__range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  color: var(--wiz-muted);
+  font-size: 0.92rem;
+}
+
+/* Chips (Step 4) */
+.incanto-wizard__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.incanto-wizard__chip {
+  border-radius: 999px;
+  padding: 12px 16px;
+  border: 1px solid rgba(139, 92, 246, 0.16);
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--wiz-text);
+  transition: transform 420ms var(--wiz-ease), border-color 420ms var(--wiz-ease), background 420ms var(--wiz-ease),
+    box-shadow 420ms var(--wiz-ease);
+}
+.incanto-wizard__chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(24, 18, 40, 0.08);
+}
+.incanto-wizard__chip.is-selected {
+  border-color: rgba(139, 92, 246, 0.45);
+  background: rgba(243, 232, 255, 0.75);
+  box-shadow: 0 18px 50px rgba(139, 92, 246, 0.14);
+}
+
+/* Footer controls */
+.incanto-wizard__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: clamp(48px, 6vw, 72px);
+  padding-top: clamp(18px, 3vw, 28px);
+  border-top: 1px solid rgba(139, 92, 246, 0.12);
+}
+
+.incanto-wizard__btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 220ms var(--wiz-ease), box-shadow 220ms var(--wiz-ease), opacity 220ms var(--wiz-ease);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+.incanto-wizard__btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+.incanto-wizard__btn--ghost {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(139, 92, 246, 0.16);
+  color: var(--wiz-text);
+  box-shadow: 0 16px 40px rgba(24, 18, 40, 0.06);
+}
+.incanto-wizard__btn--primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--wiz-lav), #a855f7);
+  box-shadow: 0 22px 60px rgba(139, 92, 246, 0.35);
+  padding-inline: 22px;
+}
+.incanto-wizard__btn--primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.incanto-wizard__hint {
+  color: var(--wiz-muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+/* --- Results view --- */
+.incanto-wizard__results {
+  display: none;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 520ms var(--wiz-ease-out-soft), transform 520ms var(--wiz-ease-out-soft);
+}
+.incanto-wizard__results.is-active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.incanto-wizard__results-head {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.incanto-wizard__results-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 860px) {
+  .incanto-wizard__results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.incanto-wizard__result-card {
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(139, 92, 246, 0.14);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 26px 70px rgba(24, 18, 40, 0.1);
+  transition: transform 420ms var(--wiz-ease), box-shadow 420ms var(--wiz-ease);
+}
+.incanto-wizard__result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 34px 90px rgba(24, 18, 40, 0.14);
+}
+
+.incanto-wizard__result-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: rgba(243, 232, 255, 0.55);
+}
+.incanto-wizard__result-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.incanto-wizard__badge {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  color: #1a1528;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  box-shadow: 0 18px 40px rgba(24, 18, 40, 0.12);
+  max-width: calc(100% - 28px);
+}
+
+.incanto-wizard__result-body {
+  padding: 18px 18px 20px;
+}
+.incanto-wizard__result-title {
+  margin: 0 0 10px;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+.incanto-wizard__result-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--wiz-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.incanto-wizard__result-price {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--wiz-lav);
+}
+
+.incanto-wizard__result-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.incanto-wizard__mini {
+  flex: 1;
+  min-width: 160px;
+  border-radius: 999px;
+  padding: 12px 14px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  border: 1px solid rgba(139, 92, 246, 0.16);
+  background: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  transition: transform 220ms var(--wiz-ease), box-shadow 220ms var(--wiz-ease);
+}
+.incanto-wizard__mini:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(24, 18, 40, 0.1);
+}
+.incanto-wizard__mini--primary {
+  border: 0;
+  color: #fff;
+  background: linear-gradient(135deg, var(--wiz-lav), #a855f7);
+  box-shadow: 0 18px 50px rgba(139, 92, 246, 0.28);
+}
+
+.incanto-wizard__exit {
+  display: inline-flex;
+  margin-top: 18px;
+  color: var(--wiz-muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+.incanto-wizard__exit:hover {
+  color: var(--wiz-lav);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .incanto-wizard__panel,
+  .incanto-wizard__results,
+  .incanto-wizard__choice,
+  .incanto-wizard__chip,
+  .incanto-wizard__result-card,
+  .incanto-wizard__dot {
+    transition: none !important;
+  }
+}
+
+@keyframes wiz-shake {
+  0% {
+    transform: translateX(0);
+  }
+  35% {
+    transform: translateX(-6px);
+  }
+  70% {
+    transform: translateX(6px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.incanto-wizard__btn.wiz-shake {
+  animation: wiz-shake 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+/* --- Embedded overlay (homepage / index.html) ------------------------------ */
+.incanto-wizard.incanto-wizard--embed {
+  position: fixed;
+  inset: 0;
+  z-index: 3500;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.incanto-wizard.incanto-wizard--embed[hidden] {
+  display: none !important;
+}
+body.wizard-open {
+  overflow: hidden;
+}
+
+.incanto-wizard__topbar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px clamp(16px, 4vw, 28px) 0;
+  background: linear-gradient(to bottom, rgba(250, 250, 250, 0.95), rgba(250, 250, 250, 0));
+}
+
+.incanto-wizard__top-close {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  font-size: 1.65rem;
+  line-height: 1;
+  color: #1a1528;
+  box-shadow: 0 18px 44px rgba(24, 18, 40, 0.1);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.incanto-wizard__top-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 54px rgba(24, 18, 40, 0.14);
+}
+
+button.incanto-wizard__exit {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.incanto-wizard__exit:hover {
+  color: var(--wiz-lav);
+}
